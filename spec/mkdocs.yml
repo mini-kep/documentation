@@ -1,0 +1,13 @@
+site_name: Specifications
+pages:
+    - Home: index.md
+    - Custom API: custom_api.md
+    - Database: database.md
+    - Data model and namespace: datamodel_and_namespace.md
+    - Django app: django_app.md
+    - Frontend: frontend.md
+    - Parser Guidelines: parser_guidelines.md
+    - Parsers: parsers.md
+    - Scheduler: scheduler.md
+    - User case: usercase.md
+theme: readthedocs
