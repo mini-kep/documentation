@@ -5,3 +5,6 @@ Use [mkdocs](http://www.mkdocs.org/)
 2) ... at experimental-mkdocs-specification-io (this repo) using [Gihub Pages](http://www.mkdocs.org/user-guide/deploying-your-docs/)
 3) ... and build it fast (maybe scripting using invoke).
 
+
+Note:
+- ccdd docs are nice and they are build with mkdocs: <https://drivendata.github.io/cookiecutter-data-science/>
