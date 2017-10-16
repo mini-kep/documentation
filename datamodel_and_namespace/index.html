@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Data model and namespace - Specifications</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Data model and namespace";
+    var mkdocs_page_input_path = "datamodel_and_namespace.md";
+    var mkdocs_page_url = "/datamodel_and_namespace/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js"></script>
+  <script src="../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Specifications</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../custom_api/">Custom API</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../database/">Database</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">Data model and namespace</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#datamodel-and-enduser-api">Datamodel and enduser API</a></li>
+    
+
+    <li class="toctree-l2"><a href="#suggested-readingcode">Suggested reading/code</a></li>
+    
+
+    <li class="toctree-l2"><a href="#glossary">Glossary</a></li>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../django_app/">Django app</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../frontend/">Frontend</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../parser_guidelines/">Parser Guidelines</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../parsers/">Parsers</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../scheduler/">Scheduler</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../usercase/">User case</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Specifications</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Data model and namespace</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="datamodel-and-enduser-api">Datamodel and enduser API</h1>
+<p>The idea of mini-kep project is to allow simple retrieval of Russian macroeconomic data 
+into python pandas and R, using an intuitive notation about variable naming and 
+modifiation.</p>
+<p>We want an end-user to make a call like this to get qurterly nominal GDP and 
+real GDP growht rate: </p>
+<pre><code class="python">
+gdp_nominal = pd.read_json('https://mini-kep.herokuapp.com/ru/series/GDP/q')
+gdp_real_growth_rate = pd.read_json('https://mini-kep.herokuapp.com/ru/series/GDP/q/rog')
+
+</code></pre>
+
+<p><code>rog</code> is rate of growth, real growth rate to previous period </p>
+<p>Daily oil prices and exchange rates can be retrieved as: </p>
+<pre><code class="python">
+brent = pd.read_json('https://mini-kep.herokuapp.com/oil/series/BRENT/d')
+#exchange rate
+er = pd.read_json('https://mini-kep.herokuapp.com/ru/series/USDRUR/d')
+</code></pre>
+
+<p>As of now the API frontend just shows how flask decodes long URL into a dict/json. You can click and see:</p>
+<ul>
+<li><a href="https://mini-kep.herokuapp.com/ru/series/BRENT/m">https://mini-kep.herokuapp.com/ru/series/BRENT/m</a></li>
+<li><a href="https://mini-kep.herokuapp.com/ru/series/BRENT/m/eop/2015/2016/csv">https://mini-kep.herokuapp.com/ru/series/BRENT/m/eop/2015/2016/csv</a></li>
+<li><a href="https://mini-kep.herokuapp.com/ru/series/GDP/q/rog">https://mini-kep.herokuapp.com/ru/series/GDP/q/rog</a></li>
+</ul>
+<p>The URL/API is styled around:
+- <code>https://mini-kep.herokuapp.com/&lt;domain&gt;/series/&lt;VARNAME&gt;/&lt;frequency&gt;</code> - mandatory part
+- <code>&lt;mandatory part&gt;/&lt;modifier | aggregator&gt;/&lt;start_year&gt;/&lt;end_year&gt;/&lt;finaliser&gt;</code> - optional part</p>
+<p>The functionaly described not implemented yet, but hopefully soon be. For this to happen:
+- at <a href="https://github.com/mini-kep/parser-template">parser-template</a> we are working on importing parsing results (kep+exchange rate+oil) as dictionaries with datapoints 
+- at <a href="https://github.com/mini-kep/db">db</a> the datapoints are to be stored in a database <br />
+- <a href="https://github.com/mini-kep/frontend-app">the frontend app</a> should be able to query the database and provide real data for 
+  calls above.</p>
+<p>An important link that I propose to explore is what our datamodel for 
+the macroeconomic data and how to make good API documentation and prototype. 
+As for API the tricky part is making a 'reddit' style slashed API which 
+assumes default values for some cases + some token combinations are invalid.</p>
+<p>More to follow:
+- how we can get the data extracted (getter.py) + what is done with other parsers
+- naming convention in 'parser-rosstat-kep'
+- questions about data consistency and checks performed
+- 'true dataset' (affests API design and verification)
+- API blueprint
+- translate API call to database call (this should be sample code with a lot of test)
+- API v.0.1 vs features for the future</p>
+<h1 id="suggested-readingcode">Suggested reading/code</h1>
+<ul>
+<li><code>read_csv()</code>: </li>
+<li><a href="https://github.com/mini-kep/parser-rosstat-kep/blob/master/src/getter.py">getter.py</a></li>
+<li><a href="https://github.com/mini-kep/parser-rosstat-kep/blob/master/README.md#how-do-i-download-macroeconomic-indicators-from-here">parser-rosstat-kep readme</a></li>
+<li><a href="http://mini-kep.herokuapp.com/">app frontpage code</a></li>
+</ul>
+<blockquote>
+<p>This is a data access function used across the project to read the output as dataframes from stable URLs
+In end-user API the import function will be  <code>pd.read_json</code> as it will allow to bypass time index transformation:</p>
+</blockquote>
+<pre><code>annual_CPI_rog = pd.read_json('http://mini-kep.herokuapp.com/ru/series/CPI/a/rog')
+</code></pre>
+
+<ul>
+<li><a href="https://github.com/mini-kep/parser-rosstat-kep/blob/master/src/utils/df_check.py">dataframe consistency</a>:</li>
+</ul>
+<blockquote>
+<p>This module checks consistency of the results in the database. In particular, the monthly frequency 
+dataframes are aggregated to an annual frequency, and checked against the published annual results. 
+More functions checking for consistency in other frequencies can be added (eg monthly to quarterly, quarterly to annual)
+We found some inconsistencies were reported data on annual level is different that the log-sum on monthly rates,
+even controlling for rounding error.</p>
+</blockquote>
+<ul>
+<li><a href="https://github.com/mini-kep/frontend-app/issues/8">API design issue</a></li>
+</ul>
+<blockquote>
+<p>From here we need to extract the text on data rules and API documentation </p>
+</blockquote>
+<h1 id="glossary">Glossary</h1>
+<ul>
+<li>data model</li>
+<li>true dataset</li>
+<li>reported dataset</li>
+<li>enduser API</li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../django_app/" class="btn btn-neutral float-right" title="Django app">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../database/" class="btn btn-neutral" title="Database"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+    
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../database/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../django_app/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script src="../js/theme.js"></script>
+
+</body>
+</html>
