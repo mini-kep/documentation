@@ -87,21 +87,19 @@
     <li class="toctree-l3"><a href="#overview">Overview</a></li>
     
 
-    <li class="toctree-l3"><a href="#how-is-it-implemented">How is it implemented</a></li>
+    <li class="toctree-l3"><a href="#custom-api-translates-to-db-api">Custom API translates to db API</a></li>
     
 
-    <li class="toctree-l3"><a href="#client-side-code">Client side code</a></li>
+    <li class="toctree-l3"><a href="#url-syntax">URL syntax</a></li>
     
 
-    <li class="toctree-l3"><a href="#url-format">URL format</a></li>
+    <li class="toctree-l3"><a href="#output-format">Output format</a></li>
     
-        <ul>
-        
-            <li><a class="toctree-l4" href="#what-next">What next</a></li>
-        
-            <li><a class="toctree-l4" href="#changelog">Changelog</a></li>
-        
-        </ul>
+
+    <li class="toctree-l3"><a href="#implementation">Implementation</a></li>
+    
+
+    <li class="toctree-l3"><a href="#next-steps">Next steps</a></li>
     
 
     </ul>
@@ -167,41 +165,56 @@
                 <h1 id="overview">Overview</h1>
 <p>Custom API is a simplified interface for end-user queries from database. 
 It uses long URL with slashes and no other parameters.</p>
-<p>This call: </p>
+<p>Сustom API is intended to allow:</p>
+<ol>
+<li>intuitive construction of URL for user</li>
+<li>shorter notation than standard database API GET method </li>
+<li>addressing several database API endpoints in one place</li>
+<li>uniform call to same indicator for different countries or regions</li>
+</ol>
+<p>API design originally discussed at <a href="https://github.com/mini-kep/frontend-app/issues/8">this issue</a>.</p>
+<h1 id="custom-api-translates-to-db-api">Custom API translates to db API</h1>
+<p>Custom API is essentially a thin syntax layer on top of database API. 
+All calls to custom API are redirected to database API. </p>
+<p>For example, this call to custom API: </p>
 <p><code>http://mini-kep.herokuapp.com/ru/series/CPI/m/rog/2015/2017</code></p>
 <p>will return same data as:</p>
 <p><code>https://minikep-db.herokuapp.com/api/datapoints?name=CPI_rog&amp;freq=m&amp;start_date=2015-01-01&amp;end_date=2017-12-31</code></p>
-<p>The intent of custom API is to allow:
-1. intuitive construction of URL for user
-2. shorter notation than standard database API GET method 
-3. get similar data for different countries / regions just by changing little part of URL, for example: 
-   - <code>ru/series/CPI/m/2017</code> is nationwide inflation for Russia 
-   - <code>ru:77/series/CPI/m/2017</code> is inflation for Moscow region (from <a href="http://www.gks.ru/bgd/regl/b16_17/IssWWW.exe/Stg/10-2-1.xls">here</a>)<br />
-   - <code>kz/series/CPI/m/2017</code> is same national indicator for Kazakhstan.</p>
-<h1 id="how-is-it-implemented">How is it implemented</h1>
-<blockquote>
-<p>ideas on how it is implemented - with respect to flask </p>
-<p>or suggestions on implementation </p>
-</blockquote>
-<p>Custom API is mounted at <a href="http://mini-kep.herokuapp.com/">http://mini-kep.herokuapp.com/</a>, see below for details. </p>
-<blockquote>
-<p>todo: where the code is </p>
-<p>todo: where the data is </p>
-</blockquote>
-<h1 id="client-side-code">Client side code</h1>
-<p>In order to ensure data integrity, some additional parameters need to be specified when importing data with <code>pd.read_json</code> or <code>pd.read_csv</code>.
-See <a href="../custom_api_client_side_code.py">here</a> for examples on how to load data into a dataframe.</p>
-<h1 id="url-format">URL format</h1>
-<p>Some more examples illustrating the format of the URLs;</p>
-<pre><code>oil/series/BRENT/m/eop/2015/2017/csv
-ru/series/EXPORT_GOODS/m/bln_rub
+<h1 id="url-syntax">URL syntax</h1>
+<p>Custom API url syntax is the following:</p>
+<pre><code>{domain}/series/{varname}/{freq}/{?suffix}/{?start}/{?end}/{?finaliser}
+
+? - optional
+
+Examples:
+   oil/series/BRENT/m/eop/2015/2017/csv
+   ru/series/EXPORT_GOODS/m/bln_rub   
 </code></pre>
 
-<p>For further details, refer to the <a href="https://github.com/mini-kep/helpers/blob/master/custom_api/custom_api.py#L1-L46">docstring</a> in the custom_api.py file.</p>
-<h2 id="what-next">What next</h2>
-<p>What developers are about to do next</p>
-<h2 id="changelog">Changelog</h2>
-<p>Big events / changes</p>
+<p>For further details, refer to the docstring in 
+<a href="https://github.com/mini-kep/helper-custom-api/blob/master/src/custom_api.py">custom_api.py</a> file.</p>
+<p>Expected usage of <code>{domain}</code> is to get similar data 
+for different countries or regions by changing a little part of custom URL:</p>
+<pre><code>   ru/series/CPI/m/2017  # country-level inflation for Russia 
+ru:77/series/CPI/m/2017  # inflation for Moscow region                         
+   kz/series/CPI/m/2017  # country-level inflation for Kazakhstan
+</code></pre>
+
+<h1 id="output-format">Output format</h1>
+<p>By default custom API returns CSV file. This file is:</p>
+<ul>
+<li>viewable in browswer (download does not start)</li>
+<li>readable by R/pandas</li>
+</ul>
+<p>Optional  <code>{finaliser}</code> may alter output format.</p>
+<h1 id="implementation">Implementation</h1>
+<p>Custom API currently developped and tested at 
+<a href="https://github.com/mini-kep/helper-custom-api/blob/master/src/custom_api.py">own repo</a>
+and mounted at <a href="https://github.com/mini-kep/frontend-app/blob/master/apps/views/time_series.py">frontend app</a>.</p>
+<h1 id="next-steps">Next steps</h1>
+<ul>
+<li><a href="https://github.com/mini-kep/helpers/issues/13">Mount custom API at db app</a></li>
+</ul>
               
             </div>
           </div>

@@ -2,17 +2,17 @@
     "docs": [
         {
             "location": "/",
-            "text": "Introduction\n\n\nmini-kep\n is a small ETL (extract, transform, load) framework for \nRussian and global macroeconomic time series data with public end-user API.\n\n\nmini-kep\n collects data from static files and public APIs,\nsaves it in database and provides end-user interface to browse this data \nand read it into R/pandas for visualisation and modelling.  \n\n\nmini-kep\n is inspired by \nSt Louis FRED\n and \n\nData Science Cookiecutter\n\nand aims to simplify reproducible analysis in economics \nby making data open, machine-readable and continiously updated. \n\n\nEnd use example\n\n\nRead daily ruble/usd exchange rate from start of 2017\n\n\nimport pandas as pd\n\ndef read_ts(source_url):\n    \"\"\"Read pandas time series from *source_url*.\"\"\"\n    return pd.read_csv(source_url, \n                      converters={0: pd.to_datetime}, \n                      index_col=0,\n                      squeeze=True)\n\ner = read_ts('http://mini-kep.herokuapp.com/ru/series/USDRUR_CB/d/2017')\nassert er['2017-09-28'] == 58.01022\n\n\n\n\n\nClick to see data in browser:\n\nhttp://mini-kep.herokuapp.com/ru/series/USDRUR_CB/d/2017\n\n\nProject repositories and links\n\n\nParsers\n:\ndata source descriptions and parser code.\n\n\nDatabase layer\n:\nAPI and database for data storage and \nretrieval\n, \nhosted at\n\n\nhttps://minikep-db.herokuapp.com/api/\n\n\nFrontend app\n:\ncan be viewed in browser at \nhttps://mini-kep.herokuapp.com\n, relies on API above. \n\n\nEnd user code\n:\n\u0430 collection of Jupiter notebooks to demostrate data use.",
+            "text": "Introduction\n\n\nmini-kep\n is a small ETL (extract, transform, load) framework for \nRussian and global macroeconomic time series data with public end-user API.\n\n\nmini-kep\n collects data from static files and public APIs,\nsaves it in database and provides end-user interface to browse this data \nand read it into R/pandas for visualisation and modelling.  \n\n\nInspired by \nSt Louis FRED\n and \n\nData Science Cookiecutter\n,\nand aims to provide open, timely, machine-readable data for reproducible \nanalysis in economics.\n\n\nEnd use example\n\n\nRead official daily ruble/usd exchange rate from start of 2017\n\n\nimport pandas as pd\n\ndef read_ts(source_url):\n    \"\"\"Read pandas time series from *source_url*.\"\"\"\n    return pd.read_csv(source_url, \n                      converters={0: pd.to_datetime}, \n                      index_col=0,\n                      squeeze=True)\n\ner = read_ts('http://mini-kep.herokuapp.com/ru/series/USDRUR_CB/d/2017')\nassert er['2017-09-28'] == 58.01022\n\n\n\n\n\nClick to see data in browser:\n\nhttp://mini-kep.herokuapp.com/ru/series/USDRUR_CB/d/2017\n\n\nProject repositories and links\n\n\nParsers\n:\ndata source descriptions and parser code.\n\n\nDatabase layer\n:\nAPI and database for data storage and \nretrieval\n, \nhosted at\n\n\nhttps://minikep-db.herokuapp.com/api/\n\n\nFrontend app\n:\ncan be viewed in browser at \nhttps://mini-kep.herokuapp.com\n, relies on API above. \n\n\nEnd user code\n:\n\u0430 collection of Jupiter notebooks to demostrate data use.",
             "title": "Overview"
         },
         {
             "location": "/#introduction",
-            "text": "mini-kep  is a small ETL (extract, transform, load) framework for \nRussian and global macroeconomic time series data with public end-user API.  mini-kep  collects data from static files and public APIs,\nsaves it in database and provides end-user interface to browse this data \nand read it into R/pandas for visualisation and modelling.    mini-kep  is inspired by  St Louis FRED  and  Data Science Cookiecutter \nand aims to simplify reproducible analysis in economics \nby making data open, machine-readable and continiously updated.",
+            "text": "mini-kep  is a small ETL (extract, transform, load) framework for \nRussian and global macroeconomic time series data with public end-user API.  mini-kep  collects data from static files and public APIs,\nsaves it in database and provides end-user interface to browse this data \nand read it into R/pandas for visualisation and modelling.    Inspired by  St Louis FRED  and  Data Science Cookiecutter ,\nand aims to provide open, timely, machine-readable data for reproducible \nanalysis in economics.",
             "title": "Introduction"
         },
         {
             "location": "/#end-use-example",
-            "text": "Read daily ruble/usd exchange rate from start of 2017  import pandas as pd\n\ndef read_ts(source_url):\n    \"\"\"Read pandas time series from *source_url*.\"\"\"\n    return pd.read_csv(source_url, \n                      converters={0: pd.to_datetime}, \n                      index_col=0,\n                      squeeze=True)\n\ner = read_ts('http://mini-kep.herokuapp.com/ru/series/USDRUR_CB/d/2017')\nassert er['2017-09-28'] == 58.01022  Click to see data in browser: http://mini-kep.herokuapp.com/ru/series/USDRUR_CB/d/2017",
+            "text": "Read official daily ruble/usd exchange rate from start of 2017  import pandas as pd\n\ndef read_ts(source_url):\n    \"\"\"Read pandas time series from *source_url*.\"\"\"\n    return pd.read_csv(source_url, \n                      converters={0: pd.to_datetime}, \n                      index_col=0,\n                      squeeze=True)\n\ner = read_ts('http://mini-kep.herokuapp.com/ru/series/USDRUR_CB/d/2017')\nassert er['2017-09-28'] == 58.01022  Click to see data in browser: http://mini-kep.herokuapp.com/ru/series/USDRUR_CB/d/2017",
             "title": "End use example"
         },
         {
@@ -137,38 +137,38 @@
         },
         {
             "location": "/custom_api/",
-            "text": "Overview\n\n\nCustom API is a simplified interface for end-user queries from database. \nIt uses long URL with slashes and no other parameters.\n\n\nThis call: \n\n\nhttp://mini-kep.herokuapp.com/ru/series/CPI/m/rog/2015/2017\n\n\nwill return same data as:\n\n\nhttps://minikep-db.herokuapp.com/api/datapoints?name=CPI_rog&freq=m&start_date=2015-01-01&end_date=2017-12-31\n\n\nThe intent of custom API is to allow:\n1. intuitive construction of URL for user\n2. shorter notation than standard database API GET method \n3. get similar data for different countries / regions just by changing little part of URL, for example: \n   - \nru/series/CPI/m/2017\n is nationwide inflation for Russia \n   - \nru:77/series/CPI/m/2017\n is inflation for Moscow region (from \nhere\n)\n\n   - \nkz/series/CPI/m/2017\n is same national indicator for Kazakhstan.\n\n\nHow is it implemented\n\n\n\n\nideas on how it is implemented - with respect to flask \n\n\nor suggestions on implementation \n\n\n\n\nCustom API is mounted at \nhttp://mini-kep.herokuapp.com/\n, see below for details. \n\n\n\n\ntodo: where the code is \n\n\ntodo: where the data is \n\n\n\n\nClient side code\n\n\nIn order to ensure data integrity, some additional parameters need to be specified when importing data with \npd.read_json\n or \npd.read_csv\n.\nSee \nhere\n for examples on how to load data into a dataframe.\n\n\nURL format\n\n\nSome more examples illustrating the format of the URLs;\n\n\noil/series/BRENT/m/eop/2015/2017/csv\nru/series/EXPORT_GOODS/m/bln_rub\n\n\n\n\nFor further details, refer to the \ndocstring\n in the custom_api.py file.\n\n\nWhat next\n\n\nWhat developers are about to do next\n\n\nChangelog\n\n\nBig events / changes",
+            "text": "Overview\n\n\nCustom API is a simplified interface for end-user queries from database. \nIt uses long URL with slashes and no other parameters.\n\n\n\u0421ustom API is intended to allow:\n\n\n\n\nintuitive construction of URL for user\n\n\nshorter notation than standard database API GET method \n\n\naddressing several database API endpoints in one place\n\n\nuniform call to same indicator for different countries or regions\n\n\n\n\nAPI design originally discussed at \nthis issue\n.\n\n\nCustom API translates to db API\n\n\nCustom API is essentially a thin syntax layer on top of database API. \nAll calls to custom API are redirected to database API. \n\n\nFor example, this call to custom API: \n\n\nhttp://mini-kep.herokuapp.com/ru/series/CPI/m/rog/2015/2017\n\n\nwill return same data as:\n\n\nhttps://minikep-db.herokuapp.com/api/datapoints?name=CPI_rog&freq=m&start_date=2015-01-01&end_date=2017-12-31\n\n\nURL syntax\n\n\nCustom API url syntax is the following:\n\n\n{domain}/series/{varname}/{freq}/{?suffix}/{?start}/{?end}/{?finaliser}\n\n? - optional\n\nExamples:\n   oil/series/BRENT/m/eop/2015/2017/csv\n   ru/series/EXPORT_GOODS/m/bln_rub   \n\n\n\n\nFor further details, refer to the docstring in \n\ncustom_api.py\n file.\n\n\nExpected usage of \n{domain}\n is to get similar data \nfor different countries or regions by changing a little part of custom URL:\n\n\n   ru/series/CPI/m/2017  # country-level inflation for Russia \nru:77/series/CPI/m/2017  # inflation for Moscow region                         \n   kz/series/CPI/m/2017  # country-level inflation for Kazakhstan\n\n\n\n\nOutput format\n\n\nBy default custom API returns CSV file. This file is:\n\n\n\n\nviewable in browswer (download does not start)\n\n\nreadable by R/pandas\n\n\n\n\nOptional  \n{finaliser}\n may alter output format.\n\n\nImplementation\n\n\nCustom API currently developped and tested at \n\nown repo\n\nand mounted at \nfrontend app\n.\n\n\nNext steps\n\n\n\n\nMount custom API at db app",
             "title": "Custom API"
         },
         {
             "location": "/custom_api/#overview",
-            "text": "Custom API is a simplified interface for end-user queries from database. \nIt uses long URL with slashes and no other parameters.  This call:   http://mini-kep.herokuapp.com/ru/series/CPI/m/rog/2015/2017  will return same data as:  https://minikep-db.herokuapp.com/api/datapoints?name=CPI_rog&freq=m&start_date=2015-01-01&end_date=2017-12-31  The intent of custom API is to allow:\n1. intuitive construction of URL for user\n2. shorter notation than standard database API GET method \n3. get similar data for different countries / regions just by changing little part of URL, for example: \n   -  ru/series/CPI/m/2017  is nationwide inflation for Russia \n   -  ru:77/series/CPI/m/2017  is inflation for Moscow region (from  here ) \n   -  kz/series/CPI/m/2017  is same national indicator for Kazakhstan.",
+            "text": "Custom API is a simplified interface for end-user queries from database. \nIt uses long URL with slashes and no other parameters.  \u0421ustom API is intended to allow:   intuitive construction of URL for user  shorter notation than standard database API GET method   addressing several database API endpoints in one place  uniform call to same indicator for different countries or regions   API design originally discussed at  this issue .",
             "title": "Overview"
         },
         {
-            "location": "/custom_api/#how-is-it-implemented",
-            "text": "ideas on how it is implemented - with respect to flask   or suggestions on implementation    Custom API is mounted at  http://mini-kep.herokuapp.com/ , see below for details.    todo: where the code is   todo: where the data is",
-            "title": "How is it implemented"
+            "location": "/custom_api/#custom-api-translates-to-db-api",
+            "text": "Custom API is essentially a thin syntax layer on top of database API. \nAll calls to custom API are redirected to database API.   For example, this call to custom API:   http://mini-kep.herokuapp.com/ru/series/CPI/m/rog/2015/2017  will return same data as:  https://minikep-db.herokuapp.com/api/datapoints?name=CPI_rog&freq=m&start_date=2015-01-01&end_date=2017-12-31",
+            "title": "Custom API translates to db API"
         },
         {
-            "location": "/custom_api/#client-side-code",
-            "text": "In order to ensure data integrity, some additional parameters need to be specified when importing data with  pd.read_json  or  pd.read_csv .\nSee  here  for examples on how to load data into a dataframe.",
-            "title": "Client side code"
+            "location": "/custom_api/#url-syntax",
+            "text": "Custom API url syntax is the following:  {domain}/series/{varname}/{freq}/{?suffix}/{?start}/{?end}/{?finaliser}\n\n? - optional\n\nExamples:\n   oil/series/BRENT/m/eop/2015/2017/csv\n   ru/series/EXPORT_GOODS/m/bln_rub     For further details, refer to the docstring in  custom_api.py  file.  Expected usage of  {domain}  is to get similar data \nfor different countries or regions by changing a little part of custom URL:     ru/series/CPI/m/2017  # country-level inflation for Russia \nru:77/series/CPI/m/2017  # inflation for Moscow region                         \n   kz/series/CPI/m/2017  # country-level inflation for Kazakhstan",
+            "title": "URL syntax"
         },
         {
-            "location": "/custom_api/#url-format",
-            "text": "Some more examples illustrating the format of the URLs;  oil/series/BRENT/m/eop/2015/2017/csv\nru/series/EXPORT_GOODS/m/bln_rub  For further details, refer to the  docstring  in the custom_api.py file.",
-            "title": "URL format"
+            "location": "/custom_api/#output-format",
+            "text": "By default custom API returns CSV file. This file is:   viewable in browswer (download does not start)  readable by R/pandas   Optional   {finaliser}  may alter output format.",
+            "title": "Output format"
         },
         {
-            "location": "/custom_api/#what-next",
-            "text": "What developers are about to do next",
-            "title": "What next"
+            "location": "/custom_api/#implementation",
+            "text": "Custom API currently developped and tested at  own repo \nand mounted at  frontend app .",
+            "title": "Implementation"
         },
         {
-            "location": "/custom_api/#changelog",
-            "text": "Big events / changes",
-            "title": "Changelog"
+            "location": "/custom_api/#next-steps",
+            "text": "Mount custom API at db app",
+            "title": "Next steps"
         },
         {
             "location": "/frontend/",
