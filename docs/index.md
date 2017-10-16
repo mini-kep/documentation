@@ -55,13 +55,17 @@ Project repositories and links
 [Parsers](https://github.com/mini-kep/parsers):
 data source descriptions and parser code.
 
+*Scheduler: not implemented yet.*
+
 [Database layer](https://github.com/mini-kep/db):
-API and database for data storage and [retrieval](https://github.com/mini-kep/db#sample-get-calls), 
+API and database itself for data storage and [retrieval](https://github.com/mini-kep/db#sample-get-calls) 
 hosted at  
 ```https://minikep-db.herokuapp.com/api/```
 
+[Custom API](https://github.com/mini-kep/helper-custom-api): own repo for long URL decomposer.
+
 [Frontend app](https://github.com/mini-kep/frontend-app):
-can be viewed in browser at <https://mini-kep.herokuapp.com>, relies on API above. 
+can be [viewed in browser](https://mini-kep.herokuapp.com), relies on db API. 
 
 [End user code](https://github.com/mini-kep/user-charts):
 а collection of Jupiter notebooks to demostrate data use. 
