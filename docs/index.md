@@ -1,39 +1,56 @@
-Introduction 
+Introduction
 ============
 
 ```mini-kep``` is a small ETL (extract, transform, load) framework for 
-macroeconomic data with public end-user API.
+Russian and global macroeconomic time series data with public end-user API.
 
-Dataflow 
-========
-```mini-kep``` organises a data pipeline from sources 
-(static files in internet and public APIs) to database to end-user API. 
+```mini-kep``` collects data from static files and public APIs,
+saves it in database and provides end-user interface to browse this data 
+and read it into R/pandas for visualisation and modelling.  
 
-The data pipeline is the following:
+Inspired by [St Louis FRED](https://fred.stlouisfed.org) and 
+[Data Science Cookiecutter](https://drivendata.github.io/cookiecutter-data-science),
+and aims to provide open, timely, machine-readable data for reproducible 
+analysis in economics.
 
- 1. [data sources and parsers](https://github.com/mini-kep/parsers) 
- 2. *scheduler (not implemented)*
- 3. [database and db API](https://github.com/mini-kep/db)
- 4. *custom API (draft)*
- 5. *user cases (draft)* 
 
-Pipeline is illustrated by [pipeline.py](https://github.com/mini-kep/intro/blob/master/pipeline/pipeline.py)
- 
-Specifications
-==============
+End use example
+===============
 
-Finished spec:
-- [database layer](database.md)
+Read official daily ruble/usd exchange rate from start of 2017
 
-Under construction:
-- [parsers](parsers.md)
-- [custom API](custom_api.md)
-- [usercase](usercase.md)
+```python 
+import pandas as pd
 
-On hold:
-- [scheduler](scheduler.md)
-- [frontend](frontend.md)
-- [django_app.md](django_app.md)
+def read_ts(source_url):
+	"""Read pandas time series from *source_url*."""
+	return pd.read_csv(source_url, 
+                      converters={0: pd.to_datetime}, 
+                      index_col=0,
+                      squeeze=True)
 
-For discussion:
-- [data model and namespace](datamodel_and_namespace.md)
+er = read_ts('http://mini-kep.herokuapp.com/ru/series/USDRUR_CB/d/2017')
+assert er['2017-09-28'] == 58.01022
+
+```
+
+Click to see data in browser:
+<http://mini-kep.herokuapp.com/ru/series/USDRUR_CB/d/2017>
+
+
+Project repositories and links
+==============================
+
+[Parsers](https://github.com/mini-kep/parsers):
+data source descriptions and parser code.
+
+[Database layer](https://github.com/mini-kep/db):
+API and database for data storage and [retrieval](https://github.com/mini-kep/db#sample-get-calls), 
+hosted at  
+```https://minikep-db.herokuapp.com/api/```
+
+[Frontend app](https://github.com/mini-kep/frontend-app):
+can be viewed in browser at <https://mini-kep.herokuapp.com>, relies on API above. 
+
+[End user code](https://github.com/mini-kep/user-charts):
+а collection of Jupiter notebooks to demostrate data use. 

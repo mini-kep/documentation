@@ -2,58 +2,73 @@
     "docs": [
         {
             "location": "/",
-            "text": "Introduction\n\n\nmini-kep\n is a small ETL (extract, transform, load) framework for \nmacroeconomic data with public end-user API.\n\n\nDataflow\n\n\nmini-kep\n organises a data pipeline from sources \n(static files in internet and public APIs) to database to end-user API. \n\n\nThe data pipeline is the following:\n\n\n\n\ndata sources and parsers\n \n\n\nscheduler (not implemented)\n\n\ndatabase and db API\n\n\ncustom API (draft)\n\n\nuser cases (draft)\n \n\n\n\n\nPipeline is illustrated by \npipeline.py\n\n\nSpecifications\n\n\nFinished spec:\n- \ndatabase layer\n\n\nUnder construction:\n- \nparsers\n\n- \ncustom API\n\n- \nusercase\n\n\nOn hold:\n- \nscheduler\n\n- \nfrontend\n\n- \ndjango_app.md\n\n\nFor discussion:\n- \ndata model and namespace",
-            "title": "Home"
-        },
-        {
-            "location": "/#introduction",
-            "text": "mini-kep  is a small ETL (extract, transform, load) framework for \nmacroeconomic data with public end-user API.",
-            "title": "Introduction"
-        },
-        {
-            "location": "/#dataflow",
-            "text": "mini-kep  organises a data pipeline from sources \n(static files in internet and public APIs) to database to end-user API.   The data pipeline is the following:   data sources and parsers    scheduler (not implemented)  database and db API  custom API (draft)  user cases (draft)     Pipeline is illustrated by  pipeline.py",
-            "title": "Dataflow"
-        },
-        {
-            "location": "/#specifications",
-            "text": "Finished spec:\n-  database layer  Under construction:\n-  parsers \n-  custom API \n-  usercase  On hold:\n-  scheduler \n-  frontend \n-  django_app.md  For discussion:\n-  data model and namespace",
-            "title": "Specifications"
-        },
-        {
-            "location": "/custom_api/",
-            "text": "Overview\n\n\nCustom API is a simplified interface for end-user queries from database. \nIt uses long URL with slashes and no other parameters.\n\n\nThis call: \n\n\nhttp://mini-kep.herokuapp.com/ru/series/CPI/m/rog/2015/2017\n\n\nwill return same data as:\n\n\nhttps://minikep-db.herokuapp.com/api/datapoints?name=CPI_rog&freq=m&start_date=2015-01-01&end_date=2017-12-31\n\n\nThe intent of custom API is to allow:\n1. intuitive construction of URL for user\n2. shorter notation than standard database API GET method \n3. get similar data for different countries / regions just by changing little part of URL, for example: \n   - \nru/series/CPI/m/2017\n is nationwide inflation for Russia \n   - \nru:77/series/CPI/m/2017\n is inflation for Moscow region (from \nhere\n)\n\n   - \nkz/series/CPI/m/2017\n is same national indicator for Kazakhstan.\n\n\nHow is it implemented\n\n\n\n\nideas on how it is implemented - with respect to flask \n\n\nor suggestions on implementation \n\n\n\n\nCustom API is mounted at \nhttp://mini-kep.herokuapp.com/\n, see below for details. \n\n\n\n\ntodo: where the code is \n\n\ntodo: where the data is \n\n\n\n\nClient side code\n\n\nIn order to ensure data integrity, some additional parameters need to be specified when importing data with \npd.read_json\n or \npd.read_csv\n.\nSee \nhere\n for examples on how to load data into a dataframe.\n\n\nURL format\n\n\nSome more examples illustrating the format of the URLs;\n\n\noil/series/BRENT/m/eop/2015/2017/csv\nru/series/EXPORT_GOODS/m/bln_rub\n\n\n\n\nFor further details, refer to the \ndocstring\n in the custom_api.py file.\n\n\nWhat next\n\n\nWhat developers are about to do next\n\n\nChangelog\n\n\nBig events / changes",
-            "title": "Custom API"
-        },
-        {
-            "location": "/custom_api/#overview",
-            "text": "Custom API is a simplified interface for end-user queries from database. \nIt uses long URL with slashes and no other parameters.  This call:   http://mini-kep.herokuapp.com/ru/series/CPI/m/rog/2015/2017  will return same data as:  https://minikep-db.herokuapp.com/api/datapoints?name=CPI_rog&freq=m&start_date=2015-01-01&end_date=2017-12-31  The intent of custom API is to allow:\n1. intuitive construction of URL for user\n2. shorter notation than standard database API GET method \n3. get similar data for different countries / regions just by changing little part of URL, for example: \n   -  ru/series/CPI/m/2017  is nationwide inflation for Russia \n   -  ru:77/series/CPI/m/2017  is inflation for Moscow region (from  here ) \n   -  kz/series/CPI/m/2017  is same national indicator for Kazakhstan.",
+            "text": "Introduction\n\n\nmini-kep\n is a small ETL (extract, transform, load) framework for \nRussian and global macroeconomic time series data with public end-user API.\n\n\nmini-kep\n collects data from static files and public APIs,\nsaves it in database and provides end-user interface to browse this data \nand read it into R/pandas for visualisation and modelling.  \n\n\nInspired by \nSt Louis FRED\n and \n\nData Science Cookiecutter\n,\nand aims to provide open, timely, machine-readable data for reproducible \nanalysis in economics.\n\n\nEnd use example\n\n\nRead official daily ruble/usd exchange rate from start of 2017\n\n\nimport pandas as pd\n\ndef read_ts(source_url):\n    \"\"\"Read pandas time series from *source_url*.\"\"\"\n    return pd.read_csv(source_url, \n                      converters={0: pd.to_datetime}, \n                      index_col=0,\n                      squeeze=True)\n\ner = read_ts('http://mini-kep.herokuapp.com/ru/series/USDRUR_CB/d/2017')\nassert er['2017-09-28'] == 58.01022\n\n\n\n\n\nClick to see data in browser:\n\nhttp://mini-kep.herokuapp.com/ru/series/USDRUR_CB/d/2017\n\n\nProject repositories and links\n\n\nParsers\n:\ndata source descriptions and parser code.\n\n\nDatabase layer\n:\nAPI and database for data storage and \nretrieval\n, \nhosted at\n\n\nhttps://minikep-db.herokuapp.com/api/\n\n\nFrontend app\n:\ncan be viewed in browser at \nhttps://mini-kep.herokuapp.com\n, relies on API above. \n\n\nEnd user code\n:\n\u0430 collection of Jupiter notebooks to demostrate data use.",
             "title": "Overview"
         },
         {
-            "location": "/custom_api/#how-is-it-implemented",
-            "text": "ideas on how it is implemented - with respect to flask   or suggestions on implementation    Custom API is mounted at  http://mini-kep.herokuapp.com/ , see below for details.    todo: where the code is   todo: where the data is",
-            "title": "How is it implemented"
+            "location": "/#introduction",
+            "text": "mini-kep  is a small ETL (extract, transform, load) framework for \nRussian and global macroeconomic time series data with public end-user API.  mini-kep  collects data from static files and public APIs,\nsaves it in database and provides end-user interface to browse this data \nand read it into R/pandas for visualisation and modelling.    Inspired by  St Louis FRED  and  Data Science Cookiecutter ,\nand aims to provide open, timely, machine-readable data for reproducible \nanalysis in economics.",
+            "title": "Introduction"
         },
         {
-            "location": "/custom_api/#client-side-code",
-            "text": "In order to ensure data integrity, some additional parameters need to be specified when importing data with  pd.read_json  or  pd.read_csv .\nSee  here  for examples on how to load data into a dataframe.",
-            "title": "Client side code"
+            "location": "/#end-use-example",
+            "text": "Read official daily ruble/usd exchange rate from start of 2017  import pandas as pd\n\ndef read_ts(source_url):\n    \"\"\"Read pandas time series from *source_url*.\"\"\"\n    return pd.read_csv(source_url, \n                      converters={0: pd.to_datetime}, \n                      index_col=0,\n                      squeeze=True)\n\ner = read_ts('http://mini-kep.herokuapp.com/ru/series/USDRUR_CB/d/2017')\nassert er['2017-09-28'] == 58.01022  Click to see data in browser: http://mini-kep.herokuapp.com/ru/series/USDRUR_CB/d/2017",
+            "title": "End use example"
         },
         {
-            "location": "/custom_api/#url-format",
-            "text": "Some more examples illustrating the format of the URLs;  oil/series/BRENT/m/eop/2015/2017/csv\nru/series/EXPORT_GOODS/m/bln_rub  For further details, refer to the  docstring  in the custom_api.py file.",
-            "title": "URL format"
+            "location": "/#project-repositories-and-links",
+            "text": "Parsers :\ndata source descriptions and parser code.  Database layer :\nAPI and database for data storage and  retrieval , \nhosted at  https://minikep-db.herokuapp.com/api/  Frontend app :\ncan be viewed in browser at  https://mini-kep.herokuapp.com , relies on API above.   End user code :\n\u0430 collection of Jupiter notebooks to demostrate data use.",
+            "title": "Project repositories and links"
         },
         {
-            "location": "/custom_api/#what-next",
-            "text": "What developers are about to do next",
-            "title": "What next"
+            "location": "/usercase/",
+            "text": "User case notes\n\n\nFrom readme\n\n\nWe assume an end user has some experience with data from FRED or quandl and for his work he wants:\n\n\n\n\na clean dataset with latest data from different sources\n\n\nbrowse what data is available\n\n\nread this data on a local machine:\n\n\nas pd.DataFrame \n\n\nas R dataframe  \n\n\nquickly draw some charts like one below: \n\n\n\n\n\n\nEnduser code for data access\n\n\nEnd-user API calls should be like:\n\n\n\n# monthly average Brent oil prices starting 2000 to present \nbrent = pd.read_json('http://minikep.cc/oil/series/BRENT/m/avg/2000')\n\n# monthly average Russian rouble exchange rate, same period\ner = pd.read_json('http://minikep.cc/ru/series/USDRUR/m/avg/2000')\n\n# monthly consumer inflation in different countries in 2017\n# rog = rate of growth \ncpi_ru = pd.read_json('http://minikep.cc/ru/series/CPI/m/rog/2017')\ncpi_us = pd.read_json('http://minikep.cc/us/series/CPI/m/rog/2017')\n\n\n\n\n\nAdvanced usage\n\n\nServices based on mini-kep API: \n- PDF handout charts\n\n- datasets/presets\n- forcasts as a service (via API)\n- FB posts with data\n\n\nNotebooks catalog\n\n\nWe need to demonstarte usage of data from custom or standard API for visualisations and modelling.\n\n\nThere is a \nrepo for use cases\n, but it is practically empty yet.\n\n\nThe use cases may resemble \ndatachart.cc\n\nor \ndatalab\n\nor \nviz-demo\n or some other repos (eg cmf-comovements).",
+            "title": "User case"
         },
         {
-            "location": "/custom_api/#changelog",
-            "text": "Big events / changes",
-            "title": "Changelog"
+            "location": "/usercase/#user-case-notes",
+            "text": "",
+            "title": "User case notes"
+        },
+        {
+            "location": "/usercase/#from-readme",
+            "text": "We assume an end user has some experience with data from FRED or quandl and for his work he wants:   a clean dataset with latest data from different sources  browse what data is available  read this data on a local machine:  as pd.DataFrame   as R dataframe    quickly draw some charts like one below:",
+            "title": "From readme"
+        },
+        {
+            "location": "/usercase/#enduser-code-for-data-access",
+            "text": "End-user API calls should be like:  \n# monthly average Brent oil prices starting 2000 to present \nbrent = pd.read_json('http://minikep.cc/oil/series/BRENT/m/avg/2000')\n\n# monthly average Russian rouble exchange rate, same period\ner = pd.read_json('http://minikep.cc/ru/series/USDRUR/m/avg/2000')\n\n# monthly consumer inflation in different countries in 2017\n# rog = rate of growth \ncpi_ru = pd.read_json('http://minikep.cc/ru/series/CPI/m/rog/2017')\ncpi_us = pd.read_json('http://minikep.cc/us/series/CPI/m/rog/2017')",
+            "title": "Enduser code for data access"
+        },
+        {
+            "location": "/usercase/#advanced-usage",
+            "text": "Services based on mini-kep API: \n- PDF handout charts \n- datasets/presets\n- forcasts as a service (via API)\n- FB posts with data",
+            "title": "Advanced usage"
+        },
+        {
+            "location": "/usercase/#notebooks-catalog",
+            "text": "We need to demonstarte usage of data from custom or standard API for visualisations and modelling.  There is a  repo for use cases , but it is practically empty yet.  The use cases may resemble  datachart.cc \nor  datalab \nor  viz-demo  or some other repos (eg cmf-comovements).",
+            "title": "Notebooks catalog"
+        },
+        {
+            "location": "/parsers/",
+            "text": "Data sources and parsers\n\n\nData sources are static files (Word, PDF, html) and some open APIs. Parser is the python code performing requests and emitting datapoints. \n\n\nparser-rosstat-kep\n supplies most time series. It is supplemented by daily ruble exchange rate from Bank of Russia and oil prices from EIA and some others.\n\n\nAggratation of parser data is made at \nparsers/runner.py\n\n\nparser-rosstat-kep\n:\n\n \n\n\n\nparsers\n:",
+            "title": "Parsers"
+        },
+        {
+            "location": "/parsers/#data-sources-and-parsers",
+            "text": "Data sources are static files (Word, PDF, html) and some open APIs. Parser is the python code performing requests and emitting datapoints.   parser-rosstat-kep  supplies most time series. It is supplemented by daily ruble exchange rate from Bank of Russia and oil prices from EIA and some others.  Aggratation of parser data is made at  parsers/runner.py  parser-rosstat-kep :    parsers :",
+            "title": "Data sources and parsers"
+        },
+        {
+            "location": "/scheduler/",
+            "text": "Scheduler\n\n\nScheduler is not implemented yet, but it is a cron-like task list to invoke parsers and upload data to database. \n\n\nConsider:\n - \nHeroku APS\n\n - celery?\n - APScheduler?\n - something else?",
+            "title": "Scheduler"
+        },
+        {
+            "location": "/scheduler/#scheduler",
+            "text": "Scheduler is not implemented yet, but it is a cron-like task list to invoke parsers and upload data to database.   Consider:\n -  Heroku APS \n - celery?\n - APScheduler?\n - something else?",
+            "title": "Scheduler"
         },
         {
             "location": "/database/",
@@ -121,6 +136,61 @@
             "title": "Discussion"
         },
         {
+            "location": "/custom_api/",
+            "text": "Overview\n\n\nCustom API is a simplified interface for end-user queries from database. \nIt uses long URL with slashes and no other parameters.\n\n\n\u0421ustom API is intended to allow:\n\n\n\n\nintuitive construction of URL for user\n\n\nshorter notation than standard database API GET method \n\n\naddressing several database API endpoints in one place\n\n\nuniform call to same indicator for different countries or regions\n\n\n\n\nAPI design originally discussed at \nthis issue\n.\n\n\nCustom API translates to db API\n\n\nCustom API is essentially a thin syntax layer on top of database API. \nAll calls to custom API are redirected to database API. \n\n\nFor example, this call to custom API: \n\n\nhttp://mini-kep.herokuapp.com/ru/series/CPI/m/rog/2015/2017\n\n\nwill return same data as:\n\n\nhttps://minikep-db.herokuapp.com/api/datapoints?name=CPI_rog&freq=m&start_date=2015-01-01&end_date=2017-12-31\n\n\nURL syntax\n\n\nCustom API url syntax is the following:\n\n\n{domain}/series/{varname}/{freq}/{?suffix}/{?start}/{?end}/{?finaliser}\n\n? - optional\n\nExamples:\n   oil/series/BRENT/m/eop/2015/2017/csv\n   ru/series/EXPORT_GOODS/m/bln_rub   \n\n\n\n\nFor further details, refer to the docstring in \n\ncustom_api.py\n file.\n\n\nExpected usage of \n{domain}\n is to get similar data \nfor different countries or regions by changing a little part of custom URL:\n\n\n   ru/series/CPI/m/2017  # country-level inflation for Russia \nru:77/series/CPI/m/2017  # inflation for Moscow region                         \n   kz/series/CPI/m/2017  # country-level inflation for Kazakhstan\n\n\n\n\nOutput format\n\n\nBy default custom API returns CSV file. This file is:\n\n\n\n\nviewable in browswer (download does not start)\n\n\nreadable by R/pandas\n\n\n\n\nOptional  \n{finaliser}\n may alter output format.\n\n\nImplementation\n\n\nCustom API currently developped and tested at \n\nown repo\n\nand mounted at \nfrontend app\n.\n\n\nNext steps\n\n\n\n\nMount custom API at db app",
+            "title": "Custom API"
+        },
+        {
+            "location": "/custom_api/#overview",
+            "text": "Custom API is a simplified interface for end-user queries from database. \nIt uses long URL with slashes and no other parameters.  \u0421ustom API is intended to allow:   intuitive construction of URL for user  shorter notation than standard database API GET method   addressing several database API endpoints in one place  uniform call to same indicator for different countries or regions   API design originally discussed at  this issue .",
+            "title": "Overview"
+        },
+        {
+            "location": "/custom_api/#custom-api-translates-to-db-api",
+            "text": "Custom API is essentially a thin syntax layer on top of database API. \nAll calls to custom API are redirected to database API.   For example, this call to custom API:   http://mini-kep.herokuapp.com/ru/series/CPI/m/rog/2015/2017  will return same data as:  https://minikep-db.herokuapp.com/api/datapoints?name=CPI_rog&freq=m&start_date=2015-01-01&end_date=2017-12-31",
+            "title": "Custom API translates to db API"
+        },
+        {
+            "location": "/custom_api/#url-syntax",
+            "text": "Custom API url syntax is the following:  {domain}/series/{varname}/{freq}/{?suffix}/{?start}/{?end}/{?finaliser}\n\n? - optional\n\nExamples:\n   oil/series/BRENT/m/eop/2015/2017/csv\n   ru/series/EXPORT_GOODS/m/bln_rub     For further details, refer to the docstring in  custom_api.py  file.  Expected usage of  {domain}  is to get similar data \nfor different countries or regions by changing a little part of custom URL:     ru/series/CPI/m/2017  # country-level inflation for Russia \nru:77/series/CPI/m/2017  # inflation for Moscow region                         \n   kz/series/CPI/m/2017  # country-level inflation for Kazakhstan",
+            "title": "URL syntax"
+        },
+        {
+            "location": "/custom_api/#output-format",
+            "text": "By default custom API returns CSV file. This file is:   viewable in browswer (download does not start)  readable by R/pandas   Optional   {finaliser}  may alter output format.",
+            "title": "Output format"
+        },
+        {
+            "location": "/custom_api/#implementation",
+            "text": "Custom API currently developped and tested at  own repo \nand mounted at  frontend app .",
+            "title": "Implementation"
+        },
+        {
+            "location": "/custom_api/#next-steps",
+            "text": "Mount custom API at db app",
+            "title": "Next steps"
+        },
+        {
+            "location": "/frontend/",
+            "text": "Overview\n\n\nFrontend is a stand-alone flask app that is used to:\n- relay some existing data in experimental mode \n- make a list of indicators available in \nmini-kep\n database\n- show individual indicators homepages with charts, latest values \n  and instructions for download.\n\n\nRepository\n\n\nfrontend-app\n: \n\n\n \n\n\n\nIssues\n\n\n\n\nhomepage for individual indicators",
+            "title": "Frontend"
+        },
+        {
+            "location": "/frontend/#overview",
+            "text": "Frontend is a stand-alone flask app that is used to:\n- relay some existing data in experimental mode \n- make a list of indicators available in  mini-kep  database\n- show individual indicators homepages with charts, latest values \n  and instructions for download.",
+            "title": "Overview"
+        },
+        {
+            "location": "/frontend/#repository",
+            "text": "frontend-app :",
+            "title": "Repository"
+        },
+        {
+            "location": "/frontend/#issues",
+            "text": "homepage for individual indicators",
+            "title": "Issues"
+        },
+        {
             "location": "/datamodel_and_namespace/",
             "text": "Datamodel and enduser API\n\n\nThe idea of mini-kep project is to allow simple retrieval of Russian macroeconomic data \ninto python pandas and R, using an intuitive notation about variable naming and \nmodifiation.\n\n\nWe want an end-user to make a call like this to get qurterly nominal GDP and \nreal GDP growht rate: \n\n\n\ngdp_nominal = pd.read_json('https://mini-kep.herokuapp.com/ru/series/GDP/q')\ngdp_real_growth_rate = pd.read_json('https://mini-kep.herokuapp.com/ru/series/GDP/q/rog')\n\n\n\n\n\nrog\n is rate of growth, real growth rate to previous period \n\n\nDaily oil prices and exchange rates can be retrieved as: \n\n\n\nbrent = pd.read_json('https://mini-kep.herokuapp.com/oil/series/BRENT/d')\n#exchange rate\ner = pd.read_json('https://mini-kep.herokuapp.com/ru/series/USDRUR/d')\n\n\n\n\nAs of now the API frontend just shows how flask decodes long URL into a dict/json. You can click and see:\n\n\n\n\nhttps://mini-kep.herokuapp.com/ru/series/BRENT/m\n\n\nhttps://mini-kep.herokuapp.com/ru/series/BRENT/m/eop/2015/2016/csv\n\n\nhttps://mini-kep.herokuapp.com/ru/series/GDP/q/rog\n\n\n\n\nThe URL/API is styled around:\n- \nhttps://mini-kep.herokuapp.com/<domain>/series/<VARNAME>/<frequency>\n - mandatory part\n- \n<mandatory part>/<modifier | aggregator>/<start_year>/<end_year>/<finaliser>\n - optional part\n\n\nThe functionaly described not implemented yet, but hopefully soon be. For this to happen:\n- at \nparser-template\n we are working on importing parsing results (kep+exchange rate+oil) as dictionaries with datapoints \n- at \ndb\n the datapoints are to be stored in a database \n\n- \nthe frontend app\n should be able to query the database and provide real data for \n  calls above.\n\n\nAn important link that I propose to explore is what our datamodel for \nthe macroeconomic data and how to make good API documentation and prototype. \nAs for API the tricky part is making a 'reddit' style slashed API which \nassumes default values for some cases + some token combinations are invalid.\n\n\nMore to follow:\n- how we can get the data extracted (getter.py) + what is done with other parsers\n- naming convention in 'parser-rosstat-kep'\n- questions about data consistency and checks performed\n- 'true dataset' (affests API design and verification)\n- API blueprint\n- translate API call to database call (this should be sample code with a lot of test)\n- API v.0.1 vs features for the future\n\n\nSuggested reading/code\n\n\n\n\nread_csv()\n: \n\n\ngetter.py\n\n\nparser-rosstat-kep readme\n\n\napp frontpage code\n\n\n\n\n\n\nThis is a data access function used across the project to read the output as dataframes from stable URLs\nIn end-user API the import function will be  \npd.read_json\n as it will allow to bypass time index transformation:\n\n\n\n\nannual_CPI_rog = pd.read_json('http://mini-kep.herokuapp.com/ru/series/CPI/a/rog')\n\n\n\n\n\n\ndataframe consistency\n:\n\n\n\n\n\n\nThis module checks consistency of the results in the database. In particular, the monthly frequency \ndataframes are aggregated to an annual frequency, and checked against the published annual results. \nMore functions checking for consistency in other frequencies can be added (eg monthly to quarterly, quarterly to annual)\nWe found some inconsistencies were reported data on annual level is different that the log-sum on monthly rates,\neven controlling for rounding error.\n\n\n\n\n\n\nAPI design issue\n\n\n\n\n\n\nFrom here we need to extract the text on data rules and API documentation \n\n\n\n\nGlossary\n\n\n\n\ndata model\n\n\ntrue dataset\n\n\nreported dataset\n\n\nenduser API",
             "title": "Data model and namespace"
@@ -149,121 +219,6 @@
             "location": "/django_app/#django-db-app",
             "text": "There is a supplementary dfango app for the db layer. We wanted to try both flask and django. With django the idea was that all components could go into one project.  django  full-app :",
             "title": "Django db app"
-        },
-        {
-            "location": "/frontend/",
-            "text": "Overview\n\n\nFrontend is a stand-alone flask app that is used to:\n- relay some existing data in experimental mode \n- make a list of indicators available in \nmini-kep\n database\n- show individual indicators homepages with charts, latest values \n  and instructions for download.\n\n\nRepository\n\n\nfrontend-app\n: \n\n\n \n\n\n\nIssues\n\n\n\n\nhomepage for individual indicators",
-            "title": "Frontend"
-        },
-        {
-            "location": "/frontend/#overview",
-            "text": "Frontend is a stand-alone flask app that is used to:\n- relay some existing data in experimental mode \n- make a list of indicators available in  mini-kep  database\n- show individual indicators homepages with charts, latest values \n  and instructions for download.",
-            "title": "Overview"
-        },
-        {
-            "location": "/frontend/#repository",
-            "text": "frontend-app :",
-            "title": "Repository"
-        },
-        {
-            "location": "/frontend/#issues",
-            "text": "homepage for individual indicators",
-            "title": "Issues"
-        },
-        {
-            "location": "/parser_guidelines/",
-            "text": "Parsers Guidelines\n\n\nParsers in \nmini-kep\n are used to fetch data from various sources as RAW data in Json, XML and csv formats, parse those data and yield them in common formated output.\n\n\nIntroduction\n\n\nParsers gudelines provide detailed information how parsers are constructed. This guidelines should provide manual to speed up new parses development\n\n\nChecklist\n\n\n\n\nDefine Source\n\n\nFetch RAW content from source\n\n\nParse fetched content\n\n\nYield content in desired format\n\n\n\n\nDefine Source\n\n\nWhen defining source for fetching raw data, one needs to take into consideration as part of URL construction, timeframe or frequency often needs to be incorporated.\n\n\nSources for fetching up RAW data can be:\n1. public API calls\n2. public ASP calls\n3. public CSV files\n4. ...\n\n\nFetch RAW content from source\n\n\nTo Fetch RAW content from websource \nfetch()\n generic method is available in parsers repo \nparsers/getter/util.py\n\n\nParse fetched content\n\n\nDates, datapoint names and prices need to be parsed from fetched content. Parsing is done with third party libraries listed below based on the content type:\n- XML : BeautifulSoup, xml.etree.ElementTree\n- CSV : Pandas, Numpy\n- JSON : json\n\n\nutilities to format dates and prices are available in \nparsers/getter/util.py\n > \nformat_date()\n and \nformat_value()\n\n\nYield content in desired format\n\n\nParsed values need to be yielded from particular parses in format below:\n\n\nyield {'date': date,\n          'freq': freq,\n          'name': name,\n          'value': price}\n\n\n\n\nContributors\n\n\nJaroslav Vojtek",
-            "title": "Parser Guidelines"
-        },
-        {
-            "location": "/parser_guidelines/#parsers-guidelines",
-            "text": "Parsers in  mini-kep  are used to fetch data from various sources as RAW data in Json, XML and csv formats, parse those data and yield them in common formated output.",
-            "title": "Parsers Guidelines"
-        },
-        {
-            "location": "/parser_guidelines/#introduction",
-            "text": "Parsers gudelines provide detailed information how parsers are constructed. This guidelines should provide manual to speed up new parses development",
-            "title": "Introduction"
-        },
-        {
-            "location": "/parser_guidelines/#checklist",
-            "text": "Define Source  Fetch RAW content from source  Parse fetched content  Yield content in desired format",
-            "title": "Checklist"
-        },
-        {
-            "location": "/parser_guidelines/#define-source",
-            "text": "When defining source for fetching raw data, one needs to take into consideration as part of URL construction, timeframe or frequency often needs to be incorporated.  Sources for fetching up RAW data can be:\n1. public API calls\n2. public ASP calls\n3. public CSV files\n4. ...",
-            "title": "Define Source"
-        },
-        {
-            "location": "/parser_guidelines/#fetch-raw-content-from-source",
-            "text": "To Fetch RAW content from websource  fetch()  generic method is available in parsers repo  parsers/getter/util.py",
-            "title": "Fetch RAW content from source"
-        },
-        {
-            "location": "/parser_guidelines/#parse-fetched-content",
-            "text": "Dates, datapoint names and prices need to be parsed from fetched content. Parsing is done with third party libraries listed below based on the content type:\n- XML : BeautifulSoup, xml.etree.ElementTree\n- CSV : Pandas, Numpy\n- JSON : json  utilities to format dates and prices are available in  parsers/getter/util.py  >  format_date()  and  format_value()",
-            "title": "Parse fetched content"
-        },
-        {
-            "location": "/parser_guidelines/#yield-content-in-desired-format",
-            "text": "Parsed values need to be yielded from particular parses in format below:  yield {'date': date,\n          'freq': freq,\n          'name': name,\n          'value': price}",
-            "title": "Yield content in desired format"
-        },
-        {
-            "location": "/parser_guidelines/#contributors",
-            "text": "Jaroslav Vojtek",
-            "title": "Contributors"
-        },
-        {
-            "location": "/parsers/",
-            "text": "Data sources and parsers\n\n\nData sources are static files (Word, PDF, html) and some open APIs. Parser is the python code performing requests and emitting datapoints. \n\n\nparser-rosstat-kep\n supplies most time series. It is supplemented by daily ruble exchange rate from Bank of Russia and oil prices from EIA and some others.\n\n\nAggratation of parser data is made at \nparsers/runner.py\n\n\nparser-rosstat-kep\n:\n\n \n\n\n\nparsers\n:",
-            "title": "Parsers"
-        },
-        {
-            "location": "/parsers/#data-sources-and-parsers",
-            "text": "Data sources are static files (Word, PDF, html) and some open APIs. Parser is the python code performing requests and emitting datapoints.   parser-rosstat-kep  supplies most time series. It is supplemented by daily ruble exchange rate from Bank of Russia and oil prices from EIA and some others.  Aggratation of parser data is made at  parsers/runner.py  parser-rosstat-kep :    parsers :",
-            "title": "Data sources and parsers"
-        },
-        {
-            "location": "/scheduler/",
-            "text": "Scheduler\n\n\nScheduler is not implemented yet, but it is a cron-like task list to invoke parsers and upload data to database. \n\n\nConsider:\n - \nHeroku APS\n\n - celery?\n - APScheduler?\n - something else?",
-            "title": "Scheduler"
-        },
-        {
-            "location": "/scheduler/#scheduler",
-            "text": "Scheduler is not implemented yet, but it is a cron-like task list to invoke parsers and upload data to database.   Consider:\n -  Heroku APS \n - celery?\n - APScheduler?\n - something else?",
-            "title": "Scheduler"
-        },
-        {
-            "location": "/usercase/",
-            "text": "User case notes\n\n\nFrom readme\n\n\nWe assume an end user has some experience with data from FRED or quandl and for his work he wants:\n\n\n\n\na clean dataset with latest data from different sources\n\n\nbrowse what data is available\n\n\nread this data on a local machine:\n\n\nas pd.DataFrame \n\n\nas R dataframe  \n\n\nquickly draw some charts like one below: \n\n\n\n\n\n\nEnduser code for data access\n\n\nEnd-user API calls should be like:\n\n\n\n# monthly average Brent oil prices starting 2000 to present \nbrent = pd.read_json('http://minikep.cc/oil/series/BRENT/m/avg/2000')\n\n# monthly average Russian rouble exchange rate, same period\ner = pd.read_json('http://minikep.cc/ru/series/USDRUR/m/avg/2000')\n\n# monthly consumer inflation in different countries in 2017\n# rog = rate of growth \ncpi_ru = pd.read_json('http://minikep.cc/ru/series/CPI/m/rog/2017')\ncpi_us = pd.read_json('http://minikep.cc/us/series/CPI/m/rog/2017')\n\n\n\n\n\nAdvanced usage\n\n\nServices based on mini-kep API: \n- PDF handout charts\n\n- datasets/presets\n- forcasts as a service (via API)\n- FB posts with data\n\n\nNotebooks catalog\n\n\nWe need to demonstarte usage of data from custom or standard API for visualisations and modelling.\n\n\nThere is a \nrepo for use cases\n, but it is practically empty yet.\n\n\nThe use cases may resemble \ndatachart.cc\n\nor \ndatalab\n\nor \nviz-demo\n or some other repos (eg cmf-comovements).",
-            "title": "User case"
-        },
-        {
-            "location": "/usercase/#user-case-notes",
-            "text": "",
-            "title": "User case notes"
-        },
-        {
-            "location": "/usercase/#from-readme",
-            "text": "We assume an end user has some experience with data from FRED or quandl and for his work he wants:   a clean dataset with latest data from different sources  browse what data is available  read this data on a local machine:  as pd.DataFrame   as R dataframe    quickly draw some charts like one below:",
-            "title": "From readme"
-        },
-        {
-            "location": "/usercase/#enduser-code-for-data-access",
-            "text": "End-user API calls should be like:  \n# monthly average Brent oil prices starting 2000 to present \nbrent = pd.read_json('http://minikep.cc/oil/series/BRENT/m/avg/2000')\n\n# monthly average Russian rouble exchange rate, same period\ner = pd.read_json('http://minikep.cc/ru/series/USDRUR/m/avg/2000')\n\n# monthly consumer inflation in different countries in 2017\n# rog = rate of growth \ncpi_ru = pd.read_json('http://minikep.cc/ru/series/CPI/m/rog/2017')\ncpi_us = pd.read_json('http://minikep.cc/us/series/CPI/m/rog/2017')",
-            "title": "Enduser code for data access"
-        },
-        {
-            "location": "/usercase/#advanced-usage",
-            "text": "Services based on mini-kep API: \n- PDF handout charts \n- datasets/presets\n- forcasts as a service (via API)\n- FB posts with data",
-            "title": "Advanced usage"
-        },
-        {
-            "location": "/usercase/#notebooks-catalog",
-            "text": "We need to demonstarte usage of data from custom or standard API for visualisations and modelling.  There is a  repo for use cases , but it is practically empty yet.  The use cases may resemble  datachart.cc \nor  datalab \nor  viz-demo  or some other repos (eg cmf-comovements).",
-            "title": "Notebooks catalog"
         }
     ]
 }

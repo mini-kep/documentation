@@ -8,7 +8,7 @@
   <meta name="description" content="None">
   
   <link rel="shortcut icon" href="./img/favicon.ico">
-  <title>Home - Specifications</title>
+  <title>Overview - mini-kep documentation</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="./css/theme.css" type="text/css" />
@@ -17,7 +17,7 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Home";
+    var mkdocs_page_name = "Overview";
     var mkdocs_page_input_path = "index.md";
     var mkdocs_page_url = "/";
   </script>
@@ -35,7 +35,7 @@
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
       <div class="wy-side-nav-search">
-        <a href="." class="icon icon-home"> Specifications</a>
+        <a href="." class="icon icon-home"> mini-kep documentation</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -49,16 +49,16 @@
           
             <li class="toctree-l1 current">
 		
-    <a class="current" href=".">Home</a>
+    <a class="current" href=".">Overview</a>
     <ul class="subnav">
             
     <li class="toctree-l2"><a href="#introduction">Introduction</a></li>
     
 
-    <li class="toctree-l2"><a href="#dataflow">Dataflow</a></li>
+    <li class="toctree-l2"><a href="#end-use-example">End use example</a></li>
     
 
-    <li class="toctree-l2"><a href="#specifications">Specifications</a></li>
+    <li class="toctree-l2"><a href="#project-repositories-and-links">Project repositories and links</a></li>
     
 
     </ul>
@@ -66,47 +66,55 @@
           
             <li class="toctree-l1">
 		
-    <a class="" href="custom_api/">Custom API</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="database/">Database</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="datamodel_and_namespace/">Data model and namespace</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="django_app/">Django app</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="frontend/">Frontend</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="parser_guidelines/">Parser Guidelines</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="parsers/">Parsers</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="scheduler/">Scheduler</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
+    <span class="caption-text">Usercase</span>
+    <ul class="subnav">
+                <li class="">
+                    
     <a class="" href="usercase/">User case</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Specifications</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="parsers/">Parsers</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="scheduler/">Scheduler</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="database/">Database</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="custom_api/">Custom API</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="frontend/">Frontend</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Under construction</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="datamodel_and_namespace/">Data model and namespace</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="django_app/">Django app</a>
+                </li>
+    </ul>
 	    </li>
           
         </ul>
@@ -119,7 +127,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href=".">Specifications</a>
+        <a href=".">mini-kep documentation</a>
       </nav>
 
       
@@ -131,7 +139,7 @@
     
       
     
-    <li>Home</li>
+    <li>Overview</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -143,32 +151,43 @@
               
                 <h1 id="introduction">Introduction</h1>
 <p><code>mini-kep</code> is a small ETL (extract, transform, load) framework for 
-macroeconomic data with public end-user API.</p>
-<h1 id="dataflow">Dataflow</h1>
-<p><code>mini-kep</code> organises a data pipeline from sources 
-(static files in internet and public APIs) to database to end-user API. </p>
-<p>The data pipeline is the following:</p>
-<ol>
-<li><a href="https://github.com/mini-kep/parsers">data sources and parsers</a> </li>
-<li><em>scheduler (not implemented)</em></li>
-<li><a href="https://github.com/mini-kep/db">database and db API</a></li>
-<li><em>custom API (draft)</em></li>
-<li><em>user cases (draft)</em> </li>
-</ol>
-<p>Pipeline is illustrated by <a href="https://github.com/mini-kep/intro/blob/master/pipeline/pipeline.py">pipeline.py</a></p>
-<h1 id="specifications">Specifications</h1>
-<p>Finished spec:
-- <a href="database/">database layer</a></p>
-<p>Under construction:
-- <a href="parsers/">parsers</a>
-- <a href="custom_api/">custom API</a>
-- <a href="usercase/">usercase</a></p>
-<p>On hold:
-- <a href="scheduler/">scheduler</a>
-- <a href="frontend/">frontend</a>
-- <a href="django_app/">django_app.md</a></p>
-<p>For discussion:
-- <a href="datamodel_and_namespace/">data model and namespace</a></p>
+Russian and global macroeconomic time series data with public end-user API.</p>
+<p><code>mini-kep</code> collects data from static files and public APIs,
+saves it in database and provides end-user interface to browse this data 
+and read it into R/pandas for visualisation and modelling.  </p>
+<p>Inspired by <a href="https://fred.stlouisfed.org">St Louis FRED</a> and 
+<a href="https://drivendata.github.io/cookiecutter-data-science">Data Science Cookiecutter</a>,
+and aims to provide open, timely, machine-readable data for reproducible 
+analysis in economics.</p>
+<h1 id="end-use-example">End use example</h1>
+<p>Read official daily ruble/usd exchange rate from start of 2017</p>
+<pre><code class="python">import pandas as pd
+
+def read_ts(source_url):
+    &quot;&quot;&quot;Read pandas time series from *source_url*.&quot;&quot;&quot;
+    return pd.read_csv(source_url, 
+                      converters={0: pd.to_datetime}, 
+                      index_col=0,
+                      squeeze=True)
+
+er = read_ts('http://mini-kep.herokuapp.com/ru/series/USDRUR_CB/d/2017')
+assert er['2017-09-28'] == 58.01022
+
+</code></pre>
+
+<p>Click to see data in browser:
+<a href="http://mini-kep.herokuapp.com/ru/series/USDRUR_CB/d/2017">http://mini-kep.herokuapp.com/ru/series/USDRUR_CB/d/2017</a></p>
+<h1 id="project-repositories-and-links">Project repositories and links</h1>
+<p><a href="https://github.com/mini-kep/parsers">Parsers</a>:
+data source descriptions and parser code.</p>
+<p><a href="https://github.com/mini-kep/db">Database layer</a>:
+API and database for data storage and <a href="https://github.com/mini-kep/db#sample-get-calls">retrieval</a>, 
+hosted at<br />
+<code>https://minikep-db.herokuapp.com/api/</code></p>
+<p><a href="https://github.com/mini-kep/frontend-app">Frontend app</a>:
+can be viewed in browser at <a href="https://mini-kep.herokuapp.com">https://mini-kep.herokuapp.com</a>, relies on API above. </p>
+<p><a href="https://github.com/mini-kep/user-charts">End user code</a>:
+а collection of Jupiter notebooks to demostrate data use. </p>
               
             </div>
           </div>
@@ -176,7 +195,7 @@ macroeconomic data with public end-user API.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="custom_api/" class="btn btn-neutral float-right" title="Custom API">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="usercase/" class="btn btn-neutral float-right" title="User case">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
     </div>
@@ -204,7 +223,7 @@ macroeconomic data with public end-user API.</p>
       
       
       
-        <span style="margin-left: 15px"><a href="custom_api/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="usercase/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
@@ -215,5 +234,5 @@ macroeconomic data with public end-user API.</p>
 
 <!--
 MkDocs version : 0.16.3
-Build Date UTC : 2017-10-16 08:10:40
+Build Date UTC : 2017-10-16 12:48:43
 -->

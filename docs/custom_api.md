@@ -1,10 +1,24 @@
 Overview
 ========
-
 Custom API is a simplified interface for end-user queries from database. 
 It uses long URL with slashes and no other parameters.
 
-This call: 
+Сustom API is intended to allow:
+
+1. intuitive construction of URL for user
+2. shorter notation than standard database API GET method 
+3. addressing several database API endpoints in one place
+4. uniform call to same indicator for different countries or regions
+
+API design originally discussed at [this issue](https://github.com/mini-kep/frontend-app/issues/8).
+
+Custom API translates to db API 
+===============================
+
+Custom API is essentially a thin syntax layer on top of database API. 
+All calls to custom API are redirected to database API. 
+
+For example, this call to custom API: 
 
 ```http://mini-kep.herokuapp.com/ru/series/CPI/m/rog/2015/2017```
 
@@ -12,50 +26,52 @@ will return same data as:
 
 ```https://minikep-db.herokuapp.com/api/datapoints?name=CPI_rog&freq=m&start_date=2015-01-01&end_date=2017-12-31```
 
-The intent of custom API is to allow:
-1. intuitive construction of URL for user
-2. shorter notation than standard database API GET method 
-3. get similar data for different countries / regions just by changing little part of URL, for example: 
-   - ```ru/series/CPI/m/2017``` is nationwide inflation for Russia 
-   - ```ru:77/series/CPI/m/2017``` is inflation for Moscow region (from [here](http://www.gks.ru/bgd/regl/b16_17/IssWWW.exe/Stg/10-2-1.xls))  
-   - ```kz/series/CPI/m/2017``` is same national indicator for Kazakhstan.
-
-
-How is it implemented
-=====================
-
-> ideas on how it is implemented - with respect to flask 
-
-> or suggestions on implementation 
-
-Custom API is mounted at <http://mini-kep.herokuapp.com/>, see below for details. 
-
-> todo: where the code is 
-
-> todo: where the data is 
-
-Client side code
-================
-
-In order to ensure data integrity, some additional parameters need to be specified when importing data with ```pd.read_json``` or ```pd.read_csv```.
-See [here](custom_api_client_side_code.py) for examples on how to load data into a dataframe.
-
-URL format
+   
+URL syntax
 ==========
 
-Some more examples illustrating the format of the URLs;
+Custom API url syntax is the following:
+
 ```
-oil/series/BRENT/m/eop/2015/2017/csv
-ru/series/EXPORT_GOODS/m/bln_rub
+{domain}/series/{varname}/{freq}/{?suffix}/{?start}/{?end}/{?finaliser}
+
+? - optional
+
+Examples:
+   oil/series/BRENT/m/eop/2015/2017/csv
+   ru/series/EXPORT_GOODS/m/bln_rub   
 ```
-For further details, refer to the [docstring](https://github.com/mini-kep/helpers/blob/master/custom_api/custom_api.py#L1-L46) in the custom_api.py file.
 
-What next
----------
+For further details, refer to the docstring in 
+[custom_api.py](https://github.com/mini-kep/helper-custom-api/blob/master/src/custom_api.py) file.
 
-What developers are about to do next
+Expected usage of ```{domain}``` is to get similar data 
+for different countries or regions by changing a little part of custom URL:
 
-Changelog
----------
+```
+   ru/series/CPI/m/2017  # country-level inflation for Russia 
+ru:77/series/CPI/m/2017  # inflation for Moscow region                         
+   kz/series/CPI/m/2017  # country-level inflation for Kazakhstan
+```
 
-Big events / changes
+Output format
+=============
+
+By default custom API returns CSV file. This file is:
+
+- viewable in browswer (download does not start)
+- readable by R/pandas
+
+Optional  ```{finaliser}``` may alter output format.
+  
+Implementation
+==============
+
+Custom API currently developped and tested at 
+[own repo](https://github.com/mini-kep/helper-custom-api/blob/master/src/custom_api.py)
+and mounted at [frontend app](https://github.com/mini-kep/frontend-app/blob/master/apps/views/time_series.py).
+
+Next steps
+==========
+
+- [Mount custom API at db app](https://github.com/mini-kep/helpers/issues/13)
