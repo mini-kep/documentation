@@ -1,3 +1,4 @@
 
-Documentation found at <https://mini-kep.github.io/documentation/>, 
-built with <http://www.mkdocs.org>
+Documentation found at <https://mini-kep.github.io/documentation>.
+
+Built with <http://www.mkdocs.org>.
