@@ -2,18 +2,18 @@
     "docs": [
         {
             "location": "/",
-            "text": "Introduction\n\n\nmini-kep\n is a small ETL (extract, transform, load) framework for \nRussian and global macroeconomic time series data with public end-user API.\n\n\nmini-kep\n collects data from static files and public APIs,\nsaves it in database and provides end-user interface to browse this data \nand read it into R/pandas for visualisation and modelling.  \n\n\nInspired by \nSt Louis FRED\n and \n\nData Science Cookiecutter\n,\nand aims to provide open, timely, machine-readable data for reproducible \nanalysis in economics.\n\n\nEnd use example\n\n\nRead official daily ruble/usd exchange rate from start of 2017\n\n\nimport pandas as pd\n\ndef read_ts(source_url):\n    \"\"\"Read pandas time series from *source_url*.\"\"\"\n    return pd.read_csv(source_url, \n                      converters={0: pd.to_datetime}, \n                      index_col=0,\n                      squeeze=True)\n\ner = read_ts('http://mini-kep.herokuapp.com/ru/series/USDRUR_CB/d/2017')\nassert er['2017-09-28'] == 58.01022\n\n\n\n\n\nClick to see data in browser:\n\nhttp://mini-kep.herokuapp.com/ru/series/USDRUR_CB/d/2017\n\n\nProject repositories and links\n\n\nParsers\n:\ndata source descriptions and parser code.\n\n\nDatabase layer\n:\nAPI and database for data storage and \nretrieval\n, \nhosted at\n\n\nhttps://minikep-db.herokuapp.com/api/\n\n\nFrontend app\n:\ncan be viewed in browser at \nhttps://mini-kep.herokuapp.com\n, relies on API above. \n\n\nEnd user code\n:\n\u0430 collection of Jupiter notebooks to demostrate data use.",
+            "text": "Introduction\n\n\nmini-kep\n is a small ETL (extract, transform, load) framework for \nRussian and global macroeconomic time series data with public end-user API.\n\n\nmini-kep\n collects data from static files and public APIs,\nsaves it in database and provides end-user interface to browse this data \nand read it into R/pandas for visualisation and modelling.  \n\n\nInspired by \nSt Louis FRED\n and \n\nData Science Cookiecutter\n\nand aims to provide open, timely, machine-readable data for reproducible \nanalysis in economics.\n\n\nUser case\n\n\nWe assume an end user has some experience with \nFRED\n \nor \nquandl\n. \n\n\nFor his work an end user wants:\n\n\n\n\na clean dataset with latest data from different sources\n\n\nbrowse what data is available\n\n\nread this data on a local machine (in \npandas\n or \nR\n)\n\n\nquickly draw some charts like one below: \n\n\n\n\n\n\nExample: read official daily ruble/usd exchange rate from start of 2017\n\n\nimport pandas as pd\n\ndef read_ts(source_url):\n    \"\"\"Read pandas time series from *source_url*.\"\"\"\n    return pd.read_csv(source_url, \n                      converters={0: pd.to_datetime}, \n                      index_col=0,\n                      squeeze=True)\n\ner = read_ts('http://mini-kep.herokuapp.com/ru/series/USDRUR_CB/d/2017')\nassert er['2017-09-28'] == 58.01022\n\n\n\n\n\nClick \nhere\n to see same data in browser.\n\n\nProject repositories and links\n\n\nParsers\n:\ndata source descriptions and parser code.\n\n\nDatabase layer\n:\nAPI and database for data storage and \nretrieval\n, \nhosted at\n\n\nhttps://minikep-db.herokuapp.com/api/\n\n\nFrontend app\n:\ncan be viewed in browser at \nhttps://mini-kep.herokuapp.com\n, relies on API above. \n\n\nEnd user code\n:\n\u0430 collection of Jupiter notebooks to demostrate data use.",
             "title": "Overview"
         },
         {
             "location": "/#introduction",
-            "text": "mini-kep  is a small ETL (extract, transform, load) framework for \nRussian and global macroeconomic time series data with public end-user API.  mini-kep  collects data from static files and public APIs,\nsaves it in database and provides end-user interface to browse this data \nand read it into R/pandas for visualisation and modelling.    Inspired by  St Louis FRED  and  Data Science Cookiecutter ,\nand aims to provide open, timely, machine-readable data for reproducible \nanalysis in economics.",
+            "text": "mini-kep  is a small ETL (extract, transform, load) framework for \nRussian and global macroeconomic time series data with public end-user API.  mini-kep  collects data from static files and public APIs,\nsaves it in database and provides end-user interface to browse this data \nand read it into R/pandas for visualisation and modelling.    Inspired by  St Louis FRED  and  Data Science Cookiecutter \nand aims to provide open, timely, machine-readable data for reproducible \nanalysis in economics.",
             "title": "Introduction"
         },
         {
-            "location": "/#end-use-example",
-            "text": "Read official daily ruble/usd exchange rate from start of 2017  import pandas as pd\n\ndef read_ts(source_url):\n    \"\"\"Read pandas time series from *source_url*.\"\"\"\n    return pd.read_csv(source_url, \n                      converters={0: pd.to_datetime}, \n                      index_col=0,\n                      squeeze=True)\n\ner = read_ts('http://mini-kep.herokuapp.com/ru/series/USDRUR_CB/d/2017')\nassert er['2017-09-28'] == 58.01022  Click to see data in browser: http://mini-kep.herokuapp.com/ru/series/USDRUR_CB/d/2017",
-            "title": "End use example"
+            "location": "/#user-case",
+            "text": "We assume an end user has some experience with  FRED  \nor  quandl .   For his work an end user wants:   a clean dataset with latest data from different sources  browse what data is available  read this data on a local machine (in  pandas  or  R )  quickly draw some charts like one below:     Example: read official daily ruble/usd exchange rate from start of 2017  import pandas as pd\n\ndef read_ts(source_url):\n    \"\"\"Read pandas time series from *source_url*.\"\"\"\n    return pd.read_csv(source_url, \n                      converters={0: pd.to_datetime}, \n                      index_col=0,\n                      squeeze=True)\n\ner = read_ts('http://mini-kep.herokuapp.com/ru/series/USDRUR_CB/d/2017')\nassert er['2017-09-28'] == 58.01022  Click  here  to see same data in browser.",
+            "title": "User case"
         },
         {
             "location": "/#project-repositories-and-links",
@@ -21,63 +21,38 @@
             "title": "Project repositories and links"
         },
         {
-            "location": "/usercase/",
-            "text": "User case notes\n\n\nFrom readme\n\n\nWe assume an end user has some experience with data from FRED or quandl and for his work he wants:\n\n\n\n\na clean dataset with latest data from different sources\n\n\nbrowse what data is available\n\n\nread this data on a local machine:\n\n\nas pd.DataFrame \n\n\nas R dataframe  \n\n\nquickly draw some charts like one below: \n\n\n\n\n\n\nEnduser code for data access\n\n\nEnd-user API calls should be like:\n\n\n\n# monthly average Brent oil prices starting 2000 to present \nbrent = pd.read_json('http://minikep.cc/oil/series/BRENT/m/avg/2000')\n\n# monthly average Russian rouble exchange rate, same period\ner = pd.read_json('http://minikep.cc/ru/series/USDRUR/m/avg/2000')\n\n# monthly consumer inflation in different countries in 2017\n# rog = rate of growth \ncpi_ru = pd.read_json('http://minikep.cc/ru/series/CPI/m/rog/2017')\ncpi_us = pd.read_json('http://minikep.cc/us/series/CPI/m/rog/2017')\n\n\n\n\n\nAdvanced usage\n\n\nServices based on mini-kep API: \n- PDF handout charts\n\n- datasets/presets\n- forcasts as a service (via API)\n- FB posts with data\n\n\nNotebooks catalog\n\n\nWe need to demonstarte usage of data from custom or standard API for visualisations and modelling.\n\n\nThere is a \nrepo for use cases\n, but it is practically empty yet.\n\n\nThe use cases may resemble \ndatachart.cc\n\nor \ndatalab\n\nor \nviz-demo\n or some other repos (eg cmf-comovements).",
-            "title": "User case"
-        },
-        {
-            "location": "/usercase/#user-case-notes",
-            "text": "",
-            "title": "User case notes"
-        },
-        {
-            "location": "/usercase/#from-readme",
-            "text": "We assume an end user has some experience with data from FRED or quandl and for his work he wants:   a clean dataset with latest data from different sources  browse what data is available  read this data on a local machine:  as pd.DataFrame   as R dataframe    quickly draw some charts like one below:",
-            "title": "From readme"
-        },
-        {
-            "location": "/usercase/#enduser-code-for-data-access",
-            "text": "End-user API calls should be like:  \n# monthly average Brent oil prices starting 2000 to present \nbrent = pd.read_json('http://minikep.cc/oil/series/BRENT/m/avg/2000')\n\n# monthly average Russian rouble exchange rate, same period\ner = pd.read_json('http://minikep.cc/ru/series/USDRUR/m/avg/2000')\n\n# monthly consumer inflation in different countries in 2017\n# rog = rate of growth \ncpi_ru = pd.read_json('http://minikep.cc/ru/series/CPI/m/rog/2017')\ncpi_us = pd.read_json('http://minikep.cc/us/series/CPI/m/rog/2017')",
-            "title": "Enduser code for data access"
-        },
-        {
-            "location": "/usercase/#advanced-usage",
-            "text": "Services based on mini-kep API: \n- PDF handout charts \n- datasets/presets\n- forcasts as a service (via API)\n- FB posts with data",
-            "title": "Advanced usage"
-        },
-        {
-            "location": "/usercase/#notebooks-catalog",
-            "text": "We need to demonstarte usage of data from custom or standard API for visualisations and modelling.  There is a  repo for use cases , but it is practically empty yet.  The use cases may resemble  datachart.cc \nor  datalab \nor  viz-demo  or some other repos (eg cmf-comovements).",
-            "title": "Notebooks catalog"
-        },
-        {
             "location": "/parsers/",
-            "text": "Data sources and parsers\n\n\nData sources are static files (Word, PDF, html) and some open APIs. Parser is the python code performing requests and emitting datapoints. \n\n\nparser-rosstat-kep\n supplies most time series. It is supplemented by daily ruble exchange rate from Bank of Russia and oil prices from EIA and some others.\n\n\nAggratation of parser data is made at \nparsers/runner.py\n\n\nparser-rosstat-kep\n:\n\n \n\n\n\nparsers\n:",
+            "text": "Data sources and parsers\n\n\nData sources are static files (Word, PDF, html) and some open APIs. \nParser is the python code performing requests and emitting datapoints as dictionaries \nlike \n{'name': USDRUR_CB, 'date': '2017-09-28', 'freq': 'd', 'value': 58.0102}\n\n\nparser-rosstat-kep\n supplies most time monthly series. It is supplemented by daily ruble exchange rate from Bank of Russia and oil prices from EIA and some others.\n\n\nAggratation of parser data is made at \nparsers/runner.py\n\n\nRepository\n\n\nParsers\n:",
             "title": "Parsers"
         },
         {
             "location": "/parsers/#data-sources-and-parsers",
-            "text": "Data sources are static files (Word, PDF, html) and some open APIs. Parser is the python code performing requests and emitting datapoints.   parser-rosstat-kep  supplies most time series. It is supplemented by daily ruble exchange rate from Bank of Russia and oil prices from EIA and some others.  Aggratation of parser data is made at  parsers/runner.py  parser-rosstat-kep :    parsers :",
+            "text": "Data sources are static files (Word, PDF, html) and some open APIs. \nParser is the python code performing requests and emitting datapoints as dictionaries \nlike  {'name': USDRUR_CB, 'date': '2017-09-28', 'freq': 'd', 'value': 58.0102}  parser-rosstat-kep  supplies most time monthly series. It is supplemented by daily ruble exchange rate from Bank of Russia and oil prices from EIA and some others.  Aggratation of parser data is made at  parsers/runner.py",
             "title": "Data sources and parsers"
         },
         {
+            "location": "/parsers/#repository",
+            "text": "Parsers :",
+            "title": "Repository"
+        },
+        {
             "location": "/scheduler/",
-            "text": "Scheduler\n\n\nScheduler is not implemented yet, but it is a cron-like task list to invoke parsers and upload data to database. \n\n\nConsider:\n - \nHeroku APS\n\n - celery?\n - APScheduler?\n - something else?",
+            "text": "Scheduler\n\n\nScheduler is not implemented yet, but it is a cron-like task list to invoke parsers and upload data to database. \n\n\nConsider:\n\n\n\n\nHeroku APS\n\n\ncelery\n\n\nAPScheduler\n\n\nsomething else?",
             "title": "Scheduler"
         },
         {
             "location": "/scheduler/#scheduler",
-            "text": "Scheduler is not implemented yet, but it is a cron-like task list to invoke parsers and upload data to database.   Consider:\n -  Heroku APS \n - celery?\n - APScheduler?\n - something else?",
+            "text": "Scheduler is not implemented yet, but it is a cron-like task list to invoke parsers and upload data to database.   Consider:   Heroku APS  celery  APScheduler  something else?",
             "title": "Scheduler"
         },
         {
             "location": "/database/",
-            "text": "Overview\n\n\nThis document describes database layer in between parsers and end-user API.\n\n\nExpected fucntionality:\n- parser delivers a list of dicts, each dict is a datapoint\n- database should have a POST method at \napi\\incoming\n and write incoming json to db\n- POST operation must have some authentication\n- for simplicity all data is upserted - newer data always overwrites older data\n- database has GET method has datapoint keys and parameters (variable name, frequency), \n- GET retruns same format of output as incoming, output ordered by date,  optionally  \n\n  filtered by start date and end date \n\n\nDatabase schema\n\n\nTable \nDatpoint\n\n\nId \u2013 UID, autoincrement  \nName \u2013 type String \\*  eg GDP\nFreq \u2013 type String \\*  \nDate \u2013 type DateTime \\*  2016-12-31\nValue \u2013 Float  \n\n\\* - composite key\n\n\n\n\nSee example at \nhttps://github.com/mini-kep/db/blob/master/demo/sqlalchemy/datapoint.py\n\n\nData structures\n\n\nData structure - incoming json\n\n\nIncoming json should have a structure like\n    [{\n        \"date\": \"1999-03-31\",\n        \"freq\": \"q\",\n        \"name\": \"INVESTMENT_bln_rub\",\n        \"value\": 12345.6\n    },\n    {...} \n    ]\n\n\nDatabase methods\n\n\nPOST\n\n\nPOST api/incoming\n \n\n\nValidates incoming json and upsert values to database. All fields should be filled.\n\n\nFor insert_many() operation see \nsheep/flock\n example at \nhttps://stackoverflow.com/a/33768160/1758363\n\n\nReturns:\n- empty JSON on success\n- error 400 if there\u2019s an error in incoming json (eg invalid date string or empty parameter or missing field)\n\n\nParser result is obtained by  \nDataset.yield_dicts(start='2017-01-01')\n in \nhttps://github.com/mini-kep/parsers/blob/master/parsers/runner.py\n, see \nDataset.serialise()\n for json creation.\n\n\nOther examples of incoming json:\n- a large (1.8M) json is \nlocated here\n\n- sample data is presented \nhere\n\n\nGET (REST)\n\n\nGET api/datapoints?name=<name>&freq=<freq>\nGET api/datapoints?name=<name>&freq=<freq>&start_date=<start_date>&end_date=<end_date>\n\n\n\n\nParameters:\n- name (required) \u2013 name value to search like name=BRENT\n- freq (required) \u2013 freq value to search like freq=m\n- start_date (optional) \u2013 should return results with date greater than this parameter\n- end_date (optional) \u2013 should return results with date less than this parameter\n- format (optional, possible values \njson, csv\n, default \ncsv\n) \u2013 returns data in chosen format. CSV data can be read by pandas with \npd.read_csv(url_to_api_request)\n\n\nReturns:\n- CSV or JSON (default CSV) in format similar to incoming json with data sorted by date\n- empty CSV or JSON if there\u2019s no data with such query.\n\n\nMethod validates parameters and returns error 400 if there\u2019s an error in parameters (like string in data parameter or empty parameter) \n\n\nSecurity\n\n\nPOST methods should require API_TOKEN as URL parameter or header, validate it with environment variable (possibly Heroku config vars)\n\n\nTests\n\n\nUpload data from JSON to DB, run python unit tests with requests to different methods, validate them with uploaded data.\nUse combinations GET \u2013 POST \u2013 GET to validate data inserts and updates.\n\nExample1\n\n\nExample2\n\n\nShould we write some tests in curl/httpie? http tests: \nhttps://github.com/mini-kep/db/blob/master/requests_tests.py\n\n\nTech stack\n\n\nWeb-frameworks: Flask + SQLAlchemy or Django, may consider Falcon\n\n\nContainer: prototype deployed to Heroku, may also use AWS\n\n\nDatabase: Postgres (default on Heroku) or RDS on AWS\n\n\nRepositories\n\n\nThe database layer is to be developed here, at \ndb\n repo: \nhttps://github.com/mini-kep/db\n\n\nflask \ndb\n: \n\n\n\nThere is also \ndjango project for database\n,  but it is on hold now.\n\n\nDiscussion\n\n\nhttps://github.com/mini-kep/db/issues/5",
+            "text": "Overview\n\n\nThis document describes database layer in between parsers and end-user API.\n\n\nExpected fucntionality:\n\n\n\n\nparser delivers a list of dicts, each dict is a datapoint\n\n\ndatabase should have a POST method at \napi\\incoming\n and write incoming json to db\n\n\nPOST operation must have some authentication\n\n\nfor simplicity all data is upserted - newer data always overwrites older data\n\n\ndatabase has GET method has datapoint keys and parameters (variable name, frequency), \n\n\nGET retruns same format of output as incoming, output ordered by date,  optionally  \n\n  filtered by start date and end date \n\n\n\n\nDatabase schema\n\n\nTable \nDatpoint\n\n\nId \u2013 UID, autoincrement  \nName \u2013 type String \\*  eg GDP\nFreq \u2013 type String \\*  \nDate \u2013 type DateTime \\*  2016-12-31\nValue \u2013 Float  \n\n\\* - composite key\n\n\n\n\nSee example at \nhttps://github.com/mini-kep/db/blob/master/demo/sqlalchemy/datapoint.py\n\n\nData structures\n\n\nData structure - incoming json\n\n\nIncoming json should have a structure like\n\n\n    [{\n        \"date\": \"1999-03-31\",\n        \"freq\": \"q\",\n        \"name\": \"INVESTMENT_bln_rub\",\n        \"value\": 12345.6\n    },\n    {...} \n    ]\n\n\n\n\nDatabase methods\n\n\nPOST\n\n\nPOST api/incoming\n \n\n\nValidates incoming json and upsert values to database. All fields should be filled.\n\n\nFor \ninsert_many()\n operation see \n'sheep/flock'\n example\n\n\nReturns:\n- empty JSON on success\n- error 400 if there\u2019s an error in incoming json (eg invalid date string or empty parameter or missing field)\n\n\nParser result is obtained by  \nDataset.yield_dicts(start='2017-01-01')\n in \nhttps://github.com/mini-kep/parsers/blob/master/parsers/runner.py\n, see \nDataset.serialise()\n for json creation.\n\n\nOther examples of incoming json:\n\n\n\n\na large (1.8M) json is \nlocated here\n\n\nsample data is presented \nhere\n\n\n\n\nGET\n\n\nGET api/datapoints?name=<name>&freq=<freq>\nGET api/datapoints?name=<name>&freq=<freq>&start_date=<start_date>&end_date=<end_date>\n\n\n\n\nParameters:\n\n\n\n\nname (required) \u2013 name value to search like name=BRENT\n\n\nfreq (required) \u2013 freq value to search like freq=m\n\n\nstart_date (optional) \u2013 should return results with date greater than this parameter\n\n\nend_date (optional) \u2013 should return results with date less than this parameter\n\n\nformat (optional, possible values \njson, csv\n, default \ncsv\n) \u2013 returns data in chosen format. CSV data can be read by pandas with \npd.read_csv(url_to_api_request)\n\n\n\n\nReturns:\n\n\n\n\nCSV or JSON (default CSV) in format similar to incoming json with data sorted by date\n\n\nempty CSV or JSON if there\u2019s no data with such query.\n\n\n\n\nMethod validates parameters and returns error 400 if there\u2019s an error in parameters (like string in data parameter or empty parameter) \n\n\nSecurity\n\n\nPOST methods should require API_TOKEN as URL parameter or header, validate it with environment variable (possibly Heroku config vars)\n\n\nTests\n\n\nUpload data from JSON to DB, run python unit tests with requests to different methods, validate them with uploaded data.\n\n\nUse combinations GET \u2013 POST \u2013 GET to validate data inserts and updates.\n\n\nExample1\n\n\nExample2\n\n\nShould we write some \ntests in curl/httpie\n? \n\n\nTech stack\n\n\nWeb-frameworks: Flask + SQLAlchemy, alternative - Django, may consider Falcon\n\n\nContainer: prototype deployed to Heroku, alternative - use AWS EBTalk\n\n\nDatabase: Postgres (default on Heroku*), alternative - AWS RDS\n\n\nRepositories\n\n\ndb\n: \n\n\n\nNote: there is also \ndjango project for database\n, but it is on hold now.",
             "title": "Database"
         },
         {
             "location": "/database/#overview",
-            "text": "This document describes database layer in between parsers and end-user API.  Expected fucntionality:\n- parser delivers a list of dicts, each dict is a datapoint\n- database should have a POST method at  api\\incoming  and write incoming json to db\n- POST operation must have some authentication\n- for simplicity all data is upserted - newer data always overwrites older data\n- database has GET method has datapoint keys and parameters (variable name, frequency), \n- GET retruns same format of output as incoming, output ordered by date,  optionally   \n  filtered by start date and end date",
+            "text": "This document describes database layer in between parsers and end-user API.  Expected fucntionality:   parser delivers a list of dicts, each dict is a datapoint  database should have a POST method at  api\\incoming  and write incoming json to db  POST operation must have some authentication  for simplicity all data is upserted - newer data always overwrites older data  database has GET method has datapoint keys and parameters (variable name, frequency),   GET retruns same format of output as incoming, output ordered by date,  optionally   \n  filtered by start date and end date",
             "title": "Overview"
         },
         {
@@ -92,7 +67,7 @@
         },
         {
             "location": "/database/#data-structure-incoming-json",
-            "text": "Incoming json should have a structure like\n    [{\n        \"date\": \"1999-03-31\",\n        \"freq\": \"q\",\n        \"name\": \"INVESTMENT_bln_rub\",\n        \"value\": 12345.6\n    },\n    {...} \n    ]",
+            "text": "Incoming json should have a structure like      [{\n        \"date\": \"1999-03-31\",\n        \"freq\": \"q\",\n        \"name\": \"INVESTMENT_bln_rub\",\n        \"value\": 12345.6\n    },\n    {...} \n    ]",
             "title": "Data structure - incoming json"
         },
         {
@@ -102,13 +77,13 @@
         },
         {
             "location": "/database/#post",
-            "text": "POST api/incoming    Validates incoming json and upsert values to database. All fields should be filled.  For insert_many() operation see  sheep/flock  example at  https://stackoverflow.com/a/33768160/1758363  Returns:\n- empty JSON on success\n- error 400 if there\u2019s an error in incoming json (eg invalid date string or empty parameter or missing field)  Parser result is obtained by   Dataset.yield_dicts(start='2017-01-01')  in  https://github.com/mini-kep/parsers/blob/master/parsers/runner.py , see  Dataset.serialise()  for json creation.  Other examples of incoming json:\n- a large (1.8M) json is  located here \n- sample data is presented  here",
+            "text": "POST api/incoming    Validates incoming json and upsert values to database. All fields should be filled.  For  insert_many()  operation see  'sheep/flock'  example  Returns:\n- empty JSON on success\n- error 400 if there\u2019s an error in incoming json (eg invalid date string or empty parameter or missing field)  Parser result is obtained by   Dataset.yield_dicts(start='2017-01-01')  in  https://github.com/mini-kep/parsers/blob/master/parsers/runner.py , see  Dataset.serialise()  for json creation.  Other examples of incoming json:   a large (1.8M) json is  located here  sample data is presented  here",
             "title": "POST"
         },
         {
-            "location": "/database/#get-rest",
-            "text": "GET api/datapoints?name=<name>&freq=<freq>\nGET api/datapoints?name=<name>&freq=<freq>&start_date=<start_date>&end_date=<end_date>  Parameters:\n- name (required) \u2013 name value to search like name=BRENT\n- freq (required) \u2013 freq value to search like freq=m\n- start_date (optional) \u2013 should return results with date greater than this parameter\n- end_date (optional) \u2013 should return results with date less than this parameter\n- format (optional, possible values  json, csv , default  csv ) \u2013 returns data in chosen format. CSV data can be read by pandas with  pd.read_csv(url_to_api_request)  Returns:\n- CSV or JSON (default CSV) in format similar to incoming json with data sorted by date\n- empty CSV or JSON if there\u2019s no data with such query.  Method validates parameters and returns error 400 if there\u2019s an error in parameters (like string in data parameter or empty parameter)",
-            "title": "GET (REST)"
+            "location": "/database/#get",
+            "text": "GET api/datapoints?name=<name>&freq=<freq>\nGET api/datapoints?name=<name>&freq=<freq>&start_date=<start_date>&end_date=<end_date>  Parameters:   name (required) \u2013 name value to search like name=BRENT  freq (required) \u2013 freq value to search like freq=m  start_date (optional) \u2013 should return results with date greater than this parameter  end_date (optional) \u2013 should return results with date less than this parameter  format (optional, possible values  json, csv , default  csv ) \u2013 returns data in chosen format. CSV data can be read by pandas with  pd.read_csv(url_to_api_request)   Returns:   CSV or JSON (default CSV) in format similar to incoming json with data sorted by date  empty CSV or JSON if there\u2019s no data with such query.   Method validates parameters and returns error 400 if there\u2019s an error in parameters (like string in data parameter or empty parameter)",
+            "title": "GET"
         },
         {
             "location": "/database/#security",
@@ -117,32 +92,27 @@
         },
         {
             "location": "/database/#tests",
-            "text": "Upload data from JSON to DB, run python unit tests with requests to different methods, validate them with uploaded data.\nUse combinations GET \u2013 POST \u2013 GET to validate data inserts and updates. Example1  Example2  Should we write some tests in curl/httpie? http tests:  https://github.com/mini-kep/db/blob/master/requests_tests.py",
+            "text": "Upload data from JSON to DB, run python unit tests with requests to different methods, validate them with uploaded data.  Use combinations GET \u2013 POST \u2013 GET to validate data inserts and updates.  Example1  Example2  Should we write some  tests in curl/httpie ?",
             "title": "Tests"
         },
         {
             "location": "/database/#tech-stack",
-            "text": "Web-frameworks: Flask + SQLAlchemy or Django, may consider Falcon  Container: prototype deployed to Heroku, may also use AWS  Database: Postgres (default on Heroku) or RDS on AWS",
+            "text": "Web-frameworks: Flask + SQLAlchemy, alternative - Django, may consider Falcon  Container: prototype deployed to Heroku, alternative - use AWS EBTalk  Database: Postgres (default on Heroku*), alternative - AWS RDS",
             "title": "Tech stack"
         },
         {
             "location": "/database/#repositories",
-            "text": "The database layer is to be developed here, at  db  repo:  https://github.com/mini-kep/db  flask  db :   There is also  django project for database ,  but it is on hold now.",
+            "text": "db :   Note: there is also  django project for database , but it is on hold now.",
             "title": "Repositories"
         },
         {
-            "location": "/database/#discussion",
-            "text": "https://github.com/mini-kep/db/issues/5",
-            "title": "Discussion"
-        },
-        {
             "location": "/custom_api/",
-            "text": "Overview\n\n\nCustom API is a simplified interface for end-user queries from database. \nIt uses long URL with slashes and no other parameters.\n\n\n\u0421ustom API is intended to allow:\n\n\n\n\nintuitive construction of URL for user\n\n\nshorter notation than standard database API GET method \n\n\naddressing several database API endpoints in one place\n\n\nuniform call to same indicator for different countries or regions\n\n\n\n\nAPI design originally discussed at \nthis issue\n.\n\n\nCustom API translates to db API\n\n\nCustom API is essentially a thin syntax layer on top of database API. \nAll calls to custom API are redirected to database API. \n\n\nFor example, this call to custom API: \n\n\nhttp://mini-kep.herokuapp.com/ru/series/CPI/m/rog/2015/2017\n\n\nwill return same data as:\n\n\nhttps://minikep-db.herokuapp.com/api/datapoints?name=CPI_rog&freq=m&start_date=2015-01-01&end_date=2017-12-31\n\n\nURL syntax\n\n\nCustom API url syntax is the following:\n\n\n{domain}/series/{varname}/{freq}/{?suffix}/{?start}/{?end}/{?finaliser}\n\n? - optional\n\nExamples:\n   oil/series/BRENT/m/eop/2015/2017/csv\n   ru/series/EXPORT_GOODS/m/bln_rub   \n\n\n\n\nFor further details, refer to the docstring in \n\ncustom_api.py\n file.\n\n\nExpected usage of \n{domain}\n is to get similar data \nfor different countries or regions by changing a little part of custom URL:\n\n\n   ru/series/CPI/m/2017  # country-level inflation for Russia \nru:77/series/CPI/m/2017  # inflation for Moscow region                         \n   kz/series/CPI/m/2017  # country-level inflation for Kazakhstan\n\n\n\n\nOutput format\n\n\nBy default custom API returns CSV file. This file is:\n\n\n\n\nviewable in browswer (download does not start)\n\n\nreadable by R/pandas\n\n\n\n\nOptional  \n{finaliser}\n may alter output format.\n\n\nImplementation\n\n\nCustom API currently developped and tested at \n\nown repo\n\nand mounted at \nfrontend app\n.\n\n\nNext steps\n\n\n\n\nMount custom API at db app",
+            "text": "Overview\n\n\nCustom API is a simplified interface for end-user queries from database. \nIt uses long URL with slashes and no other parameters.\n\n\n\u0421ustom API is intended for:\n\n\n\n\nintuitive construction of URL by user\n\n\nshorter notation than standard database API GET method \n\n\naddressing several database API endpoints in one place\n\n\nuniform call to same indicator for different countries or regions\n\n\n\n\nAPI design originally discussed at \nthis issue\n.\n\n\nCustom API translates to db API\n\n\nCustom API is essentially a thin syntax layer on top of database API. \nAll calls to custom API are redirected to database API. \n\n\nFor example, this call to custom API: \n\n\nhttp://mini-kep.herokuapp.com/ru/series/CPI/m/rog/2015/2017\n\n\nwill return same data as:\n\n\nhttps://minikep-db.herokuapp.com/api/datapoints?name=CPI_rog&freq=m&start_date=2015-01-01&end_date=2017-12-31\n\n\nURL syntax\n\n\nCustom API URL syntax is the following:\n\n\n{domain}/series/{varname}/{freq}/{?suffix}/{?start}/{?end}/{?finaliser}\n\n? - optional\n\nExamples:\n   oil/series/BRENT/m/eop/2015/2017/csv\n   ru/series/EXPORT_GOODS/m/bln_rub   \n\n\n\n\nFor further details, refer to the docstring in \n\ncustom_api.py\n file.\n\n\nExpected usage of \n{domain}\n is to get similar data \nfor different countries or regions by changing a little part of custom URL:\n\n\n   ru/series/CPI/m/2017  # country-level inflation for Russia \nru:77/series/CPI/m/2017  # inflation for Moscow region                         \n   kz/series/CPI/m/2017  # country-level inflation for Kazakhstan\n\n\n\n\nOutput format\n\n\nBy default custom API returns CSV file. This file is:\n\n\n\n\nviewable in browswer (download does not start)\n\n\nreadable by R/pandas\n\n\n\n\nOptional  \n{finaliser}\n may alter output format.\n\n\nImplementation\n\n\nCustom API currently developped and tested at \n\nown repo\n\nand mounted at \nfrontend app\n.\n\n\nNext steps\n\n\n\n\nMount custom API at db app",
             "title": "Custom API"
         },
         {
             "location": "/custom_api/#overview",
-            "text": "Custom API is a simplified interface for end-user queries from database. \nIt uses long URL with slashes and no other parameters.  \u0421ustom API is intended to allow:   intuitive construction of URL for user  shorter notation than standard database API GET method   addressing several database API endpoints in one place  uniform call to same indicator for different countries or regions   API design originally discussed at  this issue .",
+            "text": "Custom API is a simplified interface for end-user queries from database. \nIt uses long URL with slashes and no other parameters.  \u0421ustom API is intended for:   intuitive construction of URL by user  shorter notation than standard database API GET method   addressing several database API endpoints in one place  uniform call to same indicator for different countries or regions   API design originally discussed at  this issue .",
             "title": "Overview"
         },
         {
@@ -152,7 +122,7 @@
         },
         {
             "location": "/custom_api/#url-syntax",
-            "text": "Custom API url syntax is the following:  {domain}/series/{varname}/{freq}/{?suffix}/{?start}/{?end}/{?finaliser}\n\n? - optional\n\nExamples:\n   oil/series/BRENT/m/eop/2015/2017/csv\n   ru/series/EXPORT_GOODS/m/bln_rub     For further details, refer to the docstring in  custom_api.py  file.  Expected usage of  {domain}  is to get similar data \nfor different countries or regions by changing a little part of custom URL:     ru/series/CPI/m/2017  # country-level inflation for Russia \nru:77/series/CPI/m/2017  # inflation for Moscow region                         \n   kz/series/CPI/m/2017  # country-level inflation for Kazakhstan",
+            "text": "Custom API URL syntax is the following:  {domain}/series/{varname}/{freq}/{?suffix}/{?start}/{?end}/{?finaliser}\n\n? - optional\n\nExamples:\n   oil/series/BRENT/m/eop/2015/2017/csv\n   ru/series/EXPORT_GOODS/m/bln_rub     For further details, refer to the docstring in  custom_api.py  file.  Expected usage of  {domain}  is to get similar data \nfor different countries or regions by changing a little part of custom URL:     ru/series/CPI/m/2017  # country-level inflation for Russia \nru:77/series/CPI/m/2017  # inflation for Moscow region                         \n   kz/series/CPI/m/2017  # country-level inflation for Kazakhstan",
             "title": "URL syntax"
         },
         {
@@ -172,12 +142,12 @@
         },
         {
             "location": "/frontend/",
-            "text": "Overview\n\n\nFrontend is a stand-alone flask app that is used to:\n- relay some existing data in experimental mode \n- make a list of indicators available in \nmini-kep\n database\n- show individual indicators homepages with charts, latest values \n  and instructions for download.\n\n\nRepository\n\n\nfrontend-app\n: \n\n\n \n\n\n\nIssues\n\n\n\n\nhomepage for individual indicators",
+            "text": "Overview\n\n\nFrontend is a stand-alone flask app used to:\n\n\n\n\nrelay some existing data in experimental mode \n\n\nmake a list of indicators available in \nmini-kep\n database\n\n\nshow individual indicators homepages with charts, latest values \n  and instructions for download.\n\n\n\n\nRepository\n\n\nfrontend-app\n: \n\n \n\n\n\nIssues\n\n\n\n\nhomepage for individual indicators",
             "title": "Frontend"
         },
         {
             "location": "/frontend/#overview",
-            "text": "Frontend is a stand-alone flask app that is used to:\n- relay some existing data in experimental mode \n- make a list of indicators available in  mini-kep  database\n- show individual indicators homepages with charts, latest values \n  and instructions for download.",
+            "text": "Frontend is a stand-alone flask app used to:   relay some existing data in experimental mode   make a list of indicators available in  mini-kep  database  show individual indicators homepages with charts, latest values \n  and instructions for download.",
             "title": "Overview"
         },
         {
@@ -189,6 +159,16 @@
             "location": "/frontend/#issues",
             "text": "homepage for individual indicators",
             "title": "Issues"
+        },
+        {
+            "location": "/notebooks/",
+            "text": "Notebooks catalog\n\n\nThere is a \nrepo for use cases\n, but it is practically empty yet.\n\n\nThe use cases may resemble \ndatachart.cc\n\nor \ndatalab\n\nor \nviz-demo\n or some other repos (eg cmf-comovements).",
+            "title": "Notebooks"
+        },
+        {
+            "location": "/notebooks/#notebooks-catalog",
+            "text": "There is a  repo for use cases , but it is practically empty yet.  The use cases may resemble  datachart.cc \nor  datalab \nor  viz-demo  or some other repos (eg cmf-comovements).",
+            "title": "Notebooks catalog"
         },
         {
             "location": "/datamodel_and_namespace/",
@@ -209,16 +189,6 @@
             "location": "/datamodel_and_namespace/#glossary",
             "text": "data model  true dataset  reported dataset  enduser API",
             "title": "Glossary"
-        },
-        {
-            "location": "/django_app/",
-            "text": "Django db app\n\n\nThere is a supplementary dfango app for the db layer. We wanted to try both flask and django. With django the idea was that all components could go into one project.\n\n\ndjango \nfull-app\n:",
-            "title": "Django app"
-        },
-        {
-            "location": "/django_app/#django-db-app",
-            "text": "There is a supplementary dfango app for the db layer. We wanted to try both flask and django. With django the idea was that all components could go into one project.  django  full-app :",
-            "title": "Django db app"
         }
     ]
 }

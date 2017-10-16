@@ -3,9 +3,9 @@ Overview
 Custom API is a simplified interface for end-user queries from database. 
 It uses long URL with slashes and no other parameters.
 
-Сustom API is intended to allow:
+Сustom API is intended for:
 
-1. intuitive construction of URL for user
+1. intuitive construction of URL by user
 2. shorter notation than standard database API GET method 
 3. addressing several database API endpoints in one place
 4. uniform call to same indicator for different countries or regions
@@ -30,7 +30,7 @@ will return same data as:
 URL syntax
 ==========
 
-Custom API url syntax is the following:
+Custom API URL syntax is the following:
 
 ```
 {domain}/series/{varname}/{freq}/{?suffix}/{?start}/{?end}/{?finaliser}

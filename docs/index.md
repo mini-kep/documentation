@@ -9,15 +9,28 @@ saves it in database and provides end-user interface to browse this data
 and read it into R/pandas for visualisation and modelling.  
 
 Inspired by [St Louis FRED](https://fred.stlouisfed.org) and 
-[Data Science Cookiecutter](https://drivendata.github.io/cookiecutter-data-science),
+[Data Science Cookiecutter](https://drivendata.github.io/cookiecutter-data-science)
 and aims to provide open, timely, machine-readable data for reproducible 
 analysis in economics.
 
 
-End use example
-===============
+User case
+=========
 
-Read official daily ruble/usd exchange rate from start of 2017
+We assume an end user has some experience with [FRED](https://fred.stlouisfed.org) 
+or [quandl](https://www.quandl.com/). 
+
+For his work an end user wants:
+
+- a clean dataset with latest data from different sources
+- browse what data is available
+- read this data on a local machine (in ```pandas``` or ```R```)
+- quickly draw some charts like one below: 
+
+[![](http://datachart.cc/images/rub_oil.png)](http://datachart.cc/)
+
+
+Example: read official daily ruble/usd exchange rate from start of 2017
 
 ```python 
 import pandas as pd
@@ -34,9 +47,7 @@ assert er['2017-09-28'] == 58.01022
 
 ```
 
-Click to see data in browser:
-<http://mini-kep.herokuapp.com/ru/series/USDRUR_CB/d/2017>
-
+Click [here](http://mini-kep.herokuapp.com/ru/series/USDRUR_CB/d/2017) to see same data in browser.
 
 Project repositories and links
 ==============================

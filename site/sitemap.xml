@@ -12,16 +12,6 @@
     
         
     <url>
-     <loc>/usercase/</loc>
-     <lastmod>2017-10-16</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    
-
-    
-        
-    <url>
      <loc>/parsers/</loc>
      <lastmod>2017-10-16</lastmod>
      <changefreq>daily</changefreq>
@@ -51,18 +41,18 @@
      <changefreq>daily</changefreq>
     </url>
         
+    <url>
+     <loc>/notebooks/</loc>
+     <lastmod>2017-10-16</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
     
 
     
         
     <url>
      <loc>/datamodel_and_namespace/</loc>
-     <lastmod>2017-10-16</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>/django_app/</loc>
      <lastmod>2017-10-16</lastmod>
      <changefreq>daily</changefreq>
     </url>

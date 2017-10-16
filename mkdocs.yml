@@ -1,15 +1,13 @@
 site_name: mini-kep documentation
 pages:
     - Overview: index.md
-    - Usercase:
-        - "User case": usercase.md 
-    - Specifications:
-        - Parsers: parsers.md        
+    - Specifications: 
+        - Parsers: parsers.md
         - Scheduler: scheduler.md
         - Database: database.md
         - Custom API: custom_api.md
         - Frontend: frontend.md
+        - Notebooks: notebooks.md
     - Under construction:        
         - "Data model and namespace": datamodel_and_namespace.md
-        - "Django app": django_app.md
 theme: readthedocs
