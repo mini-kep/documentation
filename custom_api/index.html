@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Custom API - Specifications</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Custom API";
+    var mkdocs_page_input_path = "custom_api.md";
+    var mkdocs_page_url = "/custom_api/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js"></script>
+  <script src="../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Specifications</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">Custom API</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#overview">Overview</a></li>
+    
+
+    <li class="toctree-l2"><a href="#how-is-it-implemented">How is it implemented</a></li>
+    
+
+    <li class="toctree-l2"><a href="#client-side-code">Client side code</a></li>
+    
+
+    <li class="toctree-l2"><a href="#url-format">URL format</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#what-next">What next</a></li>
+        
+            <li><a class="toctree-l3" href="#changelog">Changelog</a></li>
+        
+        </ul>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../database/">Database</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../datamodel_and_namespace/">Data model and namespace</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../django_app/">Django app</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../frontend/">Frontend</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../parser_guidelines/">Parser Guidelines</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../parsers/">Parsers</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../scheduler/">Scheduler</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../usercase/">User case</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Specifications</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Custom API</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="overview">Overview</h1>
+<p>Custom API is a simplified interface for end-user queries from database. 
+It uses long URL with slashes and no other parameters.</p>
+<p>This call: </p>
+<p><code>http://mini-kep.herokuapp.com/ru/series/CPI/m/rog/2015/2017</code></p>
+<p>will return same data as:</p>
+<p><code>https://minikep-db.herokuapp.com/api/datapoints?name=CPI_rog&amp;freq=m&amp;start_date=2015-01-01&amp;end_date=2017-12-31</code></p>
+<p>The intent of custom API is to allow:
+1. intuitive construction of URL for user
+2. shorter notation than standard database API GET method 
+3. get similar data for different countries / regions just by changing little part of URL, for example: 
+   - <code>ru/series/CPI/m/2017</code> is nationwide inflation for Russia 
+   - <code>ru:77/series/CPI/m/2017</code> is inflation for Moscow region (from <a href="http://www.gks.ru/bgd/regl/b16_17/IssWWW.exe/Stg/10-2-1.xls">here</a>)<br />
+   - <code>kz/series/CPI/m/2017</code> is same national indicator for Kazakhstan.</p>
+<h1 id="how-is-it-implemented">How is it implemented</h1>
+<blockquote>
+<p>ideas on how it is implemented - with respect to flask </p>
+<p>or suggestions on implementation </p>
+</blockquote>
+<p>Custom API is mounted at <a href="http://mini-kep.herokuapp.com/">http://mini-kep.herokuapp.com/</a>, see below for details. </p>
+<blockquote>
+<p>todo: where the code is </p>
+<p>todo: where the data is </p>
+</blockquote>
+<h1 id="client-side-code">Client side code</h1>
+<p>In order to ensure data integrity, some additional parameters need to be specified when importing data with <code>pd.read_json</code> or <code>pd.read_csv</code>.
+See <a href="../custom_api_client_side_code.py">here</a> for examples on how to load data into a dataframe.</p>
+<h1 id="url-format">URL format</h1>
+<p>Some more examples illustrating the format of the URLs;</p>
+<pre><code>oil/series/BRENT/m/eop/2015/2017/csv
+ru/series/EXPORT_GOODS/m/bln_rub
+</code></pre>
+
+<p>For further details, refer to the <a href="https://github.com/mini-kep/helpers/blob/master/custom_api/custom_api.py#L1-L46">docstring</a> in the custom_api.py file.</p>
+<h2 id="what-next">What next</h2>
+<p>What developers are about to do next</p>
+<h2 id="changelog">Changelog</h2>
+<p>Big events / changes</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../database/" class="btn btn-neutral float-right" title="Database">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href=".." class="btn btn-neutral" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+    
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href=".." style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../database/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script src="../js/theme.js"></script>
+
+</body>
+</html>

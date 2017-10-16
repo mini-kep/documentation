@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Database - Specifications</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Database";
+    var mkdocs_page_input_path = "database.md";
+    var mkdocs_page_url = "/database/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js"></script>
+  <script src="../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Specifications</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../custom_api/">Custom API</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">Database</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#overview">Overview</a></li>
+    
+
+    <li class="toctree-l2"><a href="#database-schema">Database schema</a></li>
+    
+
+    <li class="toctree-l2"><a href="#data-structures">Data structures</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#data-structure-incoming-json">Data structure - incoming json</a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l2"><a href="#database-methods">Database methods</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#post">POST</a></li>
+        
+            <li><a class="toctree-l3" href="#get-rest">GET (REST)</a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l2"><a href="#security">Security</a></li>
+    
+
+    <li class="toctree-l2"><a href="#tests">Tests</a></li>
+    
+
+    <li class="toctree-l2"><a href="#tech-stack">Tech stack</a></li>
+    
+
+    <li class="toctree-l2"><a href="#repositories">Repositories</a></li>
+    
+
+    <li class="toctree-l2"><a href="#discussion">Discussion</a></li>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../datamodel_and_namespace/">Data model and namespace</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../django_app/">Django app</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../frontend/">Frontend</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../parser_guidelines/">Parser Guidelines</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../parsers/">Parsers</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../scheduler/">Scheduler</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../usercase/">User case</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Specifications</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Database</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="overview">Overview</h1>
+<p>This document describes database layer in between parsers and end-user API.</p>
+<p>Expected fucntionality:
+- parser delivers a list of dicts, each dict is a datapoint
+- database should have a POST method at <code>api\incoming</code> and write incoming json to db
+- POST operation must have some authentication
+- for simplicity all data is upserted - newer data always overwrites older data
+- database has GET method has datapoint keys and parameters (variable name, frequency), 
+- GET retruns same format of output as incoming, output ordered by date,  optionally  <br />
+  filtered by start date and end date </p>
+<h1 id="database-schema">Database schema</h1>
+<p>Table <strong>Datpoint</strong></p>
+<pre><code>Id – UID, autoincrement  
+Name – type String \*  eg GDP
+Freq – type String \*  
+Date – type DateTime \*  2016-12-31
+Value – Float  
+
+\* - composite key
+</code></pre>
+
+<p>See example at <a href="https://github.com/mini-kep/db/blob/master/demo/sqlalchemy/datapoint.py">https://github.com/mini-kep/db/blob/master/demo/sqlalchemy/datapoint.py</a></p>
+<h1 id="data-structures">Data structures</h1>
+<h4 id="data-structure-incoming-json">Data structure - incoming json</h4>
+<p>Incoming json should have a structure like
+    [{
+        "date": "1999-03-31",
+        "freq": "q",
+        "name": "INVESTMENT_bln_rub",
+        "value": 12345.6
+    },
+    {...} 
+    ]</p>
+<h1 id="database-methods">Database methods</h1>
+<h2 id="post">POST</h2>
+<p><code>POST api/incoming</code> </p>
+<p>Validates incoming json and upsert values to database. All fields should be filled.</p>
+<p>For insert_many() operation see <em>sheep/flock</em> example at <a href="https://stackoverflow.com/a/33768160/1758363">https://stackoverflow.com/a/33768160/1758363</a></p>
+<p>Returns:
+- empty JSON on success
+- error 400 if there’s an error in incoming json (eg invalid date string or empty parameter or missing field)</p>
+<p>Parser result is obtained by  <code>Dataset.yield_dicts(start='2017-01-01')</code> in <a href="https://github.com/mini-kep/parsers/blob/master/parsers/runner.py">https://github.com/mini-kep/parsers/blob/master/parsers/runner.py</a>, see <code>Dataset.serialise()</code> for json creation.</p>
+<p>Other examples of incoming json:
+- a large (1.8M) json is <a href="https://github.com/mini-kep/intro/blob/master/pipeline/dataset.json">located here</a>
+- sample data is presented <a href="https://github.com/mini-kep/full-app/issues/9#issuecomment-331814995">here</a></p>
+<h2 id="get-rest">GET (REST)</h2>
+<pre><code>GET api/datapoints?name=&lt;name&gt;&amp;freq=&lt;freq&gt;
+GET api/datapoints?name=&lt;name&gt;&amp;freq=&lt;freq&gt;&amp;start_date=&lt;start_date&gt;&amp;end_date=&lt;end_date&gt;
+</code></pre>
+
+<p>Parameters:
+- name (required) – name value to search like name=BRENT
+- freq (required) – freq value to search like freq=m
+- start_date (optional) – should return results with date greater than this parameter
+- end_date (optional) – should return results with date less than this parameter
+- format (optional, possible values <code>json, csv</code>, default <code>csv</code>) – returns data in chosen format. CSV data can be read by pandas with <code>pd.read_csv(url_to_api_request)</code></p>
+<p>Returns:
+- CSV or JSON (default CSV) in format similar to incoming json with data sorted by date
+- empty CSV or JSON if there’s no data with such query.</p>
+<p>Method validates parameters and returns error 400 if there’s an error in parameters (like string in data parameter or empty parameter) </p>
+<h1 id="security">Security</h1>
+<p>POST methods should require API_TOKEN as URL parameter or header, validate it with environment variable (possibly Heroku config vars)</p>
+<h1 id="tests">Tests</h1>
+<p>Upload data from JSON to DB, run python unit tests with requests to different methods, validate them with uploaded data.
+Use combinations GET – POST – GET to validate data inserts and updates.
+<a href="https://github.com/mini-kep/db/blob/master/demo/sqlalchemy/tests/test_clientdb_demo.py">Example1</a>
+<a href="https://github.com/mini-kep/full-app/blob/master/datapoint/tests.py">Example2</a></p>
+<p>Should we write some tests in curl/httpie? http tests: <a href="https://github.com/mini-kep/db/blob/master/requests_tests.py">https://github.com/mini-kep/db/blob/master/requests_tests.py</a></p>
+<h1 id="tech-stack">Tech stack</h1>
+<p>Web-frameworks: Flask + SQLAlchemy or Django, may consider Falcon</p>
+<p>Container: prototype deployed to Heroku, may also use AWS</p>
+<p>Database: Postgres (default on Heroku) or RDS on AWS</p>
+<h1 id="repositories">Repositories</h1>
+<p>The database layer is to be developed here, at <code>db</code> repo: <a href="https://github.com/mini-kep/db">https://github.com/mini-kep/db</a></p>
+<p>flask <a href="https://github.com/mini-kep/db">db</a>: 
+<a href="https://travis-ci.org/mini-kep/db"><img alt="Build Status" src="https://travis-ci.org/mini-kep/db.svg?branch=master" /></a></p>
+<p>There is also <a href="../django_app/">django project for database</a>,  but it is on hold now.</p>
+<h1 id="discussion">Discussion</h1>
+<p><a href="https://github.com/mini-kep/db/issues/5">https://github.com/mini-kep/db/issues/5</a></p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../datamodel_and_namespace/" class="btn btn-neutral float-right" title="Data model and namespace">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../custom_api/" class="btn btn-neutral" title="Custom API"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+    
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../custom_api/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../datamodel_and_namespace/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script src="../js/theme.js"></script>
+
+</body>
+</html>
