@@ -54,17 +54,6 @@
           
             <li class="toctree-l1">
 		
-    <span class="caption-text">Usercase</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="../usercase/">User case</a>
-                </li>
-    </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
     <span class="caption-text">Specifications</span>
     <ul class="subnav">
                 <li class=" current">
@@ -73,6 +62,9 @@
     <ul class="subnav">
             
     <li class="toctree-l3"><a href="#data-sources-and-parsers">Data sources and parsers</a></li>
+    
+
+    <li class="toctree-l3"><a href="#repository">Repository</a></li>
     
 
     </ul>
@@ -93,6 +85,10 @@
                     
     <a class="" href="../frontend/">Frontend</a>
                 </li>
+                <li class="">
+                    
+    <a class="" href="../notebooks/">Notebooks</a>
+                </li>
     </ul>
 	    </li>
           
@@ -103,10 +99,6 @@
                 <li class="">
                     
     <a class="" href="../datamodel_and_namespace/">Data model and namespace</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../django_app/">Django app</a>
                 </li>
     </ul>
 	    </li>
@@ -148,13 +140,13 @@
             <div class="section">
               
                 <h2 id="data-sources-and-parsers">Data sources and parsers</h2>
-<p>Data sources are static files (Word, PDF, html) and some open APIs. Parser is the python code performing requests and emitting datapoints. </p>
-<p><a href="https://github.com/mini-kep/parser-rosstat-kep">parser-rosstat-kep</a> supplies most time series. It is supplemented by daily ruble exchange rate from Bank of Russia and oil prices from EIA and some others.</p>
+<p>Data sources are static files (Word, PDF, html) and some open APIs. 
+Parser is the python code performing requests and emitting datapoints as dictionaries 
+like <code>{'name': USDRUR_CB, 'date': '2017-09-28', 'freq': 'd', 'value': 58.0102}</code></p>
+<p><a href="https://github.com/mini-kep/parser-rosstat-kep">parser-rosstat-kep</a> supplies most time monthly series. It is supplemented by daily ruble exchange rate from Bank of Russia and oil prices from EIA and some others.</p>
 <p>Aggratation of parser data is made at <a href="https://github.com/mini-kep/parsers/blob/master/parsers/runner.py">parsers/runner.py</a></p>
-<p><a href="https://github.com/mini-kep/parser-rosstat-kep">parser-rosstat-kep</a>:
-<a href="https://travis-ci.org/mini-kep/parser-rosstat-kep"><img alt="" src="https://travis-ci.org/mini-kep/parser-rosstat-kep.svg?branch=master" /></a> 
-<a href="https://codecov.io/gh/mini-kep/parser-rosstat-kep"><img alt="" src="https://codecov.io/gh/mini-kep/parser-rosstat-kep/branch/master/graphs/badge.svg" /></a></p>
-<p><a href="https://github.com/mini-kep/parsers">parsers</a>:
+<h2 id="repository">Repository</h2>
+<p><a href="https://github.com/mini-kep/parsers">Parsers</a>:
 <a href="https://travis-ci.org/mini-kep/parsers"><img alt="" src="https://travis-ci.org/mini-kep/parsers.svg?branch=master" /></a>
 <a href="https://codecov.io/gh/mini-kep/parsers"><img alt="" src="https://codecov.io/gh/mini-kep/parsers/branch/master/graphs/badge.svg" /></a> </p>
               
@@ -167,7 +159,7 @@
         <a href="../scheduler/" class="btn btn-neutral float-right" title="Scheduler">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../usercase/" class="btn btn-neutral" title="User case"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href=".." class="btn btn-neutral" title="Overview"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -193,7 +185,7 @@
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../usercase/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href=".." style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
         <span style="margin-left: 15px"><a href="../scheduler/" style="color: #fcfcfc">Next &raquo;</a></span>
