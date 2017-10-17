@@ -6,7 +6,7 @@ into python pandas and R, using an intuitive notation about variable naming and
 modifiation.
 
 We want an end-user to make a call like this to get qurterly nominal GDP and 
-real GDP growht rate: 
+real GDP growth rate: 
 
 ```python
 

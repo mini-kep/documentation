@@ -3,7 +3,7 @@ Overview
 
 This document describes database layer in between parsers and end-user API.
 
-Expected fucntionality:
+Expected functionality:
 
 - parser delivers a list of dicts, each dict is a datapoint
 - database should have a POST method at ```api\incoming``` and write incoming json to db
