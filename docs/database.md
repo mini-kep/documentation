@@ -81,11 +81,11 @@ GET api/datapoints?name=<name>&freq=<freq>&start_date=<start_date>&end_date=<end
 
 Parameters:
 
-- name (required) – name value to search like name=BRENT
-- freq (required) – freq value to search like freq=m
-- start_date (optional) – should return results with date greater than this parameter
-- end_date (optional) – should return results with date less than this parameter
-- format (optional, possible values ```json, csv```, default ```csv```) – returns data in chosen format. CSV data can be read by pandas with ```pd.read_csv(url_to_api_request)```
+- ```name``` (required) – name value to search like ```name=BRENT```
+- ```freq``` (required) – freq value to search like ```freq=m```
+- ```start_date``` (optional) – should return results with date greater than this parameter
+- ```end_date``` (optional) – should return results with date less than this parameter
+- ```format``` (optional, possible values ```json```, ```csv```, default ```csv```) – returns data in chosen format. CSV data can be read by pandas with ```pd.read_csv(url_to_api_request)```
 
 Returns:
 
