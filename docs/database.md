@@ -1,8 +1,11 @@
 Overview
 ========
 
-This document describes initial reuiqrement for database. 
-Please refer to [README.md](https://github.com/mini-kep/db) for newest data. 
+This document describes initial requirement for database layer with two essential methods: ```POST api\incoming``` and 
+```GET api/datapoints```. 
+
+[More methods](https://github.com/mini-kep/db/issues/8) will be added to extend database functionality, 
+please refer to [db repository README.md](https://github.com/mini-kep/db) for newest information. 
 
 Expected fucntionality
 ======================
@@ -143,4 +146,7 @@ Repositories
 [db](https://github.com/mini-kep/db): 
 [![Build Status](https://travis-ci.org/mini-kep/db.svg?branch=master)](https://travis-ci.org/mini-kep/db)
 
-Note: there is also [django project for database](https://github.com/mini-kep/full-app), but it is on hold now.
+
+Note
+====
+There is also [django project for database](https://github.com/mini-kep/full-app), but it is on hold now.
