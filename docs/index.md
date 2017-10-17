@@ -58,7 +58,7 @@ data source descriptions and parser code.
 *Scheduler: not implemented yet.*
 
 [Database layer](https://github.com/mini-kep/db):
-API and database itself for data storage and [retrieval](https://github.com/mini-kep/db#sample-get-calls) 
+API and database itself for data storage and [retrieval](https://github.com/mini-kep/db#get-calls) 
 hosted at  
 ```https://minikep-db.herokuapp.com/api/```
 
