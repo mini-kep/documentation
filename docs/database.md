@@ -1,16 +1,18 @@
 Overview
 ========
 
-This document describes database layer in between parsers and end-user API.
+This document describes initial reuiqrement for database. 
+Please refer to [README.md](https://github.com/mini-kep/db) for newest data. 
 
-Expected fucntionality:
+Expected fucntionality
+======================
 
 - parser delivers a list of dicts, each dict is a datapoint
 - database should have a POST method at ```api\incoming``` and write incoming json to db
 - POST operation must have some authentication
 - for simplicity all data is upserted - newer data always overwrites older data
-- database has GET method has datapoint keys and parameters (variable name, frequency), 
-- GET retruns same format of output as incoming, output ordered by date,  optionally    
+- database has GET method with datapoint keys as parameters (variable name, frequency),
+- GET returns same format of output as incoming, output ordered by date, optionally    
   filtered by start date and end date 
 
 Database schema
@@ -32,21 +34,44 @@ See example at <https://github.com/mini-kep/db/blob/master/demo/sqlalchemy/datap
 Data structures
 ===============
 
-#### Data structure - incoming json
-
-Incoming json should have a structure like
+** Incoming / outgoing JSON**
 
 ```python 
-    [{
-        "date": "1999-03-31",
-        "freq": "q",
-        "name": "INVESTMENT_bln_rub",
-        "value": 12345.6
+[
+    {
+        "date": "2016-06-30",
+        "freq": "m",
+        "name": "CPI_rog",
+        "value": 100.4
     },
-    {...} 
-    ]
+    {
+        "date": "2016-06-30",
+        "freq": "m",
+        "name": "EXPORT_GOODS_bln_usd",
+        "value": 24.0
+    },
+
+	# ...
+	
+]	
 ```
 
+Parser result is obtained [here](https://github.com/mini-kep/parsers/blob/master/parsers/runner.py)
+from   ```Dataset.yield_dicts(start='2017-01-01')```. See ```Dataset.serialise()``` for json creation.
+Sample json is [here](https://github.com/mini-kep/parsers/blob/master/parsers/test_data_2016H2.json)
+ 
+
+** Outgoing CSV **
+
+```
+,GDP_yoy
+2016-03-31,99.6
+2016-06-30,99.5
+2016-09-30,99.6
+2016-12-31,100.3
+2017-03-31,100.5
+2017-06-30,102.5
+```
 
 Database methods
 ================
@@ -62,14 +87,10 @@ For ```insert_many()``` operation see [*'sheep/flock'* example](https://stackove
 
 Returns:
 - empty JSON on success
-- error 400 if there’s an error in incoming json (eg invalid date string or empty parameter or missing field)
+- error 400 on error in incoming json (eg invalid date string or empty parameter or missing field)
 
-Parser result is obtained by  ```Dataset.yield_dicts(start='2017-01-01')``` in <https://github.com/mini-kep/parsers/blob/master/parsers/runner.py>, see ```Dataset.serialise()``` for json creation.
+POST methods should require API_TOKEN as URL parameter or header, validate it with environment variable (possibly Heroku config vars)
 
-Other examples of incoming json:
-
-- a large (1.8M) json is [located here](https://github.com/mini-kep/intro/blob/master/pipeline/dataset.json)
-- sample data is presented [here](https://github.com/mini-kep/full-app/issues/9#issuecomment-331814995)
 
 GET
 ---
@@ -91,16 +112,11 @@ Returns:
 
 - CSV or JSON (default CSV) in format similar to incoming json with data sorted by date
 - empty CSV or JSON if there’s no data with such query.
+- returns error 400 on error in parameters
 
-Method validates parameters and returns error 400 if there’s an error in parameters (like string in data parameter or empty parameter) 
 
-Security
-========
-
-POST methods should require API_TOKEN as URL parameter or header, validate it with environment variable (possibly Heroku config vars)
-
-Tests
-=====
+Tests (to edit)
+===============
 
 Upload data from JSON to DB, run python unit tests with requests to different methods, validate them with uploaded data.
 

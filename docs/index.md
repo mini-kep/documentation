@@ -4,11 +4,7 @@ Introduction
 ```mini-kep``` is a small ETL (extract, transform, load) framework for 
 Russian and global macroeconomic time series data with public end-user API.
 
-```mini-kep``` collects data from static files and public APIs,
-saves it in database and provides end-user interface to browse this data 
-and read it into R/pandas for visualisation and modelling.  
-
-Inspired by [St Louis FRED](https://fred.stlouisfed.org) and 
+It is inspired by [St Louis FRED](https://fred.stlouisfed.org) and 
 [Data Science Cookiecutter](https://drivendata.github.io/cookiecutter-data-science)
 and aims to provide open, timely, machine-readable data for reproducible 
 analysis in economics.
@@ -30,7 +26,7 @@ For his work an end user wants:
 [![](http://datachart.cc/images/rub_oil.png)](http://datachart.cc/)
 
 
-Example: read official daily ruble/usd exchange rate from start of 2017
+**Example: read official daily ruble/usd exchange rate from start of 2017**
 
 ```python 
 import pandas as pd
@@ -49,23 +45,5 @@ assert er['2017-09-28'] == 58.01022
 
 Click [here](http://mini-kep.herokuapp.com/ru/series/USDRUR_CB/d/2017) to see same data in browser.
 
-Project repositories and links
-==============================
 
-[Parsers](https://github.com/mini-kep/parsers):
-data source descriptions and parser code.
 
-*Scheduler: not implemented yet.*
-
-[Database layer](https://github.com/mini-kep/db):
-API and database itself for data storage and [retrieval](https://github.com/mini-kep/db#sample-get-calls) 
-hosted at  
-```https://minikep-db.herokuapp.com/api/```
-
-[Custom API](https://github.com/mini-kep/helper-custom-api): own repo for long URL decomposer.
-
-[Frontend app](https://github.com/mini-kep/frontend-app):
-can be [viewed in browser](https://mini-kep.herokuapp.com), relies on db API. 
-
-[End user code](https://github.com/mini-kep/user-charts):
-а collection of Jupiter notebooks to demostrate data use. 

@@ -4,7 +4,15 @@
     
     <url>
      <loc>/</loc>
-     <lastmod>2017-10-16</lastmod>
+     <lastmod>2017-10-17</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>/pipeline/</loc>
+     <lastmod>2017-10-17</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -13,37 +21,37 @@
         
     <url>
      <loc>/parsers/</loc>
-     <lastmod>2017-10-16</lastmod>
+     <lastmod>2017-10-17</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/scheduler/</loc>
-     <lastmod>2017-10-16</lastmod>
+     <lastmod>2017-10-17</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/database/</loc>
-     <lastmod>2017-10-16</lastmod>
+     <lastmod>2017-10-17</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/custom_api/</loc>
-     <lastmod>2017-10-16</lastmod>
+     <lastmod>2017-10-17</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/frontend/</loc>
-     <lastmod>2017-10-16</lastmod>
+     <lastmod>2017-10-17</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/notebooks/</loc>
-     <lastmod>2017-10-16</lastmod>
+     <lastmod>2017-10-17</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -53,7 +61,7 @@
         
     <url>
      <loc>/datamodel_and_namespace/</loc>
-     <lastmod>2017-10-16</lastmod>
+     <lastmod>2017-10-17</lastmod>
      <changefreq>daily</changefreq>
     </url>
         

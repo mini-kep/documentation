@@ -58,10 +58,12 @@
     <li class="toctree-l2"><a href="#user-case">User case</a></li>
     
 
-    <li class="toctree-l2"><a href="#project-repositories-and-links">Project repositories and links</a></li>
-    
-
     </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="pipeline/">Data pipeline</a>
 	    </li>
           
             <li class="toctree-l1">
@@ -141,10 +143,7 @@
                 <h1 id="introduction">Introduction</h1>
 <p><code>mini-kep</code> is a small ETL (extract, transform, load) framework for 
 Russian and global macroeconomic time series data with public end-user API.</p>
-<p><code>mini-kep</code> collects data from static files and public APIs,
-saves it in database and provides end-user interface to browse this data 
-and read it into R/pandas for visualisation and modelling.  </p>
-<p>Inspired by <a href="https://fred.stlouisfed.org">St Louis FRED</a> and 
+<p>It is inspired by <a href="https://fred.stlouisfed.org">St Louis FRED</a> and 
 <a href="https://drivendata.github.io/cookiecutter-data-science">Data Science Cookiecutter</a>
 and aims to provide open, timely, machine-readable data for reproducible 
 analysis in economics.</p>
@@ -159,7 +158,7 @@ or <a href="https://www.quandl.com/">quandl</a>. </p>
 <li>quickly draw some charts like one below: </li>
 </ul>
 <p><a href="http://datachart.cc/"><img alt="" src="http://datachart.cc/images/rub_oil.png" /></a></p>
-<p>Example: read official daily ruble/usd exchange rate from start of 2017</p>
+<p><strong>Example: read official daily ruble/usd exchange rate from start of 2017</strong></p>
 <pre><code class="python">import pandas as pd
 
 def read_ts(source_url):
@@ -175,19 +174,6 @@ assert er['2017-09-28'] == 58.01022
 </code></pre>
 
 <p>Click <a href="http://mini-kep.herokuapp.com/ru/series/USDRUR_CB/d/2017">here</a> to see same data in browser.</p>
-<h1 id="project-repositories-and-links">Project repositories and links</h1>
-<p><a href="https://github.com/mini-kep/parsers">Parsers</a>:
-data source descriptions and parser code.</p>
-<p><em>Scheduler: not implemented yet.</em></p>
-<p><a href="https://github.com/mini-kep/db">Database layer</a>:
-API and database itself for data storage and <a href="https://github.com/mini-kep/db#sample-get-calls">retrieval</a> 
-hosted at<br />
-<code>https://minikep-db.herokuapp.com/api/</code></p>
-<p><a href="https://github.com/mini-kep/helper-custom-api">Custom API</a>: own repo for long URL decomposer.</p>
-<p><a href="https://github.com/mini-kep/frontend-app">Frontend app</a>:
-can be <a href="https://mini-kep.herokuapp.com">viewed in browser</a>, relies on db API. </p>
-<p><a href="https://github.com/mini-kep/user-charts">End user code</a>:
-а collection of Jupiter notebooks to demostrate data use. </p>
               
             </div>
           </div>
@@ -195,7 +181,7 @@ can be <a href="https://mini-kep.herokuapp.com">viewed in browser</a>, relies on
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="parsers/" class="btn btn-neutral float-right" title="Parsers">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="pipeline/" class="btn btn-neutral float-right" title="Data pipeline">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
     </div>
@@ -223,7 +209,7 @@ can be <a href="https://mini-kep.herokuapp.com">viewed in browser</a>, relies on
       
       
       
-        <span style="margin-left: 15px"><a href="parsers/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="pipeline/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
@@ -234,5 +220,5 @@ can be <a href="https://mini-kep.herokuapp.com">viewed in browser</a>, relies on
 
 <!--
 MkDocs version : 0.16.3
-Build Date UTC : 2017-10-16 13:58:01
+Build Date UTC : 2017-10-17 12:09:01
 -->
