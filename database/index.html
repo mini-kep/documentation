@@ -54,6 +54,11 @@
           
             <li class="toctree-l1">
 		
+    <a class="" href="../pipeline/">Data pipeline</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
     <span class="caption-text">Specifications</span>
     <ul class="subnav">
                 <li class="">
@@ -72,16 +77,13 @@
     <li class="toctree-l3"><a href="#overview">Overview</a></li>
     
 
+    <li class="toctree-l3"><a href="#expected-fucntionality">Expected fucntionality</a></li>
+    
+
     <li class="toctree-l3"><a href="#database-schema">Database schema</a></li>
     
 
     <li class="toctree-l3"><a href="#data-structures">Data structures</a></li>
-    
-        <ul>
-        
-            <li><a class="toctree-l4" href="#data-structure-incoming-json">Data structure - incoming json</a></li>
-        
-        </ul>
     
 
     <li class="toctree-l3"><a href="#database-methods">Database methods</a></li>
@@ -95,10 +97,7 @@
         </ul>
     
 
-    <li class="toctree-l3"><a href="#security">Security</a></li>
-    
-
-    <li class="toctree-l3"><a href="#tests">Tests</a></li>
+    <li class="toctree-l3"><a href="#tests-to-edit">Tests (to edit)</a></li>
     
 
     <li class="toctree-l3"><a href="#tech-stack">Tech stack</a></li>
@@ -172,15 +171,16 @@
             <div class="section">
               
                 <h1 id="overview">Overview</h1>
-<p>This document describes database layer in between parsers and end-user API.</p>
-<p>Expected fucntionality:</p>
+<p>This document describes initial reuiqrement for database. 
+Please refer to <a href="https://github.com/mini-kep/db">README.md</a> for newest data. </p>
+<h1 id="expected-fucntionality">Expected fucntionality</h1>
 <ul>
 <li>parser delivers a list of dicts, each dict is a datapoint</li>
 <li>database should have a POST method at <code>api\incoming</code> and write incoming json to db</li>
 <li>POST operation must have some authentication</li>
 <li>for simplicity all data is upserted - newer data always overwrites older data</li>
-<li>database has GET method has datapoint keys and parameters (variable name, frequency), </li>
-<li>GET retruns same format of output as incoming, output ordered by date,  optionally  <br />
+<li>database has GET method with datapoint keys as parameters (variable name, frequency),</li>
+<li>GET returns same format of output as incoming, output ordered by date, optionally  <br />
   filtered by start date and end date </li>
 </ul>
 <h1 id="database-schema">Database schema</h1>
@@ -196,16 +196,37 @@ Value – Float
 
 <p>See example at <a href="https://github.com/mini-kep/db/blob/master/demo/sqlalchemy/datapoint.py">https://github.com/mini-kep/db/blob/master/demo/sqlalchemy/datapoint.py</a></p>
 <h1 id="data-structures">Data structures</h1>
-<h4 id="data-structure-incoming-json">Data structure - incoming json</h4>
-<p>Incoming json should have a structure like</p>
-<pre><code class="python">    [{
-        &quot;date&quot;: &quot;1999-03-31&quot;,
-        &quot;freq&quot;: &quot;q&quot;,
-        &quot;name&quot;: &quot;INVESTMENT_bln_rub&quot;,
-        &quot;value&quot;: 12345.6
+<p><strong> Incoming / outgoing JSON</strong></p>
+<pre><code class="python">[
+    {
+        &quot;date&quot;: &quot;2016-06-30&quot;,
+        &quot;freq&quot;: &quot;m&quot;,
+        &quot;name&quot;: &quot;CPI_rog&quot;,
+        &quot;value&quot;: 100.4
     },
-    {...} 
-    ]
+    {
+        &quot;date&quot;: &quot;2016-06-30&quot;,
+        &quot;freq&quot;: &quot;m&quot;,
+        &quot;name&quot;: &quot;EXPORT_GOODS_bln_usd&quot;,
+        &quot;value&quot;: 24.0
+    },
+
+    # ...
+
+]   
+</code></pre>
+
+<p>Parser result is obtained <a href="https://github.com/mini-kep/parsers/blob/master/parsers/runner.py">here</a>
+from   <code>Dataset.yield_dicts(start='2017-01-01')</code>. See <code>Dataset.serialise()</code> for json creation.
+Sample json is <a href="https://github.com/mini-kep/parsers/blob/master/parsers/test_data_2016H2.json">here</a></p>
+<p><strong> Outgoing CSV </strong></p>
+<pre><code>,GDP_yoy
+2016-03-31,99.6
+2016-06-30,99.5
+2016-09-30,99.6
+2016-12-31,100.3
+2017-03-31,100.5
+2017-06-30,102.5
 </code></pre>
 
 <h1 id="database-methods">Database methods</h1>
@@ -215,13 +236,8 @@ Value – Float
 <p>For <code>insert_many()</code> operation see <a href="https://stackoverflow.com/a/33768160/1758363"><em>'sheep/flock'</em> example</a></p>
 <p>Returns:
 - empty JSON on success
-- error 400 if there’s an error in incoming json (eg invalid date string or empty parameter or missing field)</p>
-<p>Parser result is obtained by  <code>Dataset.yield_dicts(start='2017-01-01')</code> in <a href="https://github.com/mini-kep/parsers/blob/master/parsers/runner.py">https://github.com/mini-kep/parsers/blob/master/parsers/runner.py</a>, see <code>Dataset.serialise()</code> for json creation.</p>
-<p>Other examples of incoming json:</p>
-<ul>
-<li>a large (1.8M) json is <a href="https://github.com/mini-kep/intro/blob/master/pipeline/dataset.json">located here</a></li>
-<li>sample data is presented <a href="https://github.com/mini-kep/full-app/issues/9#issuecomment-331814995">here</a></li>
-</ul>
+- error 400 on error in incoming json (eg invalid date string or empty parameter or missing field)</p>
+<p>POST methods should require API_TOKEN as URL parameter or header, validate it with environment variable (possibly Heroku config vars)</p>
 <h2 id="get">GET</h2>
 <pre><code>GET api/datapoints?name=&lt;name&gt;&amp;freq=&lt;freq&gt;
 GET api/datapoints?name=&lt;name&gt;&amp;freq=&lt;freq&gt;&amp;start_date=&lt;start_date&gt;&amp;end_date=&lt;end_date&gt;
@@ -239,11 +255,9 @@ GET api/datapoints?name=&lt;name&gt;&amp;freq=&lt;freq&gt;&amp;start_date=&lt;st
 <ul>
 <li>CSV or JSON (default CSV) in format similar to incoming json with data sorted by date</li>
 <li>empty CSV or JSON if there’s no data with such query.</li>
+<li>returns error 400 on error in parameters</li>
 </ul>
-<p>Method validates parameters and returns error 400 if there’s an error in parameters (like string in data parameter or empty parameter) </p>
-<h1 id="security">Security</h1>
-<p>POST methods should require API_TOKEN as URL parameter or header, validate it with environment variable (possibly Heroku config vars)</p>
-<h1 id="tests">Tests</h1>
+<h1 id="tests-to-edit">Tests (to edit)</h1>
 <p>Upload data from JSON to DB, run python unit tests with requests to different methods, validate them with uploaded data.</p>
 <p>Use combinations GET – POST – GET to validate data inserts and updates.</p>
 <p><a href="https://github.com/mini-kep/db/blob/master/demo/sqlalchemy/tests/test_clientdb_demo.py">Example1</a>
