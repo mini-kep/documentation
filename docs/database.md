@@ -3,7 +3,7 @@ Overview
 
 This document describes database layer in between parsers and end-user API.
 
-Expected fucntionality:
+Expected functionality:
 
 - parser delivers a list of dicts, each dict is a datapoint
 - database should have a POST method at ```api\incoming``` and write incoming json to db
@@ -68,7 +68,7 @@ Parser result is obtained by  ```Dataset.yield_dicts(start='2017-01-01')``` in <
 
 Other examples of incoming json:
 
-- a large (1.8M) json is [located here](https://github.com/mini-kep/intro/blob/master/pipeline/dataset.json)
+- a large (1.8M) json is [located here](https://raw.githubusercontent.com/mini-kep/intro/master/pipeline/dataset.json)
 - sample data is presented [here](https://github.com/mini-kep/full-app/issues/9#issuecomment-331814995)
 
 GET
@@ -81,11 +81,11 @@ GET api/datapoints?name=<name>&freq=<freq>&start_date=<start_date>&end_date=<end
 
 Parameters:
 
-- name (required) – name value to search like name=BRENT
-- freq (required) – freq value to search like freq=m
-- start_date (optional) – should return results with date greater than this parameter
-- end_date (optional) – should return results with date less than this parameter
-- format (optional, possible values ```json, csv```, default ```csv```) – returns data in chosen format. CSV data can be read by pandas with ```pd.read_csv(url_to_api_request)```
+- ```name``` (required) – name value to search like ```name=BRENT```
+- ```freq``` (required) – freq value to search like ```freq=m```
+- ```start_date``` (optional) – should return results with date greater than this parameter
+- ```end_date``` (optional) – should return results with date less than this parameter
+- ```format``` (optional, possible values ```json```, ```csv```, default ```csv```) – returns data in chosen format. CSV data can be read by pandas with ```pd.read_csv(url_to_api_request)```
 
 Returns:
 
