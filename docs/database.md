@@ -37,7 +37,7 @@ See example at <https://github.com/mini-kep/db/blob/master/demo/sqlalchemy/datap
 Data structures
 ===============
 
-** Incoming / outgoing JSON**
+**Incoming / outgoing JSON**
 
 ```python 
 [
@@ -64,7 +64,7 @@ from   ```Dataset.yield_dicts(start='2017-01-01')```. See ```Dataset.serialise()
 Sample json is [here](https://github.com/mini-kep/parsers/blob/master/parsers/test_data_2016H2.json)
  
 
-** Outgoing CSV **
+**Outgoing CSV **
 
 ```
 ,GDP_yoy
