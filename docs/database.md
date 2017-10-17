@@ -4,7 +4,7 @@ Overview
 This document describes initial requirement for database layer with two essential methods: ```POST api\incoming``` and 
 ```GET api/datapoints```. 
 
-[More methods](https://github.com/mini-kep/db/issues/8) will be added to extend database functionality, 
+More methods will be added to extend database functionality, 
 please refer to [db repository README.md](https://github.com/mini-kep/db) for newest information. 
 
 Expected fucntionality
