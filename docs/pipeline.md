@@ -29,7 +29,7 @@ and read it with R/pandas for visualisation and modelling.
 
    - project [news and how-to](https://mini-kep.herokuapp.com)
    - relaying data from database query API
-   - html content for viewing data withi charts (not implemented)
+   - html content for viewing data with charts (not implemented)
    - social links for charts (not implemented)
 
 ## 5 [End-user examples](https://github.com/mini-kep/user-charts)
