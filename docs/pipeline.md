@@ -5,25 +5,25 @@ Data pipleline
 saves it in database and provides end-user interface to browse this data 
 and read it with R/pandas for visualisation and modelling.  
 
-## 1 [Parsers on static files or other APIs](https://github.com/mini-kep/parsers)
+## 1 [Parsers](https://github.com/mini-kep/parsers)
 
-   - download data from source 
+   - download data from sources (on static files or other APIs) 
    - assign variable names from common namespace 
-   - emit stream of dictionaries like  
-     ```{'name': USDRUR_CB, 'date': '2017-09-28', 'freq': 'd', 'value': 58.0102}```
+   - emit stream of dictionaries like:  
+   
+```{'name': USDRUR_CB, 'date': '2017-09-28', 'freq': 'd', 'value': 58.0102}```
 
 ## 2 Scheduler
 
    - establish expected database content based on current date 
-   - query parsers to get expected data 
-   - resolve import conflicts (overwriting data on revision or same data from different sources)
+   - query parsers for missing data 
    - upload to database
 
 ## 3 [Database](https://github.com/mini-kep/db)
 
    - flask app with SQLAlchemy and Postgres backend 
    - has REST API to upload and [retreive](https://github.com/mini-kep/db#get-calls) data
-   - has custom API to retrive data, custom API maps simplified query syntax to REST API
+   - has custom API to retrieve data, custom API maps simplified query syntax to REST API
 
 ## 4 [Frontend app](https://github.com/mini-kep/frontend-app)
 

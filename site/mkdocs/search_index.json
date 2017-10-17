@@ -17,7 +17,7 @@
         },
         {
             "location": "/pipeline/",
-            "text": "Data pipleline\n\n\nmini-kep\n collects data from static files and public APIs,\nsaves it in database and provides end-user interface to browse this data \nand read it with R/pandas for visualisation and modelling.  \n\n\n1 \nParsers on static files or other APIs\n\n\n\n\ndownload data from source \n\n\nassign variable names from common namespace \n\n\nemit stream of dictionaries like\n\n\n{'name': USDRUR_CB, 'date': '2017-09-28', 'freq': 'd', 'value': 58.0102}\n\n\n\n\n2 Scheduler\n\n\n\n\nestablish expected database content based on current date \n\n\nquery parsers to get expected data \n\n\nresolve import conflicts (overwriting data on revision or same data from different sources)\n\n\nupload to database\n\n\n\n\n3 \nDatabase\n\n\n\n\nflask app with SQLAlchemy and Postgres backend \n\n\nhas REST API to upload and \nretreive\n data\n\n\nhas custom API to retrive data, custom API maps simplified query syntax to REST API\n\n\n\n\n4 \nFrontend app\n\n\n\n\nproject \nnews and how-to\n\n\nrelaying data from database query API\n\n\nhtml content for viewing data withi charts (not implemented)\n\n\nsocial links for charts (not implemented)\n\n\n\n\n5 \nEnd-user examples\n\n\n\n\ndata access examples for end-user API\n\n\ncharting macroeconimic data\n\n\ncollection of Jupiter notebooks to demostrate data use (visualisation/modelling)\n\n\n\n\nComments\n\n\n\n\nPipeline is illustrated \nhere\n\n\nCommon namespace discussed \nhere",
+            "text": "Data pipleline\n\n\nmini-kep\n collects data from static files and public APIs,\nsaves it in database and provides end-user interface to browse this data \nand read it with R/pandas for visualisation and modelling.  \n\n\n1 \nParsers\n\n\n\n\ndownload data from sources (on static files or other APIs) \n\n\nassign variable names from common namespace \n\n\nemit stream of dictionaries like:  \n\n\n\n\n{'name': USDRUR_CB, 'date': '2017-09-28', 'freq': 'd', 'value': 58.0102}\n\n\n2 Scheduler\n\n\n\n\nestablish expected database content based on current date \n\n\nquery parsers for missing data \n\n\nupload to database\n\n\n\n\n3 \nDatabase\n\n\n\n\nflask app with SQLAlchemy and Postgres backend \n\n\nhas REST API to upload and \nretreive\n data\n\n\nhas custom API to retrieve data, custom API maps simplified query syntax to REST API\n\n\n\n\n4 \nFrontend app\n\n\n\n\nproject \nnews and how-to\n\n\nrelaying data from database query API\n\n\nhtml content for viewing data withi charts (not implemented)\n\n\nsocial links for charts (not implemented)\n\n\n\n\n5 \nEnd-user examples\n\n\n\n\ndata access examples for end-user API\n\n\ncharting macroeconimic data\n\n\ncollection of Jupiter notebooks to demostrate data use (visualisation/modelling)\n\n\n\n\nComments\n\n\n\n\nPipeline is illustrated \nhere\n\n\nCommon namespace discussed \nhere",
             "title": "Data pipeline"
         },
         {
@@ -26,18 +26,18 @@
             "title": "Data pipleline"
         },
         {
-            "location": "/pipeline/#1-parsers-on-static-files-or-other-apis",
-            "text": "download data from source   assign variable names from common namespace   emit stream of dictionaries like  {'name': USDRUR_CB, 'date': '2017-09-28', 'freq': 'd', 'value': 58.0102}",
-            "title": "1 Parsers on static files or other APIs"
+            "location": "/pipeline/#1-parsers",
+            "text": "download data from sources (on static files or other APIs)   assign variable names from common namespace   emit stream of dictionaries like:     {'name': USDRUR_CB, 'date': '2017-09-28', 'freq': 'd', 'value': 58.0102}",
+            "title": "1 Parsers"
         },
         {
             "location": "/pipeline/#2-scheduler",
-            "text": "establish expected database content based on current date   query parsers to get expected data   resolve import conflicts (overwriting data on revision or same data from different sources)  upload to database",
+            "text": "establish expected database content based on current date   query parsers for missing data   upload to database",
             "title": "2 Scheduler"
         },
         {
             "location": "/pipeline/#3-database",
-            "text": "flask app with SQLAlchemy and Postgres backend   has REST API to upload and  retreive  data  has custom API to retrive data, custom API maps simplified query syntax to REST API",
+            "text": "flask app with SQLAlchemy and Postgres backend   has REST API to upload and  retreive  data  has custom API to retrieve data, custom API maps simplified query syntax to REST API",
             "title": "3 Database"
         },
         {

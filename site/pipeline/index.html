@@ -61,7 +61,7 @@
     
         <ul>
         
-            <li><a class="toctree-l3" href="#1-parsers-on-static-files-or-other-apis">1 Parsers on static files or other APIs</a></li>
+            <li><a class="toctree-l3" href="#1-parsers">1 Parsers</a></li>
         
             <li><a class="toctree-l3" href="#2-scheduler">2 Scheduler</a></li>
         
@@ -155,25 +155,24 @@
 <p><code>mini-kep</code> collects data from static files and public APIs,
 saves it in database and provides end-user interface to browse this data 
 and read it with R/pandas for visualisation and modelling.  </p>
-<h2 id="1-parsers-on-static-files-or-other-apis">1 <a href="https://github.com/mini-kep/parsers">Parsers on static files or other APIs</a></h2>
+<h2 id="1-parsers">1 <a href="https://github.com/mini-kep/parsers">Parsers</a></h2>
 <ul>
-<li>download data from source </li>
+<li>download data from sources (on static files or other APIs) </li>
 <li>assign variable names from common namespace </li>
-<li>emit stream of dictionaries like<br />
-<code>{'name': USDRUR_CB, 'date': '2017-09-28', 'freq': 'd', 'value': 58.0102}</code></li>
+<li>emit stream of dictionaries like:  </li>
 </ul>
+<p><code>{'name': USDRUR_CB, 'date': '2017-09-28', 'freq': 'd', 'value': 58.0102}</code></p>
 <h2 id="2-scheduler">2 Scheduler</h2>
 <ul>
 <li>establish expected database content based on current date </li>
-<li>query parsers to get expected data </li>
-<li>resolve import conflicts (overwriting data on revision or same data from different sources)</li>
+<li>query parsers for missing data </li>
 <li>upload to database</li>
 </ul>
 <h2 id="3-database">3 <a href="https://github.com/mini-kep/db">Database</a></h2>
 <ul>
 <li>flask app with SQLAlchemy and Postgres backend </li>
 <li>has REST API to upload and <a href="https://github.com/mini-kep/db#get-calls">retreive</a> data</li>
-<li>has custom API to retrive data, custom API maps simplified query syntax to REST API</li>
+<li>has custom API to retrieve data, custom API maps simplified query syntax to REST API</li>
 </ul>
 <h2 id="4-frontend-app">4 <a href="https://github.com/mini-kep/frontend-app">Frontend app</a></h2>
 <ul>
