@@ -77,7 +77,7 @@
     <li class="toctree-l3"><a href="#overview">Overview</a></li>
     
 
-    <li class="toctree-l3"><a href="#expected-fucntionality">Expected fucntionality</a></li>
+    <li class="toctree-l3"><a href="#expected-functionality">Expected functionality</a></li>
     
 
     <li class="toctree-l3"><a href="#database-schema">Database schema</a></li>
@@ -178,7 +178,7 @@
 <code>GET api/datapoints</code>. </p>
 <p>More methods will be added to extend database functionality, 
 please refer to <a href="https://github.com/mini-kep/db">db repository README.md</a> for newest information. </p>
-<h1 id="expected-fucntionality">Expected fucntionality</h1>
+<h1 id="expected-functionality">Expected functionality</h1>
 <ul>
 <li>parser delivers a list of dicts, each dict is a datapoint</li>
 <li>database should have a POST method at <code>api\incoming</code> and write incoming json to db</li>
@@ -250,11 +250,11 @@ GET api/datapoints?name=&lt;name&gt;&amp;freq=&lt;freq&gt;&amp;start_date=&lt;st
 
 <p>Parameters:</p>
 <ul>
-<li>name (required) – name value to search like name=BRENT</li>
-<li>freq (required) – freq value to search like freq=m</li>
-<li>start_date (optional) – should return results with date greater than this parameter</li>
-<li>end_date (optional) – should return results with date less than this parameter</li>
-<li>format (optional, possible values <code>json, csv</code>, default <code>csv</code>) – returns data in chosen format. CSV data can be read by pandas with <code>pd.read_csv(url_to_api_request)</code></li>
+<li><code>name</code> (required) – name value to search like <code>name=BRENT</code></li>
+<li><code>freq</code> (required) – freq value to search like <code>freq=m</code></li>
+<li><code>start_date</code> (optional) – should return results with date greater than this parameter</li>
+<li><code>end_date</code> (optional) – should return results with date less than this parameter</li>
+<li><code>format</code> (optional, possible values <code>json</code>, <code>csv</code>, default <code>csv</code>) – returns data in chosen format. CSV data can be read by pandas with <code>pd.read_csv(url_to_api_request)</code></li>
 </ul>
 <p>Returns:</p>
 <ul>
