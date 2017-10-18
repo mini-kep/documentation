@@ -59,7 +59,7 @@ Output format
 
 By default custom API returns CSV file. This file is:
 
-- viewable in browswer (download does not start)
+- viewable in browser (download does not start)
 - readable by R/pandas
 
 Optional  ```{finaliser}``` may alter output format.

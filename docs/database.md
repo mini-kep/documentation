@@ -7,7 +7,7 @@ This document describes initial requirement for database layer with two essentia
 More methods will be added to extend database functionality, 
 please refer to [db repository README.md](https://github.com/mini-kep/db) for newest information. 
 
-Expected fucntionality
+Expected functionality
 ======================
 
 - parser delivers a list of dicts, each dict is a datapoint
@@ -105,11 +105,12 @@ GET api/datapoints?name=<name>&freq=<freq>&start_date=<start_date>&end_date=<end
 
 Parameters:
 
-- name (required) – name value to search like name=BRENT
-- freq (required) – freq value to search like freq=m
-- start_date (optional) – should return results with date greater than this parameter
-- end_date (optional) – should return results with date less than this parameter
-- format (optional, possible values ```json, csv```, default ```csv```) – returns data in chosen format. CSV data can be read by pandas with ```pd.read_csv(url_to_api_request)```
+- ```name``` (required) – name value to search like ```name=BRENT```
+- ```freq``` (required) – freq value to search like ```freq=m```
+- ```start_date``` (optional) – should return results with date greater than this parameter
+- ```end_date``` (optional) – should return results with date less than this parameter
+- ```format``` (optional, possible values ```json```, ```csv```, default ```csv```) – returns data in chosen format. CSV data can be read by pandas with ```pd.read_csv(url_to_api_request)```
+
 
 Returns:
 

@@ -45,5 +45,7 @@ assert er['2017-09-28'] == 58.01022
 
 Click [here](http://mini-kep.herokuapp.com/ru/series/USDRUR_CB/d/2017) to see same data in browser.
 
+Github
+======
 
-
+This documentation source is stored on [Github](https://github.com/mini-kep/documentation)
