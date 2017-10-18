@@ -1,14 +1,14 @@
 site_name: mini-kep documentation
 pages:
     - Overview: index.md
-    - Data pipeline: pipeline.md
+    - "Data pipeline": pipeline.md
     - Specifications: 
         - Parsers: parsers.md
         - Scheduler: scheduler.md
         - Database: database.md
-        - Custom API: custom_api.md
+        - "Custom API": custom_api.md
         - Frontend: frontend.md
         - Notebooks: notebooks.md
-    - Under construction:        
+    - "Under construction":
         - "Data model and namespace": datamodel_and_namespace.md
 theme: readthedocs
