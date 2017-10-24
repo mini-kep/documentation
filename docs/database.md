@@ -1,4 +1,4 @@
-Overview
+﻿Overview
 ========
 
 This document describes initial requirement for database layer with two essential methods: ```POST api\incoming``` and 
@@ -89,6 +89,7 @@ Validates incoming json and upsert values to database. All fields should be fill
 For ```insert_many()``` operation see [*'sheep/flock'* example](https://stackoverflow.com/a/33768160/1758363)
 
 Returns:
+
 - empty JSON on success
 - error 400 on error in incoming json (eg invalid date string or empty parameter or missing field)
 
