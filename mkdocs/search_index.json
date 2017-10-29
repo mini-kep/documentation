@@ -2,7 +2,7 @@
     "docs": [
         {
             "location": "/",
-            "text": "Introduction\n\n\nmini-kep\n is a small ETL (extract, transform, load) framework for \nRussian and global macroeconomic time series data with public end-user API.\n\n\nIt is inspired by \nSt Louis FRED\n and \n\nData Science Cookiecutter\n\nand aims to provide open, timely, machine-readable data for reproducible \nanalysis in economics.\n\n\nUser case\n\n\nWe assume an end user has some experience with \nFRED\n \nor \nquandl\n. \n\n\nFor his work an end user wants:\n\n\n\n\na clean dataset with latest data from different sources\n\n\nbrowse what data is available\n\n\nread this data on a local machine (in \npandas\n or \nR\n)\n\n\nquickly draw some charts like one below: \n\n\n\n\n\n\nExample: read official daily ruble/usd exchange rate from start of 2017\n\n\nimport pandas as pd\n\ndef read_ts(source_url):\n    \"\"\"Read pandas time series from *source_url*.\"\"\"\n    return pd.read_csv(source_url, \n                      converters={0: pd.to_datetime}, \n                      index_col=0,\n                      squeeze=True)\n\ner = read_ts('http://mini-kep.herokuapp.com/ru/series/USDRUR_CB/d/2017')\nassert er['2017-09-28'] == 58.01022\n\n\n\n\n\nClick \nhere\n to see same data in browser.\n\n\nGithub\n\n\nThis documentation source is stored on \nGithub",
+            "text": "Introduction\n\n\nmini-kep\n is a small ETL (extract, transform, load) framework for \nRussian and global macroeconomic time series data with public end-user API.\n\n\nIt is inspired by \nSt Louis FRED\n and \n\nData Science Cookiecutter\n\nand aims to provide open, timely, machine-readable data for reproducible \nanalysis in economics.\n\n\nUser case\n\n\nThere are two user scenarios we keep in mind: \n\n\n\n\nbrowsing and downloading time series on the web  \n\n\nusing \nR\n/\npandas\n code download to manupulate data \n\n\n\n\nUser A: web interface\n\n\nUser A\n is generally interested in macroeconomic data. He wants to: \n\n\n\n\nbrowse the available dataset on a web site \n\n\nselect some time series to compare \n\n\ndownload selected data locally. \n\n\n\n\nUser B: R/pandas code\n\n\nWe assume \nuser \u0412\n has some experience with \nFRED\n \nor \nquandl\n and can use \nR\n/\npandas\n \non a basic level.\n\n\nFor his work User B wants:\n\n\n\n\na clean dataset with latest data from different sources\n\n\ndownload this data on a local machine (in \npandas\n or \nR\n)\n\n\nquickly draw some charts like one below: \n\n\n\n\n\n\nExample: read official daily ruble/usd exchange rate from start of 2017\n\n\nimport pandas as pd\n\ndef read_ts(source_url):\n    \"\"\"Read pandas time series from *source_url*.\"\"\"\n    return pd.read_csv(source_url, \n                      converters={0: pd.to_datetime}, \n                      index_col=0,\n                      squeeze=True)\n\ner = read_ts('http://minikep-db.herokuapp.com/ru/series/USDRUR_CB/d/2017')\nassert er['2017-09-28'] == 58.01022\n\n\n\n\n\nClick \nhere\n to see same data in browser.\n\n\nGithub\n\n\nThis documentation source is stored on \nGithub",
             "title": "Overview"
         },
         {
@@ -12,8 +12,18 @@
         },
         {
             "location": "/#user-case",
-            "text": "We assume an end user has some experience with  FRED  \nor  quandl .   For his work an end user wants:   a clean dataset with latest data from different sources  browse what data is available  read this data on a local machine (in  pandas  or  R )  quickly draw some charts like one below:     Example: read official daily ruble/usd exchange rate from start of 2017  import pandas as pd\n\ndef read_ts(source_url):\n    \"\"\"Read pandas time series from *source_url*.\"\"\"\n    return pd.read_csv(source_url, \n                      converters={0: pd.to_datetime}, \n                      index_col=0,\n                      squeeze=True)\n\ner = read_ts('http://mini-kep.herokuapp.com/ru/series/USDRUR_CB/d/2017')\nassert er['2017-09-28'] == 58.01022  Click  here  to see same data in browser.",
+            "text": "There are two user scenarios we keep in mind:    browsing and downloading time series on the web    using  R / pandas  code download to manupulate data",
             "title": "User case"
+        },
+        {
+            "location": "/#user-a-web-interface",
+            "text": "User A  is generally interested in macroeconomic data. He wants to:    browse the available dataset on a web site   select some time series to compare   download selected data locally.",
+            "title": "User A: web interface"
+        },
+        {
+            "location": "/#user-b-rpandas-code",
+            "text": "We assume  user \u0412  has some experience with  FRED  \nor  quandl  and can use  R / pandas  \non a basic level.  For his work User B wants:   a clean dataset with latest data from different sources  download this data on a local machine (in  pandas  or  R )  quickly draw some charts like one below:     Example: read official daily ruble/usd exchange rate from start of 2017  import pandas as pd\n\ndef read_ts(source_url):\n    \"\"\"Read pandas time series from *source_url*.\"\"\"\n    return pd.read_csv(source_url, \n                      converters={0: pd.to_datetime}, \n                      index_col=0,\n                      squeeze=True)\n\ner = read_ts('http://minikep-db.herokuapp.com/ru/series/USDRUR_CB/d/2017')\nassert er['2017-09-28'] == 58.01022  Click  here  to see same data in browser.",
+            "title": "User B: R/pandas code"
         },
         {
             "location": "/#github",

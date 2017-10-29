@@ -57,6 +57,14 @@
 
     <li class="toctree-l2"><a href="#user-case">User case</a></li>
     
+        <ul>
+        
+            <li><a class="toctree-l3" href="#user-a-web-interface">User A: web interface</a></li>
+        
+            <li><a class="toctree-l3" href="#user-b-rpandas-code">User B: R/pandas code</a></li>
+        
+        </ul>
+    
 
     <li class="toctree-l2"><a href="#github">Github</a></li>
     
@@ -151,13 +159,26 @@ Russian and global macroeconomic time series data with public end-user API.</p>
 and aims to provide open, timely, machine-readable data for reproducible 
 analysis in economics.</p>
 <h1 id="user-case">User case</h1>
-<p>We assume an end user has some experience with <a href="https://fred.stlouisfed.org">FRED</a> 
-or <a href="https://www.quandl.com/">quandl</a>. </p>
-<p>For his work an end user wants:</p>
+<p>There are two user scenarios we keep in mind: </p>
+<ul>
+<li>browsing and downloading time series on the web  </li>
+<li>using <code>R</code>/<code>pandas</code> code download to manupulate data </li>
+</ul>
+<h4 id="user-a-web-interface">User A: web interface</h4>
+<p><em>User A</em> is generally interested in macroeconomic data. He wants to: </p>
+<ul>
+<li>browse the available dataset on a web site </li>
+<li>select some time series to compare </li>
+<li>download selected data locally. </li>
+</ul>
+<h4 id="user-b-rpandas-code">User B: R/pandas code</h4>
+<p>We assume <em>user В</em> has some experience with <a href="https://fred.stlouisfed.org">FRED</a> 
+or <a href="https://www.quandl.com/">quandl</a> and can use <code>R</code>/<code>pandas</code> 
+on a basic level.</p>
+<p>For his work User B wants:</p>
 <ul>
 <li>a clean dataset with latest data from different sources</li>
-<li>browse what data is available</li>
-<li>read this data on a local machine (in <code>pandas</code> or <code>R</code>)</li>
+<li>download this data on a local machine (in <code>pandas</code> or <code>R</code>)</li>
 <li>quickly draw some charts like one below: </li>
 </ul>
 <p><a href="http://datachart.cc/"><img alt="" src="http://datachart.cc/images/rub_oil.png" /></a></p>
@@ -171,12 +192,12 @@ def read_ts(source_url):
                       index_col=0,
                       squeeze=True)
 
-er = read_ts('http://mini-kep.herokuapp.com/ru/series/USDRUR_CB/d/2017')
+er = read_ts('http://minikep-db.herokuapp.com/ru/series/USDRUR_CB/d/2017')
 assert er['2017-09-28'] == 58.01022
 
 </code></pre>
 
-<p>Click <a href="http://mini-kep.herokuapp.com/ru/series/USDRUR_CB/d/2017">here</a> to see same data in browser.</p>
+<p>Click <a href="http://minikep-db.herokuapp.com/ru/series/USDRUR_CB/d/2017">here</a> to see same data in browser.</p>
 <h1 id="github">Github</h1>
 <p>This documentation source is stored on <a href="https://github.com/mini-kep/documentation">Github</a></p>
               
@@ -225,5 +246,5 @@ assert er['2017-09-28'] == 58.01022
 
 <!--
 MkDocs version : 0.16.3
-Build Date UTC : 2017-10-24 09:14:19
+Build Date UTC : 2017-10-29 21:50:40
 -->
