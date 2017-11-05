@@ -36,5 +36,3 @@ assert er['2017-09-28'] == 58.01022
 
 Click [here](http://minikep-db.herokuapp.com/ru/series/USDRUR_CB/d/2017) to see 
 the same data in browser.
-
-See [end_use.py](examples/end_use.py) for examples of end user code.

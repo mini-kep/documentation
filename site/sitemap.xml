@@ -11,6 +11,14 @@
 
     
     <url>
+     <loc>/usercase/</loc>
+     <lastmod>2017-11-05</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
      <loc>/pipeline/</loc>
      <lastmod>2017-11-05</lastmod>
      <changefreq>daily</changefreq>

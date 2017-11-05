@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Notebooks - mini-kep documentation</title>
+  <title>User case - mini-kep documentation</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
@@ -17,9 +17,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Notebooks";
-    var mkdocs_page_input_path = "notebooks.md";
-    var mkdocs_page_url = "/notebooks/";
+    var mkdocs_page_name = "User case";
+    var mkdocs_page_input_path = "usercase.md";
+    var mkdocs_page_url = "/usercase/";
   </script>
   
   <script src="../js/jquery-2.1.1.min.js"></script>
@@ -52,9 +52,12 @@
     <a class="" href="..">Overview</a>
 	    </li>
           
-            <li class="toctree-l1">
+            <li class="toctree-l1 current">
 		
-    <a class="" href="../usercase/">User case</a>
+    <a class="current" href="./">User case</a>
+    <ul class="subnav">
+            
+    </ul>
 	    </li>
           
             <li class="toctree-l1">
@@ -86,15 +89,9 @@
                     
     <a class="" href="../frontend/">Data browser</a>
                 </li>
-                <li class=" current">
+                <li class="">
                     
-    <a class="current" href="./">Notebooks</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l3"><a href="#notebooks-catalog">Notebooks catalog</a></li>
-    
-
-    </ul>
+    <a class="" href="../notebooks/">Notebooks</a>
                 </li>
     </ul>
 	    </li>
@@ -131,12 +128,8 @@
     <li><a href="..">Docs</a> &raquo;</li>
     
       
-        
-          <li>Specifications &raquo;</li>
-        
-      
     
-    <li>Notebooks</li>
+    <li>User case</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -146,11 +139,40 @@
           <div role="main">
             <div class="section">
               
-                <h2 id="notebooks-catalog">Notebooks catalog</h2>
-<p>There is a <a href="https://github.com/mini-kep/user-charts">repo for use cases</a>, but it is practically empty yet.</p>
-<p>The use cases may resemble <a href="http://datachart.cc/">datachart.cc</a>
-or <a href="https://github.com/epogrebnyak/data-lab">datalab</a>
-or <a href="https://github.com/epogrebnyak/viz_demo">viz-demo</a> or some other repos (eg cmf-comovements). </p>
+                <p><strong>Web interface user</strong>  wants to: </p>
+<ul>
+<li>browse available dataset on a web site </li>
+<li>select some time series to compare </li>
+<li>download selected data locally </li>
+</ul>
+<p>This user is likely to use data browser at <a href="http://macrodash.herokuapp.com/">http://macrodash.herokuapp.com/</a>. </p>
+<p><strong><code>R</code> or <code>pandas</code> users</strong>  with experience
+in <a href="https://fred.stlouisfed.org">FRED</a> 
+or <a href="https://www.quandl.com/">quandl</a> would want: </p>
+<ul>
+<li>a clean dataset with latest data from different sources</li>
+<li>download this data on a local machine (in <code>pandas</code> or <code>R</code>)</li>
+<li>quickly draw some charts (like one below)</li>
+<li>develop explanatory/forecasting models and share them as IPython notebooks.</li>
+</ul>
+<p><a href="http://datachart.cc/"><img alt="" src="http://datachart.cc/images/rub_oil.png" /></a></p>
+<p><strong>Example: read official daily ruble/usd exchange rate from start of 2017</strong></p>
+<pre><code class="python">import pandas as pd
+
+def read_ts(source_url):
+    &quot;&quot;&quot;Read pandas time series from *source_url*.&quot;&quot;&quot;
+    return pd.read_csv(source_url, 
+                      converters={0: pd.to_datetime}, 
+                      index_col=0,
+                      squeeze=True)
+
+er = read_ts('http://minikep-db.herokuapp.com/ru/series/USDRUR_CB/d/2017')
+assert er['2017-09-28'] == 58.01022
+
+</code></pre>
+
+<p>Click <a href="http://minikep-db.herokuapp.com/ru/series/USDRUR_CB/d/2017">here</a> to see 
+the same data in browser.</p>
               
             </div>
           </div>
@@ -158,10 +180,10 @@ or <a href="https://github.com/epogrebnyak/viz_demo">viz-demo</a> or some other 
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../datamodel_and_namespace/" class="btn btn-neutral float-right" title="Data model and namespace">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../pipeline/" class="btn btn-neutral float-right" title="Data pipeline">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../frontend/" class="btn btn-neutral" title="Data browser"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href=".." class="btn btn-neutral" title="Overview"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -187,10 +209,10 @@ or <a href="https://github.com/epogrebnyak/viz_demo">viz-demo</a> or some other 
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../frontend/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href=".." style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../datamodel_and_namespace/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../pipeline/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
