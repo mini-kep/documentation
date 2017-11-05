@@ -54,6 +54,11 @@
           
             <li class="toctree-l1">
 		
+    <a class="" href="../usercase/">User case</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
     <a class="" href="../pipeline/">Data pipeline</a>
 	    </li>
           
@@ -80,8 +85,11 @@
             
     <li class="toctree-l3"><a href="#overview">Overview</a></li>
     
-
-    <li class="toctree-l3"><a href="#custom-api-translates-to-db-api">Custom API translates to db API</a></li>
+        <ul>
+        
+            <li><a class="toctree-l4" href="#custom-api-translates-to-standard-api">Custom API translates to standard API</a></li>
+        
+        </ul>
     
 
     <li class="toctree-l3"><a href="#url-syntax">URL syntax</a></li>
@@ -90,17 +98,11 @@
     <li class="toctree-l3"><a href="#output-format">Output format</a></li>
     
 
-    <li class="toctree-l3"><a href="#implementation">Implementation</a></li>
-    
-
-    <li class="toctree-l3"><a href="#next-steps">Next steps</a></li>
-    
-
     </ul>
                 </li>
                 <li class="">
                     
-    <a class="" href="../frontend/">Frontend</a>
+    <a class="" href="../frontend/">Data browser</a>
                 </li>
                 <li class="">
                     
@@ -157,8 +159,9 @@
             <div class="section">
               
                 <h1 id="overview">Overview</h1>
-<p>Custom API is a simplified interface for end-user queries from database. 
-It uses long URL with slashes and no other parameters.</p>
+<p>Custom API is a simplified interface for end-user database queries. 
+It uses long URL with slashes and no other parameters. 
+Custom API design originally discussed at <a href="https://github.com/mini-kep/frontend-app/issues/8">this issue</a>.</p>
 <p>Сustom API is intended for:</p>
 <ol>
 <li>intuitive construction of URL by user</li>
@@ -166,19 +169,16 @@ It uses long URL with slashes and no other parameters.</p>
 <li>addressing several database API endpoints in one place</li>
 <li>uniform call to same indicator for different countries or regions</li>
 </ol>
-<p>API design originally discussed at <a href="https://github.com/mini-kep/frontend-app/issues/8">this issue</a>.</p>
-<h1 id="custom-api-translates-to-db-api">Custom API translates to db API</h1>
+<h4 id="custom-api-translates-to-standard-api">Custom API translates to standard API</h4>
 <p>Custom API is essentially a thin syntax layer on top of database API. 
-All calls to custom API are redirected to database API. </p>
+All calls to custom API are redirected to standard API. </p>
 <p>For example, this call to custom API: </p>
 <p><code>http://mini-kep.herokuapp.com/ru/series/CPI/m/rog/2015/2017</code></p>
 <p>will return same data as:</p>
 <p><code>https://minikep-db.herokuapp.com/api/datapoints?name=CPI_rog&amp;freq=m&amp;start_date=2015-01-01&amp;end_date=2017-12-31</code></p>
 <h1 id="url-syntax">URL syntax</h1>
-<p>Custom API URL syntax is the following:</p>
+<p>Custom API URL syntax is the following (<code>?</code> - optional):</p>
 <pre><code>{domain}/series/{varname}/{freq}/{?suffix}/{?start}/{?end}/{?finaliser}
-
-? - optional
 
 Examples:
    oil/series/BRENT/m/eop/2015/2017/csv
@@ -201,14 +201,14 @@ ru:77/series/CPI/m/2017  # inflation for Moscow region
 <li>readable by R/pandas</li>
 </ul>
 <p>Optional  <code>{finaliser}</code> may alter output format.</p>
-<h1 id="implementation">Implementation</h1>
-<p>Custom API currently developped and tested at 
-<a href="https://github.com/mini-kep/helper-custom-api/blob/master/src/custom_api.py">own repo</a>
-and mounted at <a href="https://github.com/mini-kep/frontend-app/blob/master/apps/views/time_series.py">frontend app</a>.</p>
-<h1 id="next-steps">Next steps</h1>
-<ul>
-<li><a href="https://github.com/mini-kep/helpers/issues/13">Mount custom API at db app</a></li>
-</ul>
+<p><hr>
+<table> <br />
+<tr>
+    <td><b>Repository:</b></td>
+    <td><a href="https://github.com/mini-kep/db/tree/master/db/custom_api">https://github.com/mini-kep/db/tree/master/db/custom_api</a>
+    </td>
+</tr>
+</table></p>
               
             </div>
           </div>
@@ -216,7 +216,7 @@ and mounted at <a href="https://github.com/mini-kep/frontend-app/blob/master/app
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../frontend/" class="btn btn-neutral float-right" title="Frontend">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../frontend/" class="btn btn-neutral float-right" title="Data browser">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
         <a href="../database/" class="btn btn-neutral" title="Database"><span class="icon icon-circle-arrow-left"></span> Previous</a>

@@ -54,6 +54,11 @@
           
             <li class="toctree-l1">
 		
+    <a class="" href="../usercase/">User case</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
     <a class="" href="../pipeline/">Data pipeline</a>
 	    </li>
           
@@ -66,12 +71,6 @@
     <a class="current" href="./">Parsers</a>
     <ul class="subnav">
             
-    <li class="toctree-l3"><a href="#data-sources-and-parsers">Data sources and parsers</a></li>
-    
-
-    <li class="toctree-l3"><a href="#repository">Repository</a></li>
-    
-
     </ul>
                 </li>
                 <li class="">
@@ -88,7 +87,7 @@
                 </li>
                 <li class="">
                     
-    <a class="" href="../frontend/">Frontend</a>
+    <a class="" href="../frontend/">Data browser</a>
                 </li>
                 <li class="">
                     
@@ -144,16 +143,19 @@
           <div role="main">
             <div class="section">
               
-                <h2 id="data-sources-and-parsers">Data sources and parsers</h2>
-<p>Data sources are static files (Word, PDF, html) and some open APIs. 
+                <p>Data sources are static files (Word, PDF, html) and some open APIs. 
 Parser is the python code performing requests and emitting datapoints as dictionaries 
-like <code>{'name': USDRUR_CB, 'date': '2017-09-28', 'freq': 'd', 'value': 58.0102}</code></p>
+like:</p>
+<p><code>{'name': USDRUR_CB, 'date': '2017-09-28', 'freq': 'd', 'value': 58.0102}</code></p>
 <p><a href="https://github.com/mini-kep/parser-rosstat-kep">parser-rosstat-kep</a> supplies most time monthly series. It is supplemented by daily ruble exchange rate from Bank of Russia and oil prices from EIA and some others.</p>
-<p>Aggratation of parser data is made at <a href="https://github.com/mini-kep/parsers/blob/master/parsers/runner.py">parsers/runner.py</a></p>
-<h2 id="repository">Repository</h2>
-<p><a href="https://github.com/mini-kep/parsers">Parsers</a>:
-<a href="https://travis-ci.org/mini-kep/parsers"><img alt="" src="https://travis-ci.org/mini-kep/parsers.svg?branch=master" /></a>
-<a href="https://codecov.io/gh/mini-kep/parsers"><img alt="" src="https://codecov.io/gh/mini-kep/parsers/branch/master/graphs/badge.svg" /></a> </p>
+<p><hr>
+<table> <br />
+<tr>
+    <td><b>Repository:</b></td>
+    <td><a href="https://github.com/mini-kep/parsers">https://github.com/mini-kep/parsers</a>
+    </td>
+</tr>
+</table></p>
               
             </div>
           </div>

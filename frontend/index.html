@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Frontend - mini-kep documentation</title>
+  <title>Data browser - mini-kep documentation</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
@@ -17,7 +17,7 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Frontend";
+    var mkdocs_page_name = "Data browser";
     var mkdocs_page_input_path = "frontend.md";
     var mkdocs_page_url = "/frontend/";
   </script>
@@ -54,6 +54,11 @@
           
             <li class="toctree-l1">
 		
+    <a class="" href="../usercase/">User case</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
     <a class="" href="../pipeline/">Data pipeline</a>
 	    </li>
           
@@ -79,18 +84,9 @@
                 </li>
                 <li class=" current">
                     
-    <a class="current" href="./">Frontend</a>
+    <a class="current" href="./">Data browser</a>
     <ul class="subnav">
             
-    <li class="toctree-l3"><a href="#overview">Overview</a></li>
-    
-
-    <li class="toctree-l3"><a href="#repository">Repository</a></li>
-    
-
-    <li class="toctree-l3"><a href="#issues">Issues</a></li>
-    
-
     </ul>
                 </li>
                 <li class="">
@@ -137,7 +133,7 @@
         
       
     
-    <li>Frontend</li>
+    <li>Data browser</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -147,22 +143,16 @@
           <div role="main">
             <div class="section">
               
-                <h2 id="overview">Overview</h2>
-<p>Frontend is a stand-alone flask app used to:</p>
-<ul>
-<li>relay some existing data in experimental mode </li>
-<li>make a list of indicators available in <code>mini-kep</code> database</li>
-<li>show individual indicators homepages with charts, latest values 
-  and instructions for download.</li>
-</ul>
-<h2 id="repository">Repository</h2>
-<p><a href="https://github.com/mini-kep/frontend-app">frontend-app</a>: 
-<a href="https://travis-ci.org/mini-kep/frontend-app"><img alt="" src="https://travis-ci.org/mini-kep/frontend-app.svg?branch=master" /></a> 
-<a href="https://codecov.io/gh/mini-kep/frontend-app"><img alt="" src="https://codecov.io/gh/mini-kep/frontend-app/branch/master/graphs/badge.svg" /></a></p>
-<h2 id="issues">Issues</h2>
-<ul>
-<li><a href="https://github.com/mini-kep/frontend-app/issues/12">homepage for individual indicators</a></li>
-</ul>
+                <p>Data browser is a <a href="https://plot.ly/dash/">plotly/dash</a> application deployed at <a href="https://macrodash.herokuapp.com">https://macrodash.herokuapp.com</a>.</p>
+<p>It allows browsing dataset by frequency and variable name and provides time series info and download links.</p>
+<p><hr>
+<table> <br />
+<tr>
+    <td><b>Repository:</b></td>
+    <td><a href="https://github.com/mini-kep/frontend-dash">https://github.com/mini-kep/frontend-dash</a>
+    </td>
+</tr>
+</table></p>
               
             </div>
           </div>

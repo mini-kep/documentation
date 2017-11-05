@@ -54,6 +54,11 @@
           
             <li class="toctree-l1">
 		
+    <a class="" href="../usercase/">User case</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
     <a class="" href="../pipeline/">Data pipeline</a>
 	    </li>
           
@@ -97,16 +102,7 @@
         </ul>
     
 
-    <li class="toctree-l3"><a href="#tests-to-edit">Tests (to edit)</a></li>
-    
-
-    <li class="toctree-l3"><a href="#tech-stack">Tech stack</a></li>
-    
-
-    <li class="toctree-l3"><a href="#repositories">Repositories</a></li>
-    
-
-    <li class="toctree-l3"><a href="#note">Note</a></li>
+    <li class="toctree-l3"><a href="#tests">Tests</a></li>
     
 
     </ul>
@@ -117,7 +113,7 @@
                 </li>
                 <li class="">
                     
-    <a class="" href="../frontend/">Frontend</a>
+    <a class="" href="../frontend/">Data browser</a>
                 </li>
                 <li class="">
                     
@@ -174,10 +170,12 @@
             <div class="section">
               
                 <h1 id="overview">﻿Overview</h1>
-<p>This document describes initial requirement for database layer with two essential methods: <code>POST api\incoming</code> and 
-<code>GET api/datapoints</code>. </p>
-<p>More methods will be added to extend database functionality, 
-please refer to <a href="https://github.com/mini-kep/db">db repository README.md</a> for newest information. </p>
+<p>This document describes initial requirement for following methods: </p>
+<ul>
+<li><code>POST api/incoming</code>  </li>
+<li><code>GET api/datapoints</code> </li>
+</ul>
+<p>New methods documented at <a href="https://github.com/mini-kep/db/README.md">db repository README.md</a>. </p>
 <h1 id="expected-functionality">Expected functionality</h1>
 <ul>
 <li>parser delivers a list of dicts, each dict is a datapoint</li>
@@ -264,21 +262,20 @@ GET api/datapoints?name=&lt;name&gt;&amp;freq=&lt;freq&gt;&amp;start_date=&lt;st
 <li>empty CSV or JSON if there’s no data with such query.</li>
 <li>returns error 400 on error in parameters</li>
 </ul>
-<h1 id="tests-to-edit">Tests (to edit)</h1>
+<h1 id="tests">Tests</h1>
 <p>Upload data from JSON to DB, run python unit tests with requests to different methods, validate them with uploaded data.</p>
 <p>Use combinations GET – POST – GET to validate data inserts and updates.</p>
 <p><a href="https://github.com/mini-kep/db/blob/master/demo/sqlalchemy/tests/test_clientdb_demo.py">Example1</a>
 <a href="https://github.com/mini-kep/full-app/blob/master/datapoint/tests.py">Example2</a></p>
 <p>Should we write some <a href="https://github.com/mini-kep/db/blob/master/requests_tests.py">tests in curl/httpie</a>? </p>
-<h1 id="tech-stack">Tech stack</h1>
-<p>Web-frameworks: Flask + SQLAlchemy, alternative - Django, may consider Falcon</p>
-<p>Container: prototype deployed to Heroku, alternative - use AWS EBTalk</p>
-<p>Database: Postgres (default on Heroku*), alternative - AWS RDS</p>
-<h1 id="repositories">Repositories</h1>
-<p><a href="https://github.com/mini-kep/db">db</a>: 
-<a href="https://travis-ci.org/mini-kep/db"><img alt="Build Status" src="https://travis-ci.org/mini-kep/db.svg?branch=master" /></a></p>
-<h1 id="note">Note</h1>
-<p>There is also <a href="https://github.com/mini-kep/full-app">django project for database</a>, but it is on hold now.</p>
+<p><hr>
+<table> <br />
+<tr>
+    <td><b>Repository:</b></td>
+    <td><a href="https://github.com/mini-kep/db">https://github.com/mini-kep/db</a>
+    </td>
+</tr>
+</table></p>
               
             </div>
           </div>
