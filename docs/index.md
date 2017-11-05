@@ -1,66 +1,49 @@
 Introduction
 ============
 
-```mini-kep``` is a small ETL (extract, transform, load) framework for 
-Russian and global macroeconomic time series data with public end-user API.
+```mini-kep``` is a small ETL (extract, transform, load) framework and a dataset for 
+Russian and global macroeconomic time series with public end-user API.
 
-It is inspired by [St Louis FRED](https://fred.stlouisfed.org) and 
+This work is inspired by [St Louis FRED](https://fred.stlouisfed.org) and 
 [Data Science Cookiecutter](https://drivendata.github.io/cookiecutter-data-science)
 and aims to provide open, timely, machine-readable data for reproducible 
 analysis in economics.
 
+Poll
+====
 
-User case
-=========
+Please [fill a poll about data sources](https://goo.gl/2wY43R) to support our case.  
 
-There are two user scenarios we keep in mind: 
+Motivation
+===========
+ 
+Why another database for macroeconomic data? 
+ 
+- Machine-readable datafeeds for economic data are growing ([FRED](https://research.stlouisfed.org/docs/api/fred/), 
+  [quandl](https://blog.quandl.com/api-for-economic-data), 
+  [OECD](https://data.oecd.org/api), 
+  [World Bank](https://datahelpdesk.worldbank.org/knowledgebase/topics/125589), 
+  [EIA](https://www.eia.gov/opendata/)).
 
-- browsing and downloading time series on the web  
-- using ```R```/```pandas``` code download to manupulate data 
+- However, some data is still left in the dark. Russian macroeconomic statistics seems very 
+  fragmented (HTML, Word, Excel are common dessimination formats). 
+  This is a roadblock to reproducible analysis as dirty data escalates costs of model maintenance.      
 
-#### User A: web interface
+- ```mini-kep``` aims to remove this roadblock by providing 
+  [public API for Russian macroeconomic data](http://mini-kep.herokuapp.com/) 
+  and examples of economic research/business planning/marketing problems 
+  solved in python pandas or R.
 
-*User A* is generally interested in macroeconomic data. He wants to: 
+Project links
+=============
 
-- browse the available dataset on a web site 
-- select some time series to compare 
-- download selected data locally. 
+Data browser: <http://macrodash.herokuapp.com>
 
-#### User B: R/pandas code
+Repositories:
 
-We assume *user В* has some experience with [FRED](https://fred.stlouisfed.org) 
-or [quandl](https://www.quandl.com/) and can use ```R```/```pandas``` 
-on a basic level.
+- [parsers](https://github.com/mini-kep/parsers)
+- [database](https://github.com/mini-kep/db)
+- [data browser](https://github.com/mini-kep/frontend-dash)
+- [user charts](https://github.com/mini-kep/user-charts)
 
-For his work User B wants:
-
-- a clean dataset with latest data from different sources
-- download this data on a local machine (in ```pandas``` or ```R```)
-- quickly draw some charts like one below: 
-
-[![](http://datachart.cc/images/rub_oil.png)](http://datachart.cc/)
-
-
-**Example: read official daily ruble/usd exchange rate from start of 2017**
-
-```python 
-import pandas as pd
-
-def read_ts(source_url):
-	"""Read pandas time series from *source_url*."""
-	return pd.read_csv(source_url, 
-                      converters={0: pd.to_datetime}, 
-                      index_col=0,
-                      squeeze=True)
-
-er = read_ts('http://minikep-db.herokuapp.com/ru/series/USDRUR_CB/d/2017')
-assert er['2017-09-28'] == 58.01022
-
-```
-
-Click [here](http://minikep-db.herokuapp.com/ru/series/USDRUR_CB/d/2017) to see same data in browser.
-
-Github
-======
-
-This documentation source is stored on [Github](https://github.com/mini-kep/documentation)
+This documentation is stored at <https://github.com/mini-kep/documentation>.

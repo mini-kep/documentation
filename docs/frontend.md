@@ -1,23 +1,14 @@
+Data browser is a [plotly/dash](https://plot.ly/dash/) application deployed at <https://macrodash.herokuapp.com>.
 
-## Overview
-
-Frontend is a stand-alone flask app used to:
-
-- relay some existing data in experimental mode 
-- make a list of indicators available in ```mini-kep``` database
-- show individual indicators homepages with charts, latest values 
-  and instructions for download.
- 
-##  Repository
-
-[frontend-app](https://github.com/mini-kep/frontend-app): 
-[![](https://travis-ci.org/mini-kep/frontend-app.svg?branch=master)](https://travis-ci.org/mini-kep/frontend-app) 
-[![](https://codecov.io/gh/mini-kep/frontend-app/branch/master/graphs/badge.svg)](https://codecov.io/gh/mini-kep/frontend-app)
-
-##  Issues
-
-- [homepage for individual indicators](https://github.com/mini-kep/frontend-app/issues/12)
+It allows browsing dataset by frequency and variable name and provides time series info and download links.
 
 
- 
 
+<hr>
+<table>   
+<tr>
+    <td><b>Repository:</b></td>
+    <td><a href="https://github.com/mini-kep/frontend-dash">https://github.com/mini-kep/frontend-dash</a>
+	</td>
+</tr>
+</table>

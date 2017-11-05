@@ -1,7 +1,8 @@
 Overview
 ========
-Custom API is a simplified interface for end-user queries from database. 
-It uses long URL with slashes and no other parameters.
+Custom API is a simplified interface for end-user database queries. 
+It uses long URL with slashes and no other parameters. 
+Custom API design originally discussed at [this issue](https://github.com/mini-kep/frontend-app/issues/8).
 
 Сustom API is intended for:
 
@@ -10,13 +11,10 @@ It uses long URL with slashes and no other parameters.
 3. addressing several database API endpoints in one place
 4. uniform call to same indicator for different countries or regions
 
-API design originally discussed at [this issue](https://github.com/mini-kep/frontend-app/issues/8).
-
-Custom API translates to db API 
-===============================
+#### Custom API translates to standard API  
 
 Custom API is essentially a thin syntax layer on top of database API. 
-All calls to custom API are redirected to database API. 
+All calls to custom API are redirected to standard API. 
 
 For example, this call to custom API: 
 
@@ -30,12 +28,10 @@ will return same data as:
 URL syntax
 ==========
 
-Custom API URL syntax is the following:
+Custom API URL syntax is the following (`?` - optional):
 
 ```
 {domain}/series/{varname}/{freq}/{?suffix}/{?start}/{?end}/{?finaliser}
-
-? - optional
 
 Examples:
    oil/series/BRENT/m/eop/2015/2017/csv
@@ -63,15 +59,15 @@ By default custom API returns CSV file. This file is:
 - readable by R/pandas
 
 Optional  ```{finaliser}``` may alter output format.
-  
-Implementation
-==============
 
-Custom API currently developped and tested at 
-[own repo](https://github.com/mini-kep/helper-custom-api/blob/master/src/custom_api.py)
-and mounted at [frontend app](https://github.com/mini-kep/frontend-app/blob/master/apps/views/time_series.py).
+<hr>
+<table>   
+<tr>
+    <td><b>Repository:</b></td>
+    <td><a href="https://github.com/mini-kep/db/tree/master/db/custom_api">https://github.com/mini-kep/db/tree/master/db/custom_api</a>
+	</td>
+</tr>
+</table>
 
-Next steps
-==========
 
-- [Mount custom API at db app](https://github.com/mini-kep/helpers/issues/13)
+

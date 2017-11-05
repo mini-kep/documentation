@@ -1,13 +1,14 @@
 site_name: mini-kep documentation
 pages:
     - Overview: index.md
+    - "User case": usercase.md
     - "Data pipeline": pipeline.md
     - Specifications: 
         - Parsers: parsers.md
         - Scheduler: scheduler.md
         - Database: database.md
         - "Custom API": custom_api.md
-        - Frontend: frontend.md
+        - "Data browser": frontend.md
         - Notebooks: notebooks.md
     - "Under construction":
         - "Data model and namespace": datamodel_and_namespace.md

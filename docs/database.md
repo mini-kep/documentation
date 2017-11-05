@@ -1,11 +1,12 @@
 ﻿Overview
 ========
 
-This document describes initial requirement for database layer with two essential methods: ```POST api\incoming``` and 
-```GET api/datapoints```. 
+This document describes initial requirement for following methods: 
 
-More methods will be added to extend database functionality, 
-please refer to [db repository README.md](https://github.com/mini-kep/db) for newest information. 
+- ```POST api/incoming```  
+- ```GET api/datapoints``` 
+
+New methods documented at [db repository README.md](https://github.com/mini-kep/db/README.md). 
 
 Expected functionality
 ======================
@@ -63,7 +64,6 @@ Parser result is obtained [here](https://github.com/mini-kep/parsers/blob/master
 from   ```Dataset.yield_dicts(start='2017-01-01')```. See ```Dataset.serialise()``` for json creation.
 Sample json is [here](https://github.com/mini-kep/parsers/blob/master/parsers/test_data_2016H2.json)
  
-
 **Outgoing CSV **
 
 ```
@@ -120,8 +120,8 @@ Returns:
 - returns error 400 on error in parameters
 
 
-Tests (to edit)
-===============
+Tests
+=====
 
 Upload data from JSON to DB, run python unit tests with requests to different methods, validate them with uploaded data.
 
@@ -132,23 +132,11 @@ Use combinations GET – POST – GET to validate data inserts and updates.
 
 Should we write some [tests in curl/httpie](https://github.com/mini-kep/db/blob/master/requests_tests.py)? 
 
-Tech stack
-==========
-
-Web-frameworks: Flask + SQLAlchemy, alternative - Django, may consider Falcon
-
-Container: prototype deployed to Heroku, alternative - use AWS EBTalk
-
-Database: Postgres (default on Heroku*), alternative - AWS RDS
-
-
-Repositories
-============
-
-[db](https://github.com/mini-kep/db): 
-[![Build Status](https://travis-ci.org/mini-kep/db.svg?branch=master)](https://travis-ci.org/mini-kep/db)
-
-
-Note
-====
-There is also [django project for database](https://github.com/mini-kep/full-app), but it is on hold now.
+<hr>
+<table>   
+<tr>
+    <td><b>Repository:</b></td>
+    <td><a href="https://github.com/mini-kep/db">https://github.com/mini-kep/db</a>
+	</td>
+</tr>
+</table>

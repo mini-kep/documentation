@@ -55,18 +55,10 @@
     <li class="toctree-l2"><a href="#introduction">Introduction</a></li>
     
 
-    <li class="toctree-l2"><a href="#user-case">User case</a></li>
-    
-        <ul>
-        
-            <li><a class="toctree-l3" href="#user-a-web-interface">User A: web interface</a></li>
-        
-            <li><a class="toctree-l3" href="#user-b-rpandas-code">User B: R/pandas code</a></li>
-        
-        </ul>
+    <li class="toctree-l2"><a href="#poll">Poll</a></li>
     
 
-    <li class="toctree-l2"><a href="#github">Github</a></li>
+    <li class="toctree-l2"><a href="#project-links">Project links</a></li>
     
 
     </ul>
@@ -152,54 +144,24 @@
             <div class="section">
               
                 <h1 id="introduction">Introduction</h1>
-<p><code>mini-kep</code> is a small ETL (extract, transform, load) framework for 
-Russian and global macroeconomic time series data with public end-user API.</p>
-<p>It is inspired by <a href="https://fred.stlouisfed.org">St Louis FRED</a> and 
+<p><code>mini-kep</code> is a small ETL (extract, transform, load) framework and a dataset for 
+Russian and global macroeconomic time series with public end-user API.</p>
+<p>This work is inspired by <a href="https://fred.stlouisfed.org">St Louis FRED</a> and 
 <a href="https://drivendata.github.io/cookiecutter-data-science">Data Science Cookiecutter</a>
 and aims to provide open, timely, machine-readable data for reproducible 
 analysis in economics.</p>
-<h1 id="user-case">User case</h1>
-<p>There are two user scenarios we keep in mind: </p>
+<h1 id="poll">Poll</h1>
+<p>Please <a href="https://goo.gl/2wY43R">fill a poll about data sources</a> to support our case.  </p>
+<h1 id="project-links">Project links</h1>
+<p>Data browser: <a href="http://macrodash.herokuapp.com">http://macrodash.herokuapp.com</a></p>
+<p>Repositories:</p>
 <ul>
-<li>browsing and downloading time series on the web  </li>
-<li>using <code>R</code>/<code>pandas</code> code download to manupulate data </li>
+<li><a href="https://github.com/mini-kep/parsers">parsers</a></li>
+<li><a href="https://github.com/mini-kep/db">database</a></li>
+<li><a href="https://github.com/mini-kep/frontend-dash">data browser</a></li>
+<li><a href="https://github.com/mini-kep/user-charts">user charts</a></li>
 </ul>
-<h4 id="user-a-web-interface">User A: web interface</h4>
-<p><em>User A</em> is generally interested in macroeconomic data. He wants to: </p>
-<ul>
-<li>browse the available dataset on a web site </li>
-<li>select some time series to compare </li>
-<li>download selected data locally. </li>
-</ul>
-<h4 id="user-b-rpandas-code">User B: R/pandas code</h4>
-<p>We assume <em>user В</em> has some experience with <a href="https://fred.stlouisfed.org">FRED</a> 
-or <a href="https://www.quandl.com/">quandl</a> and can use <code>R</code>/<code>pandas</code> 
-on a basic level.</p>
-<p>For his work User B wants:</p>
-<ul>
-<li>a clean dataset with latest data from different sources</li>
-<li>download this data on a local machine (in <code>pandas</code> or <code>R</code>)</li>
-<li>quickly draw some charts like one below: </li>
-</ul>
-<p><a href="http://datachart.cc/"><img alt="" src="http://datachart.cc/images/rub_oil.png" /></a></p>
-<p><strong>Example: read official daily ruble/usd exchange rate from start of 2017</strong></p>
-<pre><code class="python">import pandas as pd
-
-def read_ts(source_url):
-    &quot;&quot;&quot;Read pandas time series from *source_url*.&quot;&quot;&quot;
-    return pd.read_csv(source_url, 
-                      converters={0: pd.to_datetime}, 
-                      index_col=0,
-                      squeeze=True)
-
-er = read_ts('http://minikep-db.herokuapp.com/ru/series/USDRUR_CB/d/2017')
-assert er['2017-09-28'] == 58.01022
-
-</code></pre>
-
-<p>Click <a href="http://minikep-db.herokuapp.com/ru/series/USDRUR_CB/d/2017">here</a> to see same data in browser.</p>
-<h1 id="github">Github</h1>
-<p>This documentation source is stored on <a href="https://github.com/mini-kep/documentation">Github</a></p>
+<p>This documentation is stored at <a href="https://github.com/mini-kep/documentation">https://github.com/mini-kep/documentation</a>.</p>
               
             </div>
           </div>
@@ -246,5 +208,5 @@ assert er['2017-09-28'] == 58.01022
 
 <!--
 MkDocs version : 0.16.3
-Build Date UTC : 2017-10-29 21:50:40
+Build Date UTC : 2017-11-05 17:06:03
 -->
