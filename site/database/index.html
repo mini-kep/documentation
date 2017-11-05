@@ -74,7 +74,7 @@
     <a class="current" href="./">Database</a>
     <ul class="subnav">
             
-    <li class="toctree-l3"><a href="#overview">Overview</a></li>
+    <li class="toctree-l3"><a href="#overview">﻿Overview</a></li>
     
 
     <li class="toctree-l3"><a href="#expected-functionality">Expected functionality</a></li>
@@ -173,7 +173,7 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="overview">Overview</h1>
+                <h1 id="overview">﻿Overview</h1>
 <p>This document describes initial requirement for database layer with two essential methods: <code>POST api\incoming</code> and 
 <code>GET api/datapoints</code>. </p>
 <p>More methods will be added to extend database functionality, 
@@ -239,9 +239,11 @@ Sample json is <a href="https://github.com/mini-kep/parsers/blob/master/parsers/
 <p><code>POST api/incoming</code> </p>
 <p>Validates incoming json and upsert values to database. All fields should be filled.</p>
 <p>For <code>insert_many()</code> operation see <a href="https://stackoverflow.com/a/33768160/1758363"><em>'sheep/flock'</em> example</a></p>
-<p>Returns:
-- empty JSON on success
-- error 400 on error in incoming json (eg invalid date string or empty parameter or missing field)</p>
+<p>Returns:</p>
+<ul>
+<li>empty JSON on success</li>
+<li>error 400 on error in incoming json (eg invalid date string or empty parameter or missing field)</li>
+</ul>
 <p>POST methods should require API_TOKEN as URL parameter or header, validate it with environment variable (possibly Heroku config vars)</p>
 <h2 id="get">GET</h2>
 <pre><code>GET api/datapoints?name=&lt;name&gt;&amp;freq=&lt;freq&gt;
