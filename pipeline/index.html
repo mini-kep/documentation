@@ -57,21 +57,19 @@
     <a class="current" href="./">Data pipeline</a>
     <ul class="subnav">
             
-    <li class="toctree-l2"><a href="#data-pipleline">Data pipleline</a></li>
+    <li class="toctree-l2"><a href="#1-parsers">1 Parsers</a></li>
     
-        <ul>
-        
-            <li><a class="toctree-l3" href="#1-parsers">1 Parsers</a></li>
-        
-            <li><a class="toctree-l3" href="#2-scheduler">2 Scheduler</a></li>
-        
-            <li><a class="toctree-l3" href="#3-database">3 Database</a></li>
-        
-            <li><a class="toctree-l3" href="#4-frontend-app">4 Frontend app</a></li>
-        
-            <li><a class="toctree-l3" href="#5-end-user-examples">5 End-user examples</a></li>
-        
-        </ul>
+
+    <li class="toctree-l2"><a href="#2-scheduler">2 Scheduler</a></li>
+    
+
+    <li class="toctree-l2"><a href="#3-database">3 Database</a></li>
+    
+
+    <li class="toctree-l2"><a href="#4-data-browser">4 Data browser</a></li>
+    
+
+    <li class="toctree-l2"><a href="#5-end-user-examples">5 End-user examples</a></li>
     
 
     </ul>
@@ -151,15 +149,15 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="data-pipleline">Data pipleline</h1>
-<p><code>mini-kep</code> collects data from static files and public APIs,
+                <p><code>mini-kep</code> collects data from static files and public APIs,
 saves it in database and provides end-user interface to browse this data 
 and read it with R/pandas for visualisation and modelling.  </p>
 <h2 id="1-parsers">1 <a href="https://github.com/mini-kep/parsers">Parsers</a></h2>
 <ul>
-<li>download data from sources (on static files or other APIs) </li>
+<li>download data from static files or other APIs </li>
 <li>assign variable names from common namespace </li>
-<li>emit stream of dictionaries like:  </li>
+<li>emit stream datapoints (observations)</li>
+<li>each observation is a dictionary like:  </li>
 </ul>
 <p><code>{'name': USDRUR_CB, 'date': '2017-09-28', 'freq': 'd', 'value': 58.0102}</code></p>
 <h2 id="2-scheduler">2 Scheduler</h2>
@@ -167,25 +165,25 @@ and read it with R/pandas for visualisation and modelling.  </p>
 <li>establish expected database content based on current date </li>
 <li>query parsers for missing data </li>
 <li>upload to database</li>
+<li>implemented as python script run by heroku scheduler</li>
 </ul>
 <h2 id="3-database">3 <a href="https://github.com/mini-kep/db">Database</a></h2>
 <ul>
 <li>flask app with SQLAlchemy and Postgres backend </li>
-<li>has REST API to upload and <a href="https://github.com/mini-kep/db#get-calls">retreive</a> data</li>
-<li>has custom API to retrieve data, custom API maps simplified query syntax to REST API</li>
+<li>has REST API to upload and retreive data</li>
+<li>has custom API with simplified query syntax to retrieve data </li>
 </ul>
-<h2 id="4-frontend-app">4 <a href="https://github.com/mini-kep/frontend-app">Frontend app</a></h2>
+<h2 id="4-data-browser">4 <a href="https://github.com/mini-kep/frontend-dash">Data browser</a></h2>
 <ul>
-<li>project <a href="https://mini-kep.herokuapp.com">news and how-to</a></li>
-<li>relaying data from database query API</li>
-<li>html content for viewing data with charts (not implemented)</li>
-<li>social links for charts (not implemented)</li>
+<li>plotly/dash app deployed at <a href="https://macrodash.herokuapp.com)">https://macrodash.herokuapp.com)</a></li>
+<li>allows browsing dataset by frequency and variable name </li>
+<li>provides download links</li>
 </ul>
 <h2 id="5-end-user-examples">5 <a href="https://github.com/mini-kep/user-charts">End-user examples</a></h2>
 <ul>
 <li>data access examples for end-user API</li>
 <li>charting macroeconimic data</li>
-<li>collection of Jupiter notebooks to demostrate data use (visualisation/modelling)</li>
+<li>collection of Jupiter notebooks to demostrate visualisation and modelling</li>
 </ul>
 <p><strong>Comments</strong></p>
 <ol>
