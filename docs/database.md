@@ -3,7 +3,7 @@
 
 This document describes initial requirement for following methods: 
 
-- ```POST api/incoming```  
+- ```POST api/datapoints```  
 - ```GET api/datapoints``` 
 
 New methods documented at [db repository README.md](https://github.com/mini-kep/db/README.md). 
@@ -96,7 +96,8 @@ Returns:
 
 POST methods should require API_TOKEN as URL parameter or header, validate it with environment variable (possibly Heroku config vars)
 
-Note: originally was post ```'api/incoming'```, but htis became confusing with several endponts using POST method. 
+Note: originally endpoint was ```POST api/datapoints```, but this became confusing as with several endponts are now 
+      using POST method. 
 
 GET
 ---
