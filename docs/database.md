@@ -82,7 +82,8 @@ Database methods
 POST
 ----
 
-```POST api/incoming``` 
+```POST api/datapoints``` 
+
 
 Validates incoming json and upsert values to database. All fields should be filled.
 
@@ -95,6 +96,7 @@ Returns:
 
 POST methods should require API_TOKEN as URL parameter or header, validate it with environment variable (possibly Heroku config vars)
 
+Note: originally was post ```'api/incoming'```, but htis became confusing with several endponts using POST method. 
 
 GET
 ---
